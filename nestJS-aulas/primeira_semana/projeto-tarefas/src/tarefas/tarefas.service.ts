@@ -42,4 +42,10 @@ export class TarefasService {
       (tarefa) => tarefa.status === status.toUpperCase(),
     );
   }
+
+  atualizarStatus(id: number, novoStatus: TarefaStatus): Tarefa {
+  const tarefa = this.getTarefaPorId(id);
+  tarefa.status = novoStatus;
+  return tarefa;
+}
 }

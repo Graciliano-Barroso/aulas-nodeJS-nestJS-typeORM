@@ -1697,4 +1697,32 @@ export class AppModule {}
 ✔ Como criar e registrar módulos customizados
 ✔ Como garantir o isolamento de responsabilidade de cada parte da aplicação
 
+<br/>
+<hr />
+<br/>
+<p align="center">============================== // ==============================</p>
 
+<p align="center">🚀🚀🚀🚀🚀 Início do 7º dia de aula 🚀🚀🚀🚀🚀</p>
+
+<p align="center">============================== // ==============================</p>
+<br/>
+<hr />
+<br/>
+
+
+
+
+<br/>
+<hr />
+<br/>
+<p align="center">============================== // ==============================</p>
+
+<p align="center">🚀🚀🚀🚀🚀 Início do 6º dia de aula 🚀🚀🚀🚀🚀</p>
+
+<p align="center">============================== // ==============================</p>
+<br/>
+<hr />
+<br/>
+
+
+1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣ 6️⃣ 7️⃣ 8️⃣ 9️⃣ 🔟
