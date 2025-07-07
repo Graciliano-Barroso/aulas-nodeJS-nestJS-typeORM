@@ -22,7 +22,7 @@ export class TarefasController {
   // GET /tarefas/status/:status
   @Get('status/:status')
   getTarefasPorStatus(@Param('status') status: string): Tarefa[] {
-    return this.tarefasService.getTarefasPorStatus(status);
+    return this.tarefasService.filtrarTarefasPorStatus(status);
   }
 
   @Post()

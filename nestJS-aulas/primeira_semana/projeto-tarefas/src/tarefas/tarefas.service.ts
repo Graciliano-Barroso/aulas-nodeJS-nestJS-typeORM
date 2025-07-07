@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Tarefa } from './tarefa.model';
-import { TarefaStatus } from './tarefa-status.enum';
+import { TarefaStatus } from './enums/tarefa-status.enum';
 import { CreateTarefaDto } from './dto/create-tarefa.dto';
 
 @Injectable()
@@ -23,7 +23,7 @@ export class TarefasService {
     return this.tarefas.filter((t) => t.status === status.toUpperCase());
   }
 
-   createTarefa(dto: CreateTarefaDto): Tarefa {
+  createTarefa(dto: CreateTarefaDto): Tarefa {
     const { titulo, descricao } = dto;
 
     const tarefa: Tarefa = {
@@ -35,5 +35,11 @@ export class TarefasService {
 
     this.tarefas.push(tarefa);
     return tarefa;
+  }
+
+  filtrarTarefasPorStatus(status: string): Tarefa[] {
+    return this.tarefas.filter(
+      (tarefa) => tarefa.status === status.toUpperCase(),
+    );
   }
 }
