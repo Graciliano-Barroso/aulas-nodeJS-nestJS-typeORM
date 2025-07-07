@@ -2,8 +2,9 @@
 
 > 🎯 Objetivo: Entender a arquitetura do Nest.js, saber criar módulos, controladores e serviços, e iniciar uma API RESTful organizada.
 
-## <br/>
-
+<!-- markdownlint-disable MD033 -->
+<br/>
+<hr/>
 <br/>
 
 🛠️ Pré-requisitos antes de começar
@@ -16,8 +17,8 @@
 
 - Editor (VS Code)
 
-## <br/>
-
+<br/>
+<hr/>
 <br/>
 
 📦 Instalação do Nest.js CLI
@@ -27,8 +28,8 @@ npm i -g @nestjs/cli
 nest new projeto-tarefas
 ```
 
-## <br/>
-
+<br/>
+<hr/>
 <br/>
 
 🗓️ Dia 1 – Introdução ao Nest.js
@@ -55,8 +56,8 @@ nest new projeto-tarefas
 
 Adicionar um `console.log()` no `main.ts` para verificar o ambiente.
 
-## <br/>
-
+<br/>
+<hr/>
 <br/>
 
 🗓️ Dia 2 – Controladores (Controllers)
@@ -83,8 +84,8 @@ nest g controller tarefas
 
 Adicionar mais uma rota: `GET /tarefas/status/:status`
 
-## <br/>
-
+<br/>
+<hr/>
 <br/>
 
 🗓️ Dia 3 – Serviços (Services)
@@ -111,8 +112,8 @@ nest g service tarefas
 
 Criar um método `getTarefaPorId(id: string)` no serviço e usá-lo no controller
 
-## <br/>
-
+<br/>
+<hr/>
 <br/>
 
 🗓️ Dia 4 – DTOs e Tipagem
@@ -136,8 +137,8 @@ Criar um método `getTarefaPorId(id: string)` no serviço e usá-lo no controlle
 🧪 Exercício:
 Adicionar lógica para `POST /tarefas` com DTO
 
-## <br/>
-
+<br/>
+<hr/>
 <br/>
 
 🗓️ Dia 5 – Injeção de dependência e boas práticas
@@ -158,8 +159,8 @@ Adicionar lógica para `POST /tarefas` com DTO
 
 - Criar um método `filtrarTarefasPorStatus(status: string)`
 
-## <br/>
-
+<br/>
+<hr/>
 <br/>
 
 🗓️ Dia 6 – Módulos
@@ -182,8 +183,8 @@ nest g module tarefas
 
 - Garantir que o módulo está importando controller e serviço corretamente
 
-## <br/>
-
+<br/>
+<hr/>
 <br/>
 
 🗓️ Dia 7 – Revisão e prática
@@ -208,8 +209,8 @@ Criar uma API de tarefas com os seguintes endpoints:
 
 - `PATCH /tarefas/:id/status`: atualizar status
 
-## <br/>
-
+<br/>
+<hr/>
 <br/>
 
 📦 Pastas organizadas no final da semana
@@ -238,12 +239,13 @@ src/
 <hr />
 <br/>
 
+<!-- markdownlint-disable MD025 -->
 # 🗂️ Plano de Estudo – Nest.js (Semana 2)
 
 > 🎯 Objetivo: Aprimorar sua API com validações, autenticação básica, tratamento de erros e preparar para integração com banco de dados (TypeORM).
 
-## <br/>
-
+<br/>
+<hr/>
 <br/>
 
 🗓️ Dia 8 – Pipes e validação de dados
@@ -282,8 +284,8 @@ export class CreateTarefaDto {
 
 - Criar um `FilterDto` para buscar tarefas por `status` e `termo` com validação usando `@IsOptional()`.
 
-## <br/>
-
+<br/>
+<hr/>
 <br/>
 
 🗓️ Dia 9 – Pipes customizados
@@ -304,8 +306,8 @@ export class CreateTarefaDto {
 
 - Adicionar pipe no endpoint `PATCH /tarefas/:id/status`
 
-## <br/>
-
+<br/>
+<hr/>
 <br/>
 
 🗓️ Dia 10 – Exception Filters (tratamento de erros)
@@ -330,8 +332,8 @@ throw new NotFoundException(`Tarefa com ID "${id}" não encontrada`);
 
 Adicionar exceções personalizadas para os métodos `GET`, `DELETE` e `UPDATE`.
 
-## <br/>
-
+<br/>
+<hr/>
 <br/>
 
 🗓️ Dia 11 – Middleware
@@ -358,8 +360,8 @@ nest g middleware logger
 
 - Adicionar timestamp e rota acessada no log.
 
-## <br/>
-
+<br/>
+<hr/>
 <br/>
 
 🗓️ Dia 12 – Guards (autenticação básica)
@@ -380,8 +382,8 @@ nest g middleware logger
 
 - Proteger rota de criação de tarefas com guard.
 
-## <br/>
-
+<br/>
+<hr/>
 <br/>
 
 🗓️ Dia 13 – Configuração com .env e instalação de TypeORM
@@ -416,8 +418,8 @@ DB_NAME=nest_tarefas
 
 - Simular a conexão (sem entidades ainda), garantir que app inicia com sucesso.
 
-## <br/>
-
+<br/>
+<hr/>
 <br/>
 
 🗓️ Dia 14 – Preparar para uso do banco com TypeORM
@@ -456,8 +458,8 @@ export class Tarefa {
 }
 ```
 
-## <br/>
-
+<br/>
+<hr/>
 <br/>
 
 🧠 Ao final da semana, você terá
@@ -483,8 +485,8 @@ export class Tarefa {
 
 > 🎯 Objetivo: Persistência com banco de dados usando TypeORM, criação de entidades, relacionamento, autenticação com JWT e finalização de um projeto completo.
 
-## <br/>
-
+<br/>
+<hr/>
 <br/>
 
 🗓️ Dia 15 – Integrar TypeORM com Nest.js
@@ -526,8 +528,8 @@ export class TarefaEntity {
 
 - Criar repositório de tarefas e salvar tarefa no banco.
 
-## <br/>
-
+<br/>
+<hr/>
 <br/>
 
 🗓️ Dia 16 – CRUD com banco de dados
@@ -546,8 +548,8 @@ Refatorar `tarefas.service.ts` para usar o banco de dados em vez de array
 🧪 Exercício:
 Implementar os métodos: `findAll`, `findById`, `create`, `delete`, `updateStatus`
 
-## <br/>
-
+<br/>
+<hr/>
 <br/>
 
 🗓️ Dia 17 – Autenticação com JWT (parte 1)
@@ -570,8 +572,8 @@ npm install @nestjs/jwt @nestjs/passport passport passport-jwt bcryptjs
 
 - Registrar e salvar novo usuário com senha criptografada (bcrypt)
 
-## <br/>
-
+<br/>
+<hr/>
 <br/>
 
 🗓️ Dia 18 – Autenticação com JWT (parte 2)
@@ -594,8 +596,8 @@ Implementar `JwtStrategy` para validar token
 
 - Proteger rotas de tarefas com `@UseGuards(AuthGuard())`
 
-## <br/>
-
+<br/>
+<hr/>
 <br/>
 
 🗓️ Dia 19 – Relacionamentos com TypeORM
@@ -621,8 +623,8 @@ usuario: UsuarioEntity;
 
 - Buscar tarefas de um usuário logado (usando o token JWT)
 
-## <br/>
-
+<br/>
+<hr/>
 <br/>
 
 🗓️ Dia 20 – Filtros, DTOs avançados e refatorações
@@ -645,8 +647,8 @@ usuario: UsuarioEntity;
 
 - Adicionar `GET /tarefas?status=ABERTA&busca=texto` usando query params
 
-## <br/>
-
+<br/>
+<hr/>
 <br/>
 
 🗓️ Dia 21 – Finalizando o projeto
@@ -691,8 +693,8 @@ src/
 ├── app.module.ts
 ```
 
-## <br/>
-
+<br/>
+<hr/>
 <br/>
 
 ✅ Ao final da 3ª semana, você terá
@@ -753,8 +755,8 @@ src/
 
 - Baseado no padrão MVC: Controller → Service → Repository (quando usa banco)
 
-## <br/>
-
+<br/>
+<hr/>
 <br/>
 
 ## 🔧 Atividades Práticas
@@ -812,8 +814,8 @@ Acesse <http://localhost:3000> e verá a mensagem:
 Hello World!
 ```
 
-## <br/>
-
+<br/>
+<hr/>
 <br/>
 
 ## 🧪 Exercício Final
@@ -838,8 +840,8 @@ npm run start:dev
 
 Verifique no terminal a saída do console.
 
-## <br/>
-
+<br/>
+<hr/>
 <br/>
 
 ✅ O que você aprendeu hoje:
@@ -869,8 +871,8 @@ Verifique no terminal a saída do console.
 
 No Nest.js, os **Controllers** (controladores) são responsáveis por lidar com as **requisições** HTTP. Eles recebem os dados da requisição, **chamam os serviços** responsáveis pela lógica de negócio e devolvem uma resposta ao cliente.
 
-## <br/>
-
+<br/>
+<hr/>
 <br/>
 
 ## ✅ Decoradores principais
@@ -885,10 +887,11 @@ Nest usa decoradores para definir rotas e comportamento:
 | `@Query()`                                 | Captura parâmetros de query string           |
 | `@Body()`                                  | Captura o corpo da requisição (em POST, PUT) |
 
-## <br/>
-
+<br/>
+<hr/>
 <br/>
 
+<!-- markdownlint-disable MD024 -->
 ## 🔧 Atividades Práticas
 
 1️⃣ Criar um controller chamado `tarefas`
@@ -901,8 +904,8 @@ nest g controller tarefas
 
 > Isso criará um novo controller em `src/tarefas/tarefas.controller.ts`
 
-## <br/>
-
+<br/>
+<hr/>
 <br/>
 
 2️⃣ Editar o controller para adicionar rotas `GET`
@@ -941,8 +944,8 @@ export class TarefasController {
 }
 ```
 
-## <br/>
-
+<br/>
+<hr/>
 <br/>
 
 ## 🚀 Testando no navegador ou Postman
@@ -953,8 +956,8 @@ export class TarefasController {
 
 - `GET http://localhost:3000/tarefas/status/aberta` → retorna todas com status ABERTA
 
-## <br/>
-
+<br/>
+<hr/>
 <br/>
 
 ## 🧪 Exercício Final
@@ -971,10 +974,11 @@ Depois teste:
 
 - `GET /tarefas/status/finalizada`
 
-## <br/>
-
+<br/>
+<hr/>
 <br/>
 
+<!-- markdownlint-disable MD026 -->
 ## ✅ O que você aprendeu hoje:
 
 ✔ Criar um controller com o CLI (`nest g controller`)
@@ -1007,8 +1011,8 @@ Depois teste:
 
 > ✨ Eles promovem a separação de responsabilidades (princípio SOLID: Single Responsibility).
 
-## <br/>
-
+<br/>
+<hr/>
 <br/>
 
 ## ✅ `@Injectable()` e Injeção de Dependência
@@ -1017,8 +1021,8 @@ Depois teste:
 
 - Isso permite que o Nest.js gere automaticamente instâncias dos serviços e controle o ciclo de vida deles.
 
-## <br/>
-
+<br/>
+<hr/>
 <br/>
 
 ## 🔧 Atividades Práticas
@@ -1033,8 +1037,8 @@ nest g service tarefas
 
 > Isso vai gerar o arquivo `tarefas.service.ts` dentro da pasta `src/tarefas`.`
 
-## <br/>
-
+<br/>
+<hr/>
 <br/>
 
 2️⃣ Mover a lógica para o serviço
@@ -1066,8 +1070,8 @@ export class TarefasService {
 }
 ```
 
-## <br/>
-
+<br/>
+<hr/>
 <br/>
 
 3️⃣ Injetar o serviço no controller
@@ -1099,8 +1103,8 @@ export class TarefasController {
 }
 ```
 
-## <br/>
-
+<br/>
+<hr/>
 <br/>
 
 ⚠️ Atenção
@@ -1137,8 +1141,8 @@ Crie o método `getTarefaPorId(id: string)` no serviço (já feito acima) e:
 
 3. Tente retornar uma mensagem personalizada se não encontrar nenhuma tarefa (opcional para o próximo dia, quando trataremos erros).
 
-## <br/>
-
+<br/>
+<hr/>
 <br/>
 
 ## ✅ O que você aprendeu hoje:
@@ -1173,8 +1177,8 @@ Crie o método `getTarefaPorId(id: string)` no serviço (já feito acima) e:
 
 - Com Nest.js (e TypeScript), os DTOs são usados junto com validações e decorators.
 
-## <br/>
-
+<br/>
+<hr/>
 <br/>
 
 ## ✅ Interfaces ou Classes para tipos
@@ -1183,8 +1187,8 @@ Crie o método `getTarefaPorId(id: string)` no serviço (já feito acima) e:
 
 - Nest.js recomenda o uso de classes, pois elas funcionam com bibliotecas de validação como `class-validator`.
 
-## <br/>
-
+<br/>
+<hr/>
 <br/>
 
 ## ✅ Validação com TypeScript
@@ -1193,8 +1197,8 @@ Crie o método `getTarefaPorId(id: string)` no serviço (já feito acima) e:
 
 - Podemos usar tipos enumerados (enum) para restringir valores possíveis, como status de uma tarefa.
 
-## <br/>
-
+<br/>
+<hr/>
 <br/>
 
 ## 🔧 Atividades Práticas
@@ -1214,8 +1218,8 @@ export class CreateTarefaDto {
 
 > Essa classe representa os dados esperados na criação de uma tarefa.
 
-## <br/>
-
+<br/>
+<hr/>
 <br/>
 
 2️⃣ Criar um enum de status de tarefa
@@ -1234,8 +1238,8 @@ export enum TarefaStatus {
 
 > Esse enum define os únicos status válidos para uma tarefa.
 
-## <br/>
-
+<br/>
+<hr/>
 <br/>
 
 3️⃣ Criar o tipo `Tarefa`
@@ -1255,8 +1259,8 @@ export interface Tarefa {
 }
 ```
 
-## <br/>
-
+<br/>
+<hr/>
 <br/>
 
 4️⃣ Atualizar o serviço para usar os tipos
@@ -1301,8 +1305,8 @@ export class TarefasService {
 }
 ```
 
-## <br/>
-
+<br/>
+<hr/>
 <br/>
 
 5️⃣ Atualizar o controller para receber dados via `POST`
@@ -1341,8 +1345,8 @@ export class TarefasController {
 }
 ```
 
-## <br/>
-
+<br/>
+<hr/>
 <br/>
 
 🧪 Exercício Final
@@ -1360,6 +1364,7 @@ POST http://localhost:3000/tarefas
 }
 ```
 
+<!-- markdownlint-disable MD029 -->
 2. Depois acesse:
 
 - `GET /tarefas` para ver a tarefa criada
@@ -1368,12 +1373,12 @@ POST http://localhost:3000/tarefas
 
 - `GET /tarefas/status/ABERTA` para filtrar por status
 
-## 
 <br/>
----
+<hr/>
 <br/>
 
 ✅ O que você aprendeu hoje:
+
 ✔ O que é um DTO e por que usá-lo
 ✔ Como definir tipos com classes, interfaces e enums
 ✔ Como aplicar DTOs no fluxo de criação de tarefas
