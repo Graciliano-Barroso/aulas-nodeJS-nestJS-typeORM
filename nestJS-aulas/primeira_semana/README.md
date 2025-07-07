@@ -2074,12 +2074,216 @@ Corpo JSON:
 <hr />
 <br/>
 
+# 📘 Dia 8 – Pipes e Validação de Dados
 
+📚 Conteúdo Teórico
 
+## ✅ O que são Pipes no Nest.js?
 
+- Pipes são classes responsáveis por:
 
+  - Transformar dados de entrada (ex: converter tipos)
 
+  - Validar dados antes que cheguem ao controller
 
+- Funcionam junto com os decoradores ``@Body()``, ``@Param()``, ``@Query()``, etc.
+
+> No caso de DTOs, os pipes funcionam junto com bibliotecas como ``class-validator`` e ``class-transformer``.
+
+<br/>
+<hr />
+<br/>
+
+## ✅ Validação com ``class-validator`` + ``class-transformer``
+
+- class-validator: fornece decorators como ``@IsString()``, ``@IsNotEmpty()``, ``@IsEnum()``, etc.
+
+- class-transformer: converte os dados de entrada em instâncias da classe DTO (necessário para que a validação funcione)
+
+<br/>
+<hr />
+<br/>
+
+## 🔧 Atividades Práticas
+
+1️⃣ Instalar os pacotes
+
+```bash
+npm install class-validator class-transformer
+```
+
+<br/>
+<hr />
+<br/>
+
+2️⃣ Habilitar o pipe global de validação
+
+No ``main.ts``, adicione o ``ValidationPipe`` global:
+
+```ts
+// src/main.ts
+import { ValidationPipe } from '@nestjs/common';
+
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+  app.useGlobalPipes(new ValidationPipe());
+  await app.listen(3000);
+}
+bootstrap();
+```
+
+<br/>
+<hr />
+<br/>
+
+3️⃣ Atualizar o DTO de criação de tarefa
+
+📁 ``src/tarefas/dto/create-tarefa.dto.ts``
+
+```ts
+import { IsNotEmpty } from 'class-validator';
+
+export class CreateTarefaDto {
+  @IsNotEmpty({ message: 'O título não pode estar vazio.' })
+  titulo: string;
+
+  @IsNotEmpty({ message: 'A descrição não pode estar vazia.' })
+  descricao: string;
+}
+```
+
+> Agora, se o cliente enviar ``POST /tarefas`` com campos vazios, ele receberá uma mensagem de erro automaticamente.
+
+<br/>
+<hr />
+<br/>
+
+4️⃣ Criar o ``FilterTarefasDto`` com validação
+
+📁 ``src/tarefas/dto/filter-tarefas.dto.ts``
+
+```ts
+import { IsOptional, IsEnum, IsString } from 'class-validator';
+import { TarefaStatus } from '../enums/tarefa-status.enum';
+
+export class FilterTarefasDto {
+  @IsOptional()
+  @IsEnum(TarefaStatus, {
+    message: 'Status inválido. Use ABERTA, EM_ANDAMENTO ou FINALIZADA',
+  })
+  status?: TarefaStatus;
+
+  @IsOptional()
+  @IsString()
+  termo?: string;
+}
+```
+
+> Esse DTO poderá ser usado para filtros com query params, como:
+
+```bash
+GET /tarefas?status=ABERTA&termo=estudar
+```
+
+<br/>
+<hr />
+<br/>
+
+5️⃣ Atualizar o controller (para preparar uso do filtro)
+
+📁 ``src/tarefas/tarefas.controller.ts``
+
+```ts
+import { Query } from '@nestjs/common';
+import { FilterTarefasDto } from './dto/filter-tarefas.dto';
+
+@Get()
+getTarefas(@Query() filtroDto: FilterTarefasDto): Tarefa[] {
+  if (Object.keys(filtroDto).length) {
+    return this.tarefasService.filtrarTarefas(filtroDto);
+  }
+  return this.tarefasService.getTodas();
+}
+```
+
+(Opcional) Método no service:
+
+```ts
+filtrarTarefas(filtroDto: FilterTarefasDto): Tarefa[] {
+  const { status, termo } = filtroDto;
+  let tarefasFiltradas = this.tarefas;
+
+  if (status) {
+    tarefasFiltradas = tarefasFiltradas.filter(t => t.status === status);
+  }
+
+  if (termo) {
+    tarefasFiltradas = tarefasFiltradas.filter(
+      t => t.titulo.includes(termo) || t.descricao.includes(termo),
+    );
+  }
+
+  return tarefasFiltradas;
+}
+```
+
+<br/>
+<hr />
+<br/>
+
+## ⚠️ Se for usar a função acima no método service seria bom remover os dois metodos abaixo relacionados ao status no serviço `TarefasService`
+
+```ts
+getTarefasPorStatus(status: string): Tarefa[]
+filtrarTarefasPorStatus(status: string): Tarefa[]
+```
+
+## ⚠️ Também remova o método  ``@Get('status/:status')`` e deixe tudo com o metodo que modificamos `@Get()`
+
+```ts
+// GET /tarefas/status/:status
+  @Get('status/:status')
+  getTarefasPorStatus(@Param('status') status: string): Tarefa[] {
+    return this.tarefasService.filtrarTarefasPor status(status);
+  }
+```
+
+<br/>
+<hr />
+<br/>
+
+## 🧪 Exercício Final
+
+1. Testar ``POST /tarefas`` com campos vazios:
+
+```json
+{
+  "titulo": "",
+  "descricao": ""
+}
+```
+
+✔️ Esperado: erro 400 com mensagens personalizadas.
+
+2. Testar ``GET /tarefas?status=INVALIDO``
+
+✔️ Esperado: erro 400 com mensagem de status inválido.
+
+3. Testar ``GET /tarefas?status=EM_ANDAMENTO&termo=prova``
+
+✔️ Esperado: retorno filtrado por status e termo no título/descrição.
+
+<br/>
+<hr />
+<br/>
+
+## ✅ O que você aprendeu hoje:
+
+✔ O que são e para que servem pipes no Nest.js
+✔ Como validar dados com ``class-validator`` e ``class-transformer``
+✔ Como criar DTOs com validação automática
+✔ Como usar ``@Query()`` com validação para filtros avançados
+✔ Como aplicar boas mensagens de erro para entrada de dados inválidos
 
 
 

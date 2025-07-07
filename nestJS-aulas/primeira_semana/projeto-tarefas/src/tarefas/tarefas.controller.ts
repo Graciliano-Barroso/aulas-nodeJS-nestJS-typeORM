@@ -18,7 +18,6 @@ getTarefas(@Query() filtroDto: FilterTarefasDto): Tarefa[] {
   return this.tarefasService.getTodasTarefas();
 }
 
-
   // GET /tarefas/:id
   @Get(':id')
   getTarefaPorId(@Param('id') id: string): Tarefa {
