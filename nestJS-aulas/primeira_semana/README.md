@@ -1709,20 +1709,372 @@ export class AppModule {}
 <hr />
 <br/>
 
+# 📘 Dia 7 – Revisão e Prática: Criando uma API de Tarefas
 
+📚 Revisão de Conceitos
 
+## 🔁 Fluxo de funcionamento no Nest.js
+
+1. **Controller**: recebe a requisição HTTP (GET, POST, etc.)
+
+2. **Service**: contém a lógica de negócio
+
+3. **DTOs** e **Enums**: definem estrutura e regras dos dados
+
+4. **Resposta**: volta para o controller e é enviada para o cliente
 
 <br/>
 <hr />
 <br/>
-<p align="center">============================== // ==============================</p>
 
-<p align="center">🚀🚀🚀🚀🚀 Início do 6º dia de aula 🚀🚀🚀🚀🚀</p>
+## 🛠️ Objetivo da Aula
 
-<p align="center">============================== // ==============================</p>
+Criar um mini projeto Nest.js de uma API de tarefas, com armazenamento em memória e rotas completas para manipular as tarefas.
+
+Sem banco de dados por enquanto – o foco é praticar controllers, services, DTOs, módulos, enums e boas práticas.
+
 <br/>
 <hr />
 <br/>
 
+## 🧱 **Requisitos da API**
 
-1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣ 6️⃣ 7️⃣ 8️⃣ 9️⃣ 🔟
+## ✅ Endpoints:
+
+| Método | Rota                  | Ação                         |
+| ------ | --------------------- | ---------------------------- |
+| GET    | `/tarefas`            | Listar todas as tarefas      |
+| GET    | `/tarefas/:id`        | Obter uma tarefa pelo ID     |
+| POST   | `/tarefas`            | Criar uma nova tarefa        |
+| DELETE | `/tarefas/:id`        | Remover uma tarefa           |
+| PATCH  | `/tarefas/:id/status` | Atualizar o status da tarefa |
+
+<br/>
+<hr />
+<br/>
+
+## 🔧 Passo a passo da implementação
+
+1️⃣ Criar a estrutura do módulo de tarefas
+
+Caso ainda não tenha criado:
+
+```bash
+nest g module tarefas
+nest g controller tarefas
+nest g service tarefas
+```
+
+<br/>
+<hr />
+<br/>
+
+2️⃣ Criar ``TarefaStatus`` enum
+
+📁 ``src/tarefas/enums/tarefa-status.enum.ts``
+
+```ts
+export enum TarefaStatus {
+  ABERTA = 'ABERTA',
+  EM_ANDAMENTO = 'EM_ANDAMENTO',
+  FINALIZADA = 'FINALIZADA',
+}
+```
+
+<br/>
+<hr />
+<br/>
+
+3️⃣ Criar a interface ``Tarefa``
+
+📁 ``src/tarefas/tarefa.model.ts``
+
+```ts
+import { TarefaStatus } from './enums/tarefa-status.enum';
+
+export interface Tarefa {
+  id: number;
+  titulo: string;
+  descricao: string;
+  status: TarefaStatus;
+}
+```
+
+<br/>
+<hr />
+<br/>
+
+4️⃣ Criar DTO de criação de tarefa
+
+📁 ``src/tarefas/dto/create-tarefa.dto.ts``
+
+```ts
+export class CreateTarefaDto {
+  titulo: string;
+  descricao: string;
+}
+```
+
+<br/>
+<hr />
+<br/>
+
+5️⃣ Criar o ``TarefasService``
+
+📁 ``src/tarefas/tarefas.service.ts``
+
+```ts
+import { Injectable } from '@nestjs/common';
+import { Tarefa } from './tarefa.model';
+import { CreateTarefaDto } from './dto/create-tarefa.dto';
+import { TarefaStatus } from './enums/tarefa-status.enum';
+
+@Injectable()
+export class TarefasService {
+  private tarefas: Tarefa[] = [];
+
+  getTodas(): Tarefa[] {
+    return this.tarefas;
+  }
+
+  getPorId(id: number): Tarefa {
+    return this.tarefas.find(t => t.id === id);
+  }
+
+  criar(dto: CreateTarefaDto): Tarefa {
+    const tarefa: Tarefa = {
+      id: Date.now(), // gera ID único com timestamp
+      titulo: dto.titulo,
+      descricao: dto.descricao,
+      status: TarefaStatus.ABERTA,
+    };
+    this.tarefas.push(tarefa);
+    return tarefa;
+  }
+
+  remover(id: number): void {
+    this.tarefas = this.tarefas.filter(t => t.id !== id);
+  }
+
+  atualizarStatus(id: number, status: TarefaStatus): Tarefa {
+    const tarefa = this.getPorId(id);
+    tarefa.status = status;
+    return tarefa;
+  }
+}
+```
+
+<br/>
+<hr />
+<br/>
+
+6️⃣ Criar o ``TarefasController``
+
+📁 ``src/tarefas/tarefas.controller.ts``
+
+```ts
+import {
+  Controller,
+  Get,
+  Param,
+  Post,
+  Delete,
+  Patch,
+  Body,
+} from '@nestjs/common';
+import { TarefasService } from './tarefas.service';
+import { CreateTarefaDto } from './dto/create-tarefa.dto';
+import { Tarefa } from './tarefa.model';
+import { TarefaStatus } from './enums/tarefa-status.enum';
+
+@Controller('tarefas')
+export class TarefasController {
+  constructor(private readonly tarefasService: TarefasService) {}
+
+  @Get()
+  getTodas(): Tarefa[] {
+    return this.tarefasService.getTodas();
+  }
+
+  @Get(':id')
+  getPorId(@Param('id') id: string): Tarefa {
+    return this.tarefasService.getPorId(Number(id));
+  }
+
+  @Post()
+  criar(@Body() dto: CreateTarefaDto): Tarefa {
+    return this.tarefasService.criar(dto);
+  }
+
+  @Delete(':id')
+  remover(@Param('id') id: string): void {
+    this.tarefasService.remover(Number(id));
+  }
+
+  @Patch(':id/status')
+  atualizarStatus(
+    @Param('id') id: string,
+    @Body('status') status: TarefaStatus,
+  ): Tarefa {
+    return this.tarefasService.atualizarStatus(Number(id), status);
+  }
+}
+```
+
+<br/>
+<hr />
+<br/>
+
+## 📦 Estrutura final do projeto (sem banco)
+
+```bash
+src/
+├── tarefas/
+│   ├── dto/
+│   │   └── create-tarefa.dto.ts
+│   ├── enums/
+│   │   └── tarefa-status.enum.ts
+│   ├── tarefa.model.ts
+│   ├── tarefas.controller.ts
+│   ├── tarefas.service.ts
+│   └── tarefas.module.ts
+├── app.module.ts
+└── main.ts
+```
+
+## 🫣 Antes do exercício final vamos implementar a rota ``PATCH``
+
+## ✅ Rota ``PATCH /tarefas/:id/status``
+
+Essa rota atualiza o ``status`` de uma tarefa específica.
+
+<br/>
+<hr />
+<br/>
+
+1️⃣ Atualizar o ``TarefasService``
+
+Adicione o método ``atualizarStatus()``:
+
+```ts
+// tarefas.service.ts
+import { TarefaStatus } from './enums/tarefa-status.enum';
+
+atualizarStatus(id: number, novoStatus: TarefaStatus): Tarefa {
+  const tarefa = this.getPorId(id);
+  tarefa.status = novoStatus;
+  return tarefa;
+}
+```
+
+<br/>
+<hr />
+<br/>
+
+2️⃣ Atualizar o ``TarefasController``
+
+Adicione a rota ``PATCH``:
+
+```ts
+// tarefas.controller.ts
+import { Patch, Body } from '@nestjs/common';
+import { TarefaStatus } from './enums/tarefa-status.enum';
+
+@Patch(':id/status')
+atualizarStatus(
+  @Param('id') id: string,
+  @Body('status') status: TarefaStatus,
+): Tarefa {
+  return this.tarefasService.atualizarStatus(Number(id), status);
+}
+```
+
+<br/>
+<hr />
+<br/>
+
+3️⃣ Testar no Postman
+
+Requisição:
+
+```bash
+PATCH http://localhost:3000/tarefas/123456789/status
+```
+
+Corpo JSON:
+
+```json
+{
+  "status": "FINALIZADA"
+}
+```
+
+✅ Resposta esperada:
+
+```json
+{
+  "id": 123456789,
+  "titulo": "Estudar para a prova",
+  "descricao": "Focar nos exercícios de Nest.js",
+  "status": "FINALIZADA"
+}
+```
+
+<br/>
+<hr />
+<br/>
+
+## 🧪 Exercício Final
+
+1. Testar os endpoints no Postman:
+
+- ``POST /tarefas`` com:
+
+```json
+{
+  "titulo": "Estudar para a prova",
+  "descricao": "Focar nos exercícios de Nest.js"
+}
+```
+
+- ``GET /tarefas``
+
+- ``GET /tarefas/:id``
+
+- ``PATCH /tarefas/:id/status`` com:
+
+```json
+{ "status": "EM_ANDAMENTO" }
+```
+
+- ``DELETE /tarefas/:id``
+
+2. Tentar criar múltiplas tarefas e alternar status.
+
+<br/>
+<hr />
+<br/>
+
+## ✅ O que você aprendeu hoje:
+
+✔ Como juntar tudo que aprendeu na semana em um mini projeto
+✔ Como aplicar DTOs, enums, services e controllers de forma prática
+✔ Como criar uma API REST funcional sem banco de dados
+✔ Como estruturar corretamente as pastas e arquivos do projeto
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
