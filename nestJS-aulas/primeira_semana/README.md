@@ -1397,4 +1397,165 @@ POST http://localhost:3000/tarefas
 <hr />
 <br/>
 
-1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣ 6️⃣ 7️⃣ 8️⃣ 9️⃣ 🔟
+# 📘 Dia 5 – Injeção de Dependência e Boas Práticas
+
+📚 Conteúdo Teórico
+
+## ✅ Injeção de dependência com ``constructor()``
+
+- No Nest.js, a injeção de dependência acontece automaticamente via o construtor das classes.
+
+- Ao declarar um parâmetro no construtor com o tipo de uma classe decorada com ``@Injectable()``, o Nest resolve e fornece a instância para você.
+
+Exemplo:
+
+```ts
+constructor(private readonly tarefasService: TarefasService) {}
+```
+
+> Isso injeta o serviço ``TarefasService`` no controller.
+
+<br/>
+<hr />
+<br/>
+
+## ✅ Boas práticas: separar DTOs, entidades, enums e módulos
+
+Organizar o projeto em camadas bem definidas é essencial:
+
+```cpp
+src/
+├── tarefas/
+│   ├── dto/                     → Dados de entrada
+│   ├── enums/                   → Enums (status, roles, etc.)
+│   ├── tarefas.controller.ts    → Lida com requisições
+│   ├── tarefas.service.ts       → Lógica de negócio
+│   ├── tarefa.model.ts          → Tipo de tarefa
+│   └── tarefa-status.enum.ts    → Status enum
+```
+
+> Isso ajuda a manter o projeto limpo e escalável.
+
+<br/>
+<hr />
+<br/>
+
+## ✅ Status padrão ``ABERTA`` no método ``createTarefa()``
+
+Sempre que uma nova tarefa for criada, ela deve começar com o status ``ABERTA``, sem depender do usuário enviar esse valor.
+
+<br/>
+<hr />
+<br/>
+
+## 🔧 Atividades Práticas
+
+1️⃣ Revisar e mover o enum para pasta organizada
+
+Crie a pasta ``src/tarefas/enums/`` e mova o arquivo ``tarefa-status.enum.ts`` para lá:
+
+```ts
+// src/tarefas/enums/tarefa-status.enum.ts
+export enum TarefaStatus {
+  ABERTA = 'ABERTA',
+  EM_ANDAMENTO = 'EM_ANDAMENTO',
+  FINALIZADA = 'FINALIZADA',
+}
+```
+
+Atualize os imports onde for necessário.
+
+<br/>
+<hr />
+<br/>
+
+2️⃣ Atualizar o método ``createTarefa()`` no serviço
+
+Garanta que o status da tarefa criada seja sempre ``ABERTA``, mesmo que não venha do DTO:
+
+```ts
+// src/tarefas/tarefas.service.ts
+import { TarefaStatus } from './enums/tarefa-status.enum';
+
+createTarefa(dto: CreateTarefaDto): Tarefa {
+  const { titulo, descricao } = dto;
+
+  const tarefa: Tarefa = {
+    id: Date.now(),
+    titulo,
+    descricao,
+    status: TarefaStatus.ABERTA, // valor padrão
+  };
+
+  this.tarefas.push(tarefa);
+  return tarefa;
+}
+```
+
+<br/>
+<hr />
+<br/>
+
+## 🧪 Exercício Final
+
+Criar um método ``filtrarTarefasPorStatus(status: string)``
+
+No ``tarefas.service.ts``:
+
+```ts
+filtrarTarefasPorStatus(status: string): Tarefa[] {
+  return this.tarefas.filter(
+    (tarefa) => tarefa.status === status.toUpperCase(),
+  );
+}
+```
+
+No ``tarefas.controller.ts``, atualize o método correspondente:
+
+```ts
+@Get('status/:status')
+getTarefasPorStatus(@Param('status') status: string): Tarefa[] {
+  return this.tarefasService.filtrarTarefasPorStatus(status);
+}
+```
+
+<br/>
+<hr />
+<br/>
+
+## ✅ Como testar no Postman
+
+1. Certifique-se de que o servidor está rodando:
+
+```bash
+npm run start:dev
+```
+
+2. Faça uma requisição GET no Postman para:
+
+```bash
+GET http://localhost:3000/tarefas/status/ABERTA
+```
+
+Ou teste com:
+
+- ``/tarefas/status/em_andamento``
+
+- ``/tarefas/status/finalizada``
+
+> Dica: como o método faz ``.toUpperCase()``, você pode enviar o status em minúsculas, maiúsculas ou misto – tudo será tratado corretamente.
+
+## ✅ Exemplo de resposta esperada no Postman:
+
+```bash
+[
+  {
+    "id": 123456789,
+    "titulo": "Estudar Nest.js",
+    "descricao": "Aprender como funciona o framework",
+    "status": "ABERTA"
+  }
+]
+```
+
+
