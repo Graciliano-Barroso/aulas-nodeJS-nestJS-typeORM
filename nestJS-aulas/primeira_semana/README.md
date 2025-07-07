@@ -1558,6 +1558,143 @@ Ou teste com:
 ]
 ```
 
+<br/>
+<hr />
+<br/>
+<p align="center">============================== // ==============================</p>
+
+<p align="center">🚀🚀🚀🚀🚀 Início do 6º dia de aula 🚀🚀🚀🚀🚀</p>
+
+<p align="center">============================== // ==============================</p>
+<br/>
+<hr />
+<br/>
+
+# 📘 Dia 6 – Módulos no Nest.js
+
+📚 Conteúdo Teórico
+
+## ✅ O que são módulos no Nest.js?
+
+- Módulos são a base da organização de qualquer aplicação Nest.js.
+
+- Cada módulo agrupa controllers, services, providers, e outros recursos que compartilham um mesmo propósito.
+
+- A estrutura modular permite dividir a aplicação em domínios independentes, facilitando a manutenção e escalabilidade.
+
+> O Nest sempre começa com um ``AppModule`` (módulo raiz), e você pode criar quantos módulos precisar.
+
+<br/>
+<hr />
+<br/>
+
+## ✅ Por que dividir em módulos?
+
+- Isolamento de responsabilidade: cada módulo trata de uma parte específica da aplicação.
+
+- Reutilização: módulos podem ser reutilizados em outras partes ou projetos.
+
+- Escalabilidade: facilita adicionar novos domínios e funcionalidades.
+
+<br/>
+<hr />
+<br/>
+
+## ✅ Exemplo de estrutura modular:
+
+```cpp
+src/
+├── app.module.ts
+├── tarefas/
+│   ├── tarefas.module.ts      → Módulo de tarefas
+│   ├── tarefas.controller.ts  → Controller de tarefas
+│   ├── tarefas.service.ts     → Serviço de tarefas
+│   ├── dto/
+│   ├── enums/
+│   ├── tarefa.model.ts
+```
+
+<br/>
+<hr />
+<br/>
+
+## 🔧 Atividades Práticas
+
+1️⃣ Criar módulo de tarefas (caso não tenha feito ainda)
+
+No terminal com o caminho em ``C:\meus_projetos\aulas-nodeJS-nestJS-typeORM\nestJS-aulas\primeira_semana\projeto-tarefas\src>``:
+
+```bash
+nest g module tarefas
+```
+
+> Isso criará o arquivo ``src/tarefas/tarefas.module.ts``
+
+<br/>
+<hr />
+<br/>
+
+2️⃣ Garantir que o módulo está completo
+
+Abra o arquivo ``tarefas.module.ts`` e verifique se está importando corretamente o controller e o service:
+
+```ts
+import { Module } from '@nestjs/common';
+import { TarefasController } from './tarefas.controller';
+import { TarefasService } from './tarefas.service';
+
+@Module({
+  controllers: [TarefasController],
+  providers: [TarefasService],
+})
+export class TarefasModule {}
+```
+
+<br/>
+<hr />
+<br/>
+
+3️⃣ Registrar o módulo no módulo raiz (``AppModule``)
+
+Abra ``src/app.module.ts`` e adicione o módulo de tarefas no array ``imports``:
+
+```ts
+import { Module } from '@nestjs/common';
+import { TarefasModule } from './tarefas/tarefas.module';
+
+@Module({
+  imports: [TarefasModule],
+})
+export class AppModule {}
+```
+
+<br/>
+<hr />
+<br/>
+
+## 🧪 Exercício Final
+
+1. Pare e reinicie o servidor (``Ctrl+C`` e ``npm run start:dev``) para aplicar as alterações.
+
+2. Confirme se as rotas de tarefas continuam funcionando normalmente:
+
+- ``GET /tarefas``
+
+- ``GET /tarefas/1``
+
+- ``POST /tarefas``
+
+3. Teste remover o ``TarefasService`` de dentro do ``AppModule`` (se ainda estiver lá) para garantir que a responsabilidade está centralizada no módulo de tarefas.
+
+<br/>
+<hr />
+<br/>
+
+## ✅ O que você aprendeu hoje:
+
+✔ O que são e para que servem módulos no Nest.js
+✔ Como organizar o projeto por domínio funcional usando módulos
+✔ Como criar e registrar módulos customizados
+✔ Como garantir o isolamento de responsabilidade de cada parte da aplicação
 
 
-1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣ 6️⃣ 7️⃣ 8️⃣ 9️⃣ 🔟
