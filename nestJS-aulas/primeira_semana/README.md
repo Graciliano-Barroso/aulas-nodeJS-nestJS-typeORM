@@ -2062,6 +2062,17 @@ Corpo JSON:
 ✔ Como criar uma API REST funcional sem banco de dados
 ✔ Como estruturar corretamente as pastas e arquivos do projeto
 
+<br/>
+<hr />
+<br/>
+<p align="center">========== // ==========</p>
+
+<h2 align="center">🚀🚀🚀🚀🚀 Início da 2ª semana e do 8º dia de aula 🚀🚀🚀🚀🚀</h2>
+
+<p align="center">========== // ==========</p>
+<br/>
+<hr />
+<br/>
 
 
 
@@ -2078,3 +2089,17 @@ Corpo JSON:
 
 
 
+<br/>
+<hr />
+<br/>
+<p align="center">============================== // ==============================</p>
+
+<p align="center">🚀🚀🚀🚀🚀 Início do 6º dia de aula 🚀🚀🚀🚀🚀</p>
+
+<p align="center">============================== // ==============================</p>
+<br/>
+<hr />
+<br/>
+
+
+1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣ 6️⃣ 7️⃣ 8️⃣ 9️⃣ 🔟
