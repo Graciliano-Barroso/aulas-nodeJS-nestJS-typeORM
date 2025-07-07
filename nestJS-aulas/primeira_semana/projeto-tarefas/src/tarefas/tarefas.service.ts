@@ -1,22 +1,39 @@
 import { Injectable } from '@nestjs/common';
+import { Tarefa } from './tarefa.model';
+import { TarefaStatus } from './tarefa-status.enum';
+import { CreateTarefaDto } from './dto/create-tarefa.dto';
 
 @Injectable()
 export class TarefasService {
-  private tarefas = [
-    { id: 1, titulo: 'Estudar Nest.js', status: 'ABERTA' },
-    { id: 2, titulo: 'Fazer exercícios', status: 'EM_ANDAMENTO' },
-    { id: 3, titulo: 'Revisar conteúdo do Dia 2', status: 'FINALIZADA' },
-  ];
+  private tarefas: Tarefa[] = [];
 
-  getTodasTarefas() {
+  getTodasTarefas(): Tarefa[] {
     return this.tarefas;
   }
 
-  getTarefaPorId(id: number) {
-    return this.tarefas.find((tarefa) => tarefa.id === id);
+  getTarefaPorId(id: number): Tarefa {
+    const tarefa = this.tarefas.find((tarefa) => tarefa.id === id);
+    if (!tarefa) {
+      throw new Error(`Tarefa com id ${id} não encontrada.`);
+    }
+    return tarefa;
   }
 
-  getTarefasPorStatus(status: string) {
+  getTarefasPorStatus(status: string): Tarefa[] {
     return this.tarefas.filter((t) => t.status === status.toUpperCase());
+  }
+
+   createTarefa(dto: CreateTarefaDto): Tarefa {
+    const { titulo, descricao } = dto;
+
+    const tarefa: Tarefa = {
+      id: Date.now(), // simulando ID único
+      titulo,
+      descricao,
+      status: TarefaStatus.ABERTA,
+    };
+
+    this.tarefas.push(tarefa);
+    return tarefa;
   }
 }
