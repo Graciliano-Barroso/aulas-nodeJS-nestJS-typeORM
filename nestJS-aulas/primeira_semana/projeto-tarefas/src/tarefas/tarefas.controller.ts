@@ -17,6 +17,7 @@ import { TarefaStatus } from './enums/tarefa-status.enum';
 import { FilterTarefasDto } from './dto/filter-tarefas.dto';
 import { TarefaStatusValidationPipe } from './pipes/tarefa-status-validation.pipe';
 import { AuthGuard } from 'src/auth/auth.guard';
+import { TarefaEntity } from './tarefa.entity';
 
 @Controller('tarefas') // prefixo: todas as rotas começam com /tarefas
 export class TarefasController {
@@ -39,8 +40,8 @@ export class TarefasController {
 
   @Post()
   @UseGuards(AuthGuard)
-  createTarefa(@Body() createTarefaDto: CreateTarefaDto): Tarefa {
-    return this.tarefasService.createTarefa(createTarefaDto);
+  async create(@Body() dto: CreateTarefaDto): Promise<TarefaEntity> {
+    return this.tarefasService.createTarefa(dto);
   }
 
   @Patch(':id/status')

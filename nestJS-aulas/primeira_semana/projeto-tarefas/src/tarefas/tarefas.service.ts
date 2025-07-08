@@ -3,9 +3,18 @@ import { Tarefa } from './tarefa.model';
 import { TarefaStatus } from './enums/tarefa-status.enum';
 import { CreateTarefaDto } from './dto/create-tarefa.dto';
 import { FilterTarefasDto } from './dto/filter-tarefas.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { TarefaEntity } from './tarefa.entity';
 
 @Injectable()
 export class TarefasService {
+
+  constructor(
+    @InjectRepository(TarefaEntity)
+    private tarefasRepository: Repository<TarefaEntity>,
+  ) {}
+
   private tarefas: Tarefa[] = [];
 
   getTodasTarefas(): Tarefa[] {
@@ -20,18 +29,14 @@ export class TarefasService {
     return tarefa;
   }
 
-  createTarefa(dto: CreateTarefaDto): Tarefa {
-    const { titulo, descricao } = dto;
-
-    const tarefa: Tarefa = {
-      id: Date.now(), // simulando ID único
-      titulo,
-      descricao,
+  async createTarefa(dto: CreateTarefaDto): Promise<TarefaEntity> {
+    const tarefa = this.tarefasRepository.create({
+      titulo: dto.titulo,
+      descricao: dto.descricao,
       status: TarefaStatus.ABERTA,
-    };
+    });
 
-    this.tarefas.push(tarefa);
-    return tarefa;
+    return this.tarefasRepository.save(tarefa);
   }
 
   atualizarStatus(id: number, novoStatus: TarefaStatus): Tarefa {

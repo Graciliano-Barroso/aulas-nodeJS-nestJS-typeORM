@@ -19,10 +19,10 @@ export class TarefaEntity {
 
   @Column()
   status: TarefaStatus;
+  
+  @CreateDateColumn()
+  dataCriacao: Date;
 
   @Column({ default: false })
   arquivada: boolean;
-
-  @CreateDateColumn()
-  dataCriacao: Date;
 }
