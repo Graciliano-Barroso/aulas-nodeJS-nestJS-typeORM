@@ -3156,6 +3156,184 @@ npm run start:dev
 <br/>
 <hr />
 <br/>
+<p align="center">============================== // ==============================</p>
+
+<h2 align="center">🚀🚀🚀🚀🚀 Início da 3ª semana e 15º dia de aula 🚀🚀🚀🚀🚀</h2>
+
+<p align="center">============================== // ==============================</p>
+<br/>
+<hr />
+<br/>
+
+# 🗓️ Dia 15 – Integrar TypeORM com Nest.js
+
+## 🎯 Objetivo do Dia
+
+Aprender a integrar o NestJS com o banco de dados usando TypeORM, conectando via variáveis de ambiente e utilizando uma entidade real.
+
+<br/>
+<hr />
+<br/>
+
+## 📚 Conteúdo
+
+### 🔹 .env com variáveis de conexão
+
+O arquivo `.env` armazena as credenciais de acesso ao banco. Exemplo:
+
+```env
+DB_HOST=localhost
+DB_PORT=5432
+DB_USERNAME=postgres
+DB_PASSWORD=senha_do_postgres
+DB_NAME=nest_tarefas
+```
+
+🔹 Importando ``TypeOrmModule`` no ``AppModule``
+
+No ``app.module.ts`` usamos ``TypeOrmModule.forRootAsync()`` para ler o ``.env`` dinamicamente:
+
+```ts
+import { Module } from '@nestjs/common';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+
+@Module({
+  imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => ({
+        type: 'postgres',
+        host: configService.get('DB_HOST'),
+        port: configService.get<number>('DB_PORT'),
+        username: configService.get('DB_USERNAME'),
+        password: configService.get('DB_PASSWORD'),
+        database: configService.get('DB_NAME'),
+        autoLoadEntities: true,
+        synchronize: true, // ⚠️ apenas em desenvolvimento!
+      }),
+    }),
+  ],
+})
+export class AppModule {}
+```
+<br/>
+<hr />
+<br/>
+
+## 🔧 Atividades
+
+✅ 1. Instale os pacotes do TypeORM
+
+```bash
+npm install --save @nestjs/typeorm typeorm pg @nestjs/config
+```
+
+✅ 2. Crie a entidade ``TarefaEntity``
+
+Crie o arquivo ``src/tarefas/tarefa.entity.ts``:
+
+```ts
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { TarefaStatus } from './enums/tarefa-status.enum';
+
+@Entity('tarefas')
+export class TarefaEntity {
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
+
+  @Column()
+  titulo: string;
+
+  @Column()
+  descricao: string;
+
+  @Column()
+  status: TarefaStatus;
+}
+```
+
+✅ 3. Adicione a entidade no módulo
+
+No arquivo ``tarefas.module.ts``:
+
+```ts
+import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { TarefaEntity } from './tarefa.entity';
+import { TarefasService } from './tarefas.service';
+import { TarefasController } from './tarefas.controller';
+
+@Module({
+  imports: [TypeOrmModule.forFeature([TarefaEntity])],
+  controllers: [TarefasController],
+  providers: [TarefasService],
+})
+export class TarefasModule {}
+```
+
+🧪 Exercício
+
+🔹 Criar o repositório e salvar no banco
+
+No ``tarefas.service.ts``, injete o repositório:
+
+```ts
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { TarefaEntity } from './tarefa.entity';
+
+@Injectable()
+export class TarefasService {
+  constructor(
+    @InjectRepository(TarefaEntity)
+    private tarefasRepository: Repository<TarefaEntity>,
+  ) {}
+
+  async createTarefa(dto: CreateTarefaDto): Promise<TarefaEntity> {
+    const tarefa = this.tarefasRepository.create({
+      titulo: dto.titulo,
+      descricao: dto.descricao,
+      status: TarefaStatus.ABERTA,
+    });
+
+    return this.tarefasRepository.save(tarefa);
+  }
+}
+```
+
+No controller:
+
+```ts
+@Post()
+async create(@Body() dto: CreateTarefaDto): Promise<TarefaEntity> {
+  return this.tarefasService.createTarefa(dto);
+}
+```
+
+✅ Verificação final
+
+- Rode o projeto com ``npm run start:dev``
+
+- Use Postman ou Insomnia:
+
+  - Rota: ``POST /tarefas``
+
+  - Body:
+
+    ```json
+    {
+      "titulo": "Estudar NestJS",
+      "descricao": "Aula de integração com banco"
+    }
+    ```
+
+- Confirme se a tarefa foi salva no banco
+
+
+
 
 
 
