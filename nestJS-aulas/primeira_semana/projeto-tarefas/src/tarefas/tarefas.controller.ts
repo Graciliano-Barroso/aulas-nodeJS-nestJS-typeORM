@@ -4,6 +4,7 @@ import { CreateTarefaDto } from './dto/create-tarefa.dto';
 import { Tarefa } from './tarefa.model';
 import { TarefaStatus } from './enums/tarefa-status.enum';
 import { FilterTarefasDto } from './dto/filter-tarefas.dto';
+import { TarefaStatusValidationPipe } from './pipes/tarefa-status-validation.pipe';
 
 @Controller('tarefas') // prefixo: todas as rotas começam com /tarefas
 export class TarefasController {
@@ -32,7 +33,7 @@ getTarefas(@Query() filtroDto: FilterTarefasDto): Tarefa[] {
   @Patch(':id/status')
   atualizarStatus(
     @Param('id') id: string,
-    @Body('status') status: TarefaStatus,
+    @Body('status', TarefaStatusValidationPipe) status: TarefaStatus,
   ): Tarefa {
     return this.tarefasService.atualizarStatus(Number(id), status);
   }

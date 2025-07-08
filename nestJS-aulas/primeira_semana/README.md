@@ -1,3 +1,67 @@
+- [🗂️ Plano de Estudo – Nest.js (Semana 1)](#️-plano-de-estudo--nestjs-semana-1)<!-- markdownlint-disable MD041 -->
+- [🗂️ Plano de Estudo – Nest.js (Semana 2)](#️-plano-de-estudo--nestjs-semana-2)
+- [🗂️ Plano de Estudo – Nest.js (Semana 3)](#️-plano-de-estudo--nestjs-semana-3)
+- [📦 Estrutura do projeto ao final da 3ª semana](#-estrutura-do-projeto-ao-final-da-3ª-semana)
+- [](#)<!-- markdownlint-disable MD042 -->
+- [📘 Dia 1 – Introdução ao Nest.js](#-dia-1--introdução-ao-nestjs)
+  - [✅ O que é o Nest.js?](#-o-que-é-o-nestjs)
+  - [✅ Por que usar Nest.js?](#-por-que-usar-nestjs)
+  - [✅ Arquitetura e Injeção de Dependência](#-arquitetura-e-injeção-de-dependência)
+  - [🔧 Atividades Práticas](#-atividades-práticas)
+  - [🧪 Exercício Final](#-exercício-final)
+- [📘 **Dia 2 – Controladores no Nest.js**](#-dia-2--controladores-no-nestjs)
+  - [✅ O que são controladores?](#-o-que-são-controladores)
+  - [✅ Decoradores principais](#-decoradores-principais)
+  - [🔧 Atividades Práticas](#-atividades-práticas-1)
+  - [🚀 Testando no navegador ou Postman](#-testando-no-navegador-ou-postman)
+  - [🧪 Exercício Final](#-exercício-final-1)
+  - [✅ O que você aprendeu hoje:](#-o-que-você-aprendeu-hoje)
+- [📘 Dia 3 – Serviços no Nest.js](#-dia-3--serviços-no-nestjs)
+  - [✅ O que são serviços no Nest.js?](#-o-que-são-serviços-no-nestjs)
+  - [✅ `@Injectable()` e Injeção de Dependência](#-injectable-e-injeção-de-dependência)
+  - [🔧 Atividades Práticas](#-atividades-práticas-2)
+  - [🧪 Exercício Final](#-exercício-final-2)
+  - [✅ O que você aprendeu hoje:](#-o-que-você-aprendeu-hoje-1)
+- [📘 Dia 4 – DTOs e Tipagem no Nest.js](#-dia-4--dtos-e-tipagem-no-nestjs)
+  - [✅ O que é um DTO (Data Transfer Object)?](#-o-que-é-um-dto-data-transfer-object)
+  - [✅ Interfaces ou Classes para tipos](#-interfaces-ou-classes-para-tipos)
+  - [✅ Validação com TypeScript](#-validação-com-typescript)
+  - [🔧 Atividades Práticas](#-atividades-práticas-3)
+- [📘 Dia 5 – Injeção de Dependência e Boas Práticas](#-dia-5--injeção-de-dependência-e-boas-práticas)
+  - [✅ Injeção de dependência com ``constructor()``](#-injeção-de-dependência-com-constructor)
+  - [✅ Boas práticas: separar DTOs, entidades, enums e módulos](#-boas-práticas-separar-dtos-entidades-enums-e-módulos)
+  - [✅ Status padrão ``ABERTA`` no método ``createTarefa()``](#-status-padrão-aberta-no-método-createtarefa)
+  - [🔧 Atividades Práticas](#-atividades-práticas-4)
+  - [🧪 Exercício Final](#-exercício-final-3)
+  - [✅ Como testar no Postman](#-como-testar-no-postman)
+  - [✅ Exemplo de resposta esperada no Postman:](#-exemplo-de-resposta-esperada-no-postman)
+- [📘 Dia 6 – Módulos no Nest.js](#-dia-6--módulos-no-nestjs)
+  - [✅ O que são módulos no Nest.js?](#-o-que-são-módulos-no-nestjs)
+  - [✅ Por que dividir em módulos?](#-por-que-dividir-em-módulos)
+  - [✅ Exemplo de estrutura modular:](#-exemplo-de-estrutura-modular)
+  - [🔧 Atividades Práticas](#-atividades-práticas-5)
+  - [🧪 Exercício Final](#-exercício-final-4)
+  - [✅ O que você aprendeu hoje:](#-o-que-você-aprendeu-hoje-2)
+- [📘 Dia 7 – Revisão e Prática: Criando uma API de Tarefas](#-dia-7--revisão-e-prática-criando-uma-api-de-tarefas)
+  - [🔁 Fluxo de funcionamento no Nest.js](#-fluxo-de-funcionamento-no-nestjs)
+  - [🛠️ Objetivo da Aula](#️-objetivo-da-aula)
+  - [🧱 **Requisitos da API**](#-requisitos-da-api)
+  - [✅ Endpoints:](#-endpoints)
+  - [🔧 Passo a passo da implementação](#-passo-a-passo-da-implementação)
+  - [📦 Estrutura final do projeto (sem banco)](#-estrutura-final-do-projeto-sem-banco)
+  - [🫣 Antes do exercício final vamos implementar a rota ``PATCH``](#-antes-do-exercício-final-vamos-implementar-a-rota-patch)
+  - [✅ Rota ``PATCH /tarefas/:id/status``](#-rota-patch-tarefasidstatus)
+  - [🧪 Exercício Final](#-exercício-final-5)
+  - [✅ O que você aprendeu hoje:](#-o-que-você-aprendeu-hoje-3)
+- [📘 Dia 8 – Pipes e Validação de Dados](#-dia-8--pipes-e-validação-de-dados)
+  - [✅ O que são Pipes no Nest.js?](#-o-que-são-pipes-no-nestjs)
+  - [✅ Validação com ``class-validator`` + ``class-transformer``](#-validação-com-class-validator--class-transformer)
+  - [🔧 Atividades Práticas](#-atividades-práticas-6)
+  - [⚠️ Se for usar a função acima no método service seria bom remover os dois metodos abaixo relacionados ao status no serviço `TarefasService`](#️-se-for-usar-a-função-acima-no-método-service-seria-bom-remover-os-dois-metodos-abaixo-relacionados-ao-status-no-serviço-tarefasservice)
+  - [⚠️ Também remova o método  ``@Get('status/:status')`` e deixe tudo com o metodo que modificamos `@Get()`](#️-também-remova-o-método--getstatusstatus-e-deixe-tudo-com-o-metodo-que-modificamos-get)
+  - [🧪 Exercício Final](#-exercício-final-6)
+  - [✅ O que você aprendeu hoje:](#-o-que-você-aprendeu-hoje-4)
+
 # 🗂️ Plano de Estudo – Nest.js (Semana 1)
 
 > 🎯 Objetivo: Entender a arquitetura do Nest.js, saber criar módulos, controladores e serviços, e iniciar uma API RESTful organizada.
@@ -2202,7 +2266,7 @@ getTarefas(@Query() filtroDto: FilterTarefasDto): Tarefa[] {
   if (Object.keys(filtroDto).length) {
     return this.tarefasService.filtrarTarefas(filtroDto);
   }
-  return this.tarefasService.getTodas();
+  return this.tarefasService.getTodasTarefas();
 }
 ```
 
@@ -2231,14 +2295,14 @@ filtrarTarefas(filtroDto: FilterTarefasDto): Tarefa[] {
 <hr />
 <br/>
 
-## ⚠️ Se for usar a função acima no método service seria bom remover os dois metodos abaixo relacionados ao status no serviço `TarefasService`
+<h2>⚠️ Se for usar a função acima no método service seria bom remover os dois metodos abaixo relacionados ao status no serviço `TarefasService`</h2>
 
 ```ts
 getTarefasPorStatus(status: string): Tarefa[]
 filtrarTarefasPorStatus(status: string): Tarefa[]
 ```
 
-## ⚠️ Também remova o método  ``@Get('status/:status')`` e deixe tudo com o metodo que modificamos `@Get()`
+<h2>⚠️ Também remova o método  ``@Get('status/:status')`` e deixe tudo com o metodo que modificamos `@Get()`</h2>
 
 ```ts
 // GET /tarefas/status/:status
