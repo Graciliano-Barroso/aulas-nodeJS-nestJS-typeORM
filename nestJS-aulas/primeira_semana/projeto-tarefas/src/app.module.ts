@@ -3,6 +3,7 @@ import { TarefasModule } from './tarefas/tarefas.module';
 import { LoggerMiddleware } from './logger/logger.middleware';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { UsuarioModule } from './usuario/usuario.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       }),
     }),
     TarefasModule,
+    UsuarioModule,
   ],
 })
 export class AppModule implements NestModule {
