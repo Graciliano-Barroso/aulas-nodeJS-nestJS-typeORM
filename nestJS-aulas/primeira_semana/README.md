@@ -3014,6 +3014,149 @@ Esperado no terminal:
 ✔ Como instalar e configurar o TypeORM para PostgreSQL
 ✔ Como garantir que sua aplicação conecta ao banco com sucesso
 
+<br/>
+<hr />
+<br/>
+<p align="center">============================== // ==============================</p>
+
+<p align="center">🚀🚀🚀🚀🚀 Início do 14º dia de aula 🚀🚀🚀🚀🚀</p>
+
+<p align="center">============================== // ==============================</p>
+<br/>
+<hr />
+<br/>
+
+# 🗓️ Dia 14 – Preparar para uso do banco com TypeORM
+
+## 🎯 Objetivo do Dia
+
+Entender o conceito de **entidades** no TypeORM, suas diferenças em relação aos DTOs e como mapear classes para tabelas usando decorators do TypeORM.
+
+<br/>
+<hr />
+<br/>
+
+## 📚 Conteúdo
+
+### 🔹 O que são Entidades?
+
+Entidades são **representações de tabelas no banco de dados**. Cada instância de uma entidade representa uma linha da tabela.
+
+- Exemplo: `TarefaEntity` → tabela `tarefa`
+- Cada propriedade → uma coluna da tabela
+
+<br/>
+<hr />
+<br/>
+
+### 🔹 Introdução aos Decorators do TypeORM
+
+Decorators são usados para dizer ao TypeORM como mapear as propriedades:
+
+| Decorador             | Função                                                 |
+|------------------------|---------------------------------------------------------|
+| `@Entity()`            | Marca a classe como uma entidade (uma tabela)          |
+| `@PrimaryGeneratedColumn()` | Gera uma coluna primária com valor automático     |
+| `@Column()`            | Marca a propriedade como uma coluna da tabela         |
+| `@CreateDateColumn()`  | Armazena a data de criação automaticamente             |
+
+<br/>
+<hr />
+<br/>
+
+### 🔹 Diferença entre Entidades e DTOs
+
+| Entidade                         | DTO                                       |
+|----------------------------------|-------------------------------------------|
+| Reflete estrutura da base        | Reflete dados que entram ou saem da API   |
+| Usada com TypeORM                | Usada com validação (class-validator)     |
+| Pode ter regras de banco (chaves, timestamp) | Só possui os campos necessários |
+
+<br/>
+<hr />
+<br/>
+
+### 🔹 Visão geral:
+
+- **Repository**: camada de acesso ao banco de dados
+- **Migration**: controle de alterações de estrutura do banco
+- **Relation**: relacionamento entre entidades (1:1, 1:N, N:N)
+
+> *Esses temas serão aprofundados nas próximas aulas.*
+
+<br/>
+<hr />
+<br/>
+
+## 🔧 Atividade
+
+Crie a entidade `Tarefa` com os seguintes campos:
+
+```ts
+// src/tarefas/tarefa.entity.ts
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+} from 'typeorm';
+import { TarefaStatus } from './enums/tarefa-status.enum';
+
+@Entity()
+export class Tarefa {
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
+
+  @Column()
+  titulo: string;
+
+  @Column()
+  descricao: string;
+
+  @Column()
+  status: TarefaStatus;
+
+  @CreateDateColumn()
+  dataCriacao: Date;
+}
+```
+
+> ⚠️ Lembre-se de importar corretamente o ``TarefaStatus`` (enum que representa o status da tarefa).
+
+<br/>
+<hr />
+<br/>
+
+✅ Verificação
+
+1. Adicione a entidade em ``tarefas.module.ts``:
+
+```ts
+imports: [TypeOrmModule.forFeature([TarefaEntity])],
+```
+
+2. Rode o projeto:
+
+```bash
+npm run start:dev
+```
+
+3. Verifique no console se a tabela foi criada (se ``synchronize: true`` estiver ativado)
+
+<br/>
+<hr />
+<br/>
+
+## 🧪 Exercício (opcional)
+
+- Tente acessar a tabela no banco via pgAdmin ou SQLite (dependendo do banco que estiver usando).
+
+- Adicione um campo extra opcional como ``@Column({ default: false }) arquivada: boolean``.
+
+<br/>
+<hr />
+<br/>
+
 
 
 
