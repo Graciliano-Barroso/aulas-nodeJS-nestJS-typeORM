@@ -8,6 +8,7 @@ import {
   Patch,
   Post,
   Query,
+  UseGuards,
 } from '@nestjs/common';
 import { TarefasService } from './tarefas.service';
 import { CreateTarefaDto } from './dto/create-tarefa.dto';
@@ -15,6 +16,7 @@ import { Tarefa } from './tarefa.model';
 import { TarefaStatus } from './enums/tarefa-status.enum';
 import { FilterTarefasDto } from './dto/filter-tarefas.dto';
 import { TarefaStatusValidationPipe } from './pipes/tarefa-status-validation.pipe';
+import { AuthGuard } from 'src/auth/auth.guard';
 
 @Controller('tarefas') // prefixo: todas as rotas começam com /tarefas
 export class TarefasController {
@@ -36,6 +38,7 @@ export class TarefasController {
   }
 
   @Post()
+  @UseGuards(AuthGuard)
   createTarefa(@Body() createTarefaDto: CreateTarefaDto): Tarefa {
     return this.tarefasService.createTarefa(createTarefaDto);
   }
