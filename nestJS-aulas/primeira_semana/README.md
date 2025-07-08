@@ -2508,7 +2508,9 @@ PATCH /tarefas/123456789/status
 
 # 📘 Dia 10 – Exception Filters (Tratamento de Erros)
 
----
+<br/>
+<hr />
+<br/>
 
 ## 📚 Conteúdo Teórico
 
@@ -2520,7 +2522,9 @@ Você pode:
 - Usar exceções pré-definidas como `NotFoundException`, `BadRequestException`, etc.
 - Criar filtros globais customizados para lidar com erros de forma padronizada.
 
----
+<br/>
+<hr />
+<br/>
 
 ### ✅ Exceções mais comuns no Nest.js
 
@@ -2531,7 +2535,9 @@ Você pode:
 | `UnauthorizedException`| 401         | Acesso não autorizado                  |
 | `ForbiddenException`   | 403         | Acesso proibido                        |
 
----
+<br/>
+<hr />
+<br/>
 
 ## 🔧 Atividades Práticas
 
@@ -2555,7 +2561,9 @@ if (!tarefa) {
 }
 ```
 
----
+<br/>
+<hr />
+<br/>
 
 ### 2️⃣ Repetir para `deleteTarefa` (caso exista)
 
@@ -2569,7 +2577,9 @@ deleteTarefa(id: number): void {
 
 Se o `getTarefaPorId` já lança exceção, o método `deleteTarefa()` herdará esse comportamento.
 
----
+<br/>
+<hr />
+<br/>
 
 ### 3️⃣ Repetir para `atualizarStatus`
 
@@ -2583,7 +2593,9 @@ atualizarStatus(id: number, novoStatus: TarefaStatus): Tarefa {
 }
 ```
 
----
+<br/>
+<hr />
+<br/>
 
 ## 🧪 Exercício Final
 
@@ -2591,7 +2603,9 @@ atualizarStatus(id: number, novoStatus: TarefaStatus): Tarefa {
 2. ✅ Garantir que `DELETE /tarefas/:id` lança `404` se não for encontrada
 3. ✅ Garantir que `PATCH /tarefas/:id/status` lança `404` se o ID for inválido
 
----
+<br/>
+<hr />
+<br/>
 
 ## ✅ O que você aprendeu hoje:
 
@@ -2600,9 +2614,132 @@ atualizarStatus(id: number, novoStatus: TarefaStatus): Tarefa {
 ✔ Como garantir respostas HTTP padronizadas em caso de erro  
 ✔ Como melhorar a clareza e segurança da sua API com tratamento de erros
 
+<br/>
+<hr />
+<br/>
+<p align="center">============================== // ==============================</p>
 
+<p align="center">🚀🚀🚀🚀🚀 Início do 11º dia de aula 🚀🚀🚀🚀🚀</p>
 
+<p align="center">============================== // ==============================</p>
+<br/>
+<hr />
+<br/>
 
+# 📘 Dia 11 – Middleware
+
+<br/>
+<hr />
+<br/>
+
+## 📚 Conteúdo Teórico
+
+### ✅ O que é Middleware no Nest.js?
+
+Middlewares são funções executadas **antes que o request chegue ao controller**. Eles são úteis para:
+
+- Registrar logs
+- Verificar autenticação
+- Manipular/transformar dados do request
+
+<br/>
+<hr />
+<br/>
+
+### 🔁 Diferenças entre Middleware, Guards e Interceptors
+
+| Conceito     | Executa em...       | Finalidade principal                   |
+|--------------|---------------------|----------------------------------------|
+| Middleware   | Antes do controller | Pré-processamento, logging             |
+| Guard        | Antes do controller | Controle de acesso (autorização)       |
+| Interceptor  | Antes e depois      | Modificar request/response, métricas   |
+
+<br/>
+<hr />
+<br/>
+
+## 🔧 Atividades Práticas
+
+### 1️⃣ Gerar middleware
+
+```bash
+nest g middleware logger
+```
+
+Cria o arquivo: `src/logger.middleware.ts`
+
+<br/>
+<hr />
+<br/>
+
+### 2️⃣ Implementar o middleware de log
+
+📄 `logger.middleware.ts`
+
+```ts
+import { Injectable, NestMiddleware } from '@nestjs/common';
+import { Request, Response, NextFunction } from 'express';
+
+@Injectable()
+export class LoggerMiddleware implements NestMiddleware {
+  use(req: Request, res: Response, next: NextFunction) {
+    const { method, originalUrl } = req;
+    const timestamp = new Date().toISOString();
+    console.log(`[${timestamp}] ${method} ${originalUrl}`);
+    next(); // passa para o próximo middleware ou controller
+  }
+}
+```
+
+<br/>
+<hr />
+<br/>
+
+### 3️⃣ Aplicar o middleware nas rotas de tarefas
+
+📄 `app.module.ts`
+
+Importe o módulo:
+
+```ts
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import { TarefasModule } from './tarefas/tarefas.module';
+import { LoggerMiddleware } from './logger.middleware';
+
+@Module({
+  imports: [TarefasModule],
+})
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(LoggerMiddleware)
+      .forRoutes('tarefas'); // aplica somente às rotas de /tarefas
+  }
+}
+```
+
+<br/>
+<hr />
+<br/>
+
+## 🧪 Exercício
+
+✔ Adicione um log personalizado com:
+
+- Timestamp (`new Date().toISOString()`)
+- Método HTTP (`GET`, `POST`, etc.)
+- URL acessada (`originalUrl`)
+
+<br/>
+<hr />
+<br/>
+
+## ✅ O que você aprendeu hoje:
+
+✔ O que são e para que servem os middlewares  
+✔ Como criar middlewares com o Nest CLI  
+✔ Como aplicar middlewares globalmente ou em rotas específicas  
+✔ Como registrar logs com timestamp e rota acessada
 
 
 
