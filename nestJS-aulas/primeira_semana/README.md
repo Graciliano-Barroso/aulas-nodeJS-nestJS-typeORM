@@ -2349,9 +2349,150 @@ filtrarTarefasPorStatus(status: string): Tarefa[]
 ✔ Como usar ``@Query()`` com validação para filtros avançados
 ✔ Como aplicar boas mensagens de erro para entrada de dados inválidos
 
+<br/>
+<hr />
+<br/>
+<p align="center">============================== // ==============================</p>
 
+<p align="center">🚀🚀🚀🚀🚀 Início do 9º dia de aula 🚀🚀🚀🚀🚀</p>
 
+<p align="center">============================== // ==============================</p>
+<br/>
+<hr />
+<br/>
 
+# 📘 Dia 9 – Pipes Customizados
+
+<br/>
+<hr />
+<br/>
+
+## 📚 Conteúdo Teórico
+
+### ✅ O que são Pipes Customizados?
+
+Pipes customizados são classes que você cria para realizar **validação ou transformação personalizada** dos dados antes que eles sejam processados por controllers.
+
+Eles são muito úteis para:
+- Validar enums (como status)
+- Transformar strings em tipos específicos
+- Aplicar regras de negócio em parâmetros de rota, query ou body
+
+<br/>
+<hr />
+<br/>
+
+## 🎯 Objetivo do Dia
+
+Criar um **pipe de validação de status de tarefa** que:
+- Aceita apenas valores válidos definidos no enum `TarefaStatus`
+- Rejeita valores inválidos com uma exceção amigável (`BadRequestException`)
+
+<br/>
+<hr />
+<br/>
+
+## 🔧 Atividades Práticas
+
+### 1️⃣ Criar o arquivo do Pipe
+
+📄 `src/tarefas/pipes/tarefa-status-validation.pipe.ts`
+
+```ts
+import { PipeTransform, BadRequestException } from '@nestjs/common';
+import { TarefaStatus } from '../enums/tarefa-status.enum';
+
+export class TarefaStatusValidationPipe implements PipeTransform {
+  readonly statusPermitidos = [
+    TarefaStatus.ABERTA,
+    TarefaStatus.EM_ANDAMENTO,
+    TarefaStatus.FINALIZADA,
+  ];
+
+  transform(value: any) {
+    value = value.toUpperCase();
+
+    if (!this.statusValido(value)) {
+      throw new BadRequestException(`Status inválido: ${value}`);
+    }
+
+    return value;
+  }
+
+  private statusValido(status: any) {
+    return this.statusPermitidos.includes(status);
+  }
+}
+```
+
+<br/>
+<hr />
+<br/>
+
+### 2️⃣ Usar o Pipe no controller
+
+📄 `tarefas.controller.ts`
+
+```ts
+import { TarefaStatusValidationPipe } from './pipes/tarefa-status-validation.pipe';
+
+@Patch(':id/status')
+atualizarStatus(
+  @Param('id') id: string,
+  @Body('status', TarefaStatusValidationPipe) status: TarefaStatus,
+): Tarefa {
+  return this.tarefasService.atualizarStatus(Number(id), status);
+}
+```
+
+<br/>
+<hr />
+<br/>
+
+### 3️⃣ Testar com Postman
+
+**Rota:**
+
+```
+PATCH /tarefas/123456789/status
+```
+
+**Corpo válido:**
+
+```json
+{
+  "status": "EM_ANDAMENTO"
+}
+```
+
+**Corpo inválido:**
+
+```json
+{
+  "status": "concluida"
+}
+```
+
+🔴 Esperado: retorno 400 com mensagem:
+
+```
+{
+  "statusCode": 400,
+  "message": "Status inválido: CONCLUIDA",
+  "error": "Bad Request"
+}
+```
+
+<br/>
+<hr />
+<br/>
+
+## ✅ O que você aprendeu hoje:
+
+✔ Como criar pipes customizados  
+✔ Como usar pipe para validar parâmetros (`@Body`, `@Param`)  
+✔ Como evitar códigos duplicados de validação  
+✔ Como lançar exceções personalizadas usando `BadRequestException`
 
 
 
