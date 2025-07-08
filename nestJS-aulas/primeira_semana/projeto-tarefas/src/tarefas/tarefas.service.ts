@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { Tarefa } from './tarefa.model';
 import { TarefaStatus } from './enums/tarefa-status.enum';
 import { CreateTarefaDto } from './dto/create-tarefa.dto';
@@ -15,7 +15,7 @@ export class TarefasService {
   getTarefaPorId(id: number): Tarefa {
     const tarefa = this.tarefas.find((tarefa) => tarefa.id === id);
     if (!tarefa) {
-      throw new Error(`Tarefa com id ${id} não encontrada.`);
+      throw new NotFoundException(`Tarefa com id ${id} não encontrada.`);
     }
     return tarefa;
   }
@@ -38,6 +38,11 @@ export class TarefasService {
     const tarefa = this.getTarefaPorId(id);
     tarefa.status = novoStatus;
     return tarefa;
+  }
+
+  deleteTarefa(id: number): void {
+    const tarefa = this.getTarefaPorId(id); // lança NotFoundException se não existir
+    this.tarefas = this.tarefas.filter((t) => t.id !== tarefa.id);
   }
 
   filtrarTarefas(filtroDto: FilterTarefasDto): Tarefa[] {

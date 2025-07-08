@@ -1,4 +1,14 @@
-import { BadRequestException, Body, Controller, Get, Param, Patch, Post, Query } from '@nestjs/common';
+import {
+  BadRequestException,
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Query,
+} from '@nestjs/common';
 import { TarefasService } from './tarefas.service';
 import { CreateTarefaDto } from './dto/create-tarefa.dto';
 import { Tarefa } from './tarefa.model';
@@ -11,13 +21,13 @@ export class TarefasController {
   constructor(private readonly tarefasService: TarefasService) {}
 
   // GET /tarefas?status=ABERTA&termo=algo
-@Get()
-getTarefas(@Query() filtroDto: FilterTarefasDto): Tarefa[] {
-  if (Object.keys(filtroDto).length) {
-    return this.tarefasService.filtrarTarefas(filtroDto);
+  @Get()
+  getTarefas(@Query() filtroDto: FilterTarefasDto): Tarefa[] {
+    if (Object.keys(filtroDto).length) {
+      return this.tarefasService.filtrarTarefas(filtroDto);
+    }
+    return this.tarefasService.getTodasTarefas();
   }
-  return this.tarefasService.getTodasTarefas();
-}
 
   // GET /tarefas/:id
   @Get(':id')
@@ -36,5 +46,10 @@ getTarefas(@Query() filtroDto: FilterTarefasDto): Tarefa[] {
     @Body('status', TarefaStatusValidationPipe) status: TarefaStatus,
   ): Tarefa {
     return this.tarefasService.atualizarStatus(Number(id), status);
+  }
+
+  @Delete(':id')
+  deleteTarefa(@Param('id') id: string): void {
+    this.tarefasService.deleteTarefa(Number(id));
   }
 }
