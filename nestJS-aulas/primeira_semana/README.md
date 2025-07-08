@@ -3332,6 +3332,183 @@ async create(@Body() dto: CreateTarefaDto): Promise<TarefaEntity> {
 
 - Confirme se a tarefa foi salva no banco
 
+<br/>
+<hr />
+<br/>
+<p align="center">============================== // ==============================</p>
+
+<p align="center">🚀🚀🚀🚀🚀 Início do 16º dia de aula 🚀🚀🚀🚀🚀</p>
+
+<p align="center">============================== // ==============================</p>
+<br/>
+<hr />
+<br/>
+
+# 🗓️ Dia 16 – CRUD com banco de dados
+
+## 🎯 Objetivo do Dia
+
+Aprender a usar o `Repository` do TypeORM no `TarefasService` para realizar as operações CRUD diretamente no banco de dados, substituindo o array em memória.
+
+<br/>
+<hr />
+<br/>
+
+## 📚 Conteúdo
+
+### 🔹 Criar o repositório de tarefas
+
+No NestJS, não é necessário criar uma classe `TarefaRepository` manualmente. O próprio TypeORM já expõe um repositório automaticamente ao usar `@InjectRepository()`.
+
+### 🔹 O que é `InjectRepository`?
+
+É um decorator que injeta a instância do repositório da entidade para realizar operações no banco de dados.
+
+### 🔹 Principais métodos usados:
+
+| Método       | Função                                             |
+|--------------|----------------------------------------------------|
+| `save()`     | Cria ou atualiza uma entidade                      |
+| `find()`     | Lista todos os registros                           |
+| `findOne()`  | Busca um registro por critério (ex: ID)            |
+| `delete()`   | Deleta um registro                                 |
+| `update()`   | Atualiza campos de um registro (ou usar `save()`)  |
+
+<br/>
+<hr />
+<br/>
+
+## 🔧 Atividades
+
+### ✅ Refatorar o `TarefasService`
+
+1. **Importe os pacotes:**
+
+```ts
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { TarefaEntity } from './tarefa.entity';
+```
+
+2. Injete o repositório no construtor:
+
+```ts
+constructor(
+  @InjectRepository(TarefaEntity)
+  private readonly tarefasRepository: Repository<TarefaEntity>,
+) {}
+```
+
+3. Implemente os métodos:
+
+```ts
+async findAll(): Promise<TarefaEntity[]> {
+  return this.tarefasRepository.find();
+}
+
+async findById(id: string): Promise<TarefaEntity> {
+  const tarefa = await this.tarefasRepository.findOne({ where: { id } });
+  if (!tarefa) {
+    throw new NotFoundException(`Tarefa com ID "${id}" não encontrada`);
+  }
+  return tarefa;
+}
+
+async create(dto: CreateTarefaDto): Promise<TarefaEntity> {
+  const nova = this.tarefasRepository.create({
+    ...dto,
+    status: TarefaStatus.ABERTA,
+  });
+  return this.tarefasRepository.save(nova);
+}
+
+async delete(id: string): Promise<void> {
+  const result = await this.tarefasRepository.delete(id);
+  if (result.affected === 0) {
+    throw new NotFoundException(`Tarefa com ID "${id}" não encontrada`);
+  }
+}
+
+async updateStatus(id: string, status: TarefaStatus): Promise<TarefaEntity> {
+  const tarefa = await this.findById(id);
+  tarefa.status = status;
+  return this.tarefasRepository.save(tarefa);
+}
+```
+
+<br/>
+<hr />
+<br/>
+
+## 🧪 Exercício
+
+📌 Refatore o Controller para chamar os métodos atualizados:
+
+```ts
+@Get()
+findAll(): Promise<TarefaEntity[]> {
+  return this.tarefasService.findAll();
+}
+
+@Get(':id')
+findById(@Param('id') id: string): Promise<TarefaEntity> {
+  return this.tarefasService.findById(id);
+}
+
+@Post()
+create(@Body() dto: CreateTarefaDto): Promise<TarefaEntity> {
+  return this.tarefasService.create(dto);
+}
+
+@Delete(':id')
+delete(@Param('id') id: string): Promise<void> {
+  return this.tarefasService.delete(id);
+}
+
+@Patch(':id/status')
+updateStatus(
+  @Param('id') id: string,
+  @Body('status', TarefaStatusValidationPipe) status: TarefaStatus,
+): Promise<TarefaEntity> {
+  return this.tarefasService.updateStatus(id, status);
+}
+```
+
+## ✅ Verificação
+
+1. Execute a aplicação com:
+
+```bash
+npm run start:dev
+```
+
+2. Teste os endpoints com Postman/Insomnia:
+
+- ``GET /tarefas``
+
+- ``GET /tarefas/:id``
+
+- ``POST /tarefas`` com body:
+
+```json
+{
+  "titulo": "Estudar NestJS",
+  "descricao": "Aula de CRUD com banco"
+}
+```
+
+- ``PATCH /tarefas/:id/status``
+
+- ``DELETE /tarefas/:id``
+
+🔄 Comparação
+
+| Antes (em memória)                | Agora (com banco)                     |
+| --------------------------------- | ------------------------------------- |
+| Armazenava as tarefas em um array | Usa banco de dados PostgreSQL         |
+| Não persistia os dados            | Os dados ficam salvos entre execuções |
+
+
 
 
 
