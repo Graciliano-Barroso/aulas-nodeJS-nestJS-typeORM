@@ -25,35 +25,32 @@ export class TarefasController {
 
   // GET /tarefas?status=ABERTA&termo=algo
   @Get()
-  getTarefas(@Query() filtroDto: FilterTarefasDto): Tarefa[] {
-    if (Object.keys(filtroDto).length) {
-      return this.tarefasService.filtrarTarefas(filtroDto);
-    }
-    return this.tarefasService.getTodasTarefas();
+  findAll(): Promise<TarefaEntity[]> {
+    return this.tarefasService.findAll();
   }
 
   // GET /tarefas/:id
   @Get(':id')
-  getTarefaPorId(@Param('id') id: string): Tarefa {
-    return this.tarefasService.getTarefaPorId(parseInt(id));
+  findById(@Param('id') id: string): Promise<TarefaEntity> {
+    return this.tarefasService.findById(id);
   }
 
   @Post()
   @UseGuards(AuthGuard)
-  async create(@Body() dto: CreateTarefaDto): Promise<TarefaEntity> {
-    return this.tarefasService.createTarefa(dto);
+  create(@Body() dto: CreateTarefaDto): Promise<TarefaEntity> {
+    return this.tarefasService.create(dto);
   }
 
   @Patch(':id/status')
-  atualizarStatus(
+  updateStatus(
     @Param('id') id: string,
     @Body('status', TarefaStatusValidationPipe) status: TarefaStatus,
-  ): Tarefa {
-    return this.tarefasService.atualizarStatus(Number(id), status);
+  ): Promise<TarefaEntity> {
+    return this.tarefasService.updateStatus(id, status);
   }
 
   @Delete(':id')
-  deleteTarefa(@Param('id') id: string): void {
-    this.tarefasService.deleteTarefa(Number(id));
+  delete(@Param('id') id: string): Promise<void> {
+    return this.tarefasService.delete(id);
   }
 }

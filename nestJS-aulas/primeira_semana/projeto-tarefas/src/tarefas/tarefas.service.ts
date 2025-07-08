@@ -9,63 +9,41 @@ import { TarefaEntity } from './tarefa.entity';
 
 @Injectable()
 export class TarefasService {
-
   constructor(
     @InjectRepository(TarefaEntity)
-    private tarefasRepository: Repository<TarefaEntity>,
+    private readonly tarefasRepository: Repository<TarefaEntity>,
   ) {}
 
-  private tarefas: Tarefa[] = [];
-
-  getTodasTarefas(): Tarefa[] {
-    return this.tarefas;
+  async findAll(): Promise<TarefaEntity[]> {
+    return this.tarefasRepository.find();
   }
 
-  getTarefaPorId(id: number): Tarefa {
-    const tarefa = this.tarefas.find((tarefa) => tarefa.id === id);
+  async findById(id: string): Promise<TarefaEntity> {
+    const tarefa = await this.tarefasRepository.findOne({ where: { id } });
     if (!tarefa) {
-      throw new NotFoundException(`Tarefa com id ${id} não encontrada.`);
+      throw new NotFoundException(`Tarefa com ID "${id}" não encontrada`);
     }
     return tarefa;
   }
 
-  async createTarefa(dto: CreateTarefaDto): Promise<TarefaEntity> {
-    const tarefa = this.tarefasRepository.create({
-      titulo: dto.titulo,
-      descricao: dto.descricao,
+  async create(dto: CreateTarefaDto): Promise<TarefaEntity> {
+    const nova = this.tarefasRepository.create({
+      ...dto,
       status: TarefaStatus.ABERTA,
     });
+    return this.tarefasRepository.save(nova);
+  }
 
+  async delete(id: string): Promise<void> {
+    const result = await this.tarefasRepository.delete(id);
+    if (result.affected === 0) {
+      throw new NotFoundException(`Tarefa com ID "${id}" não encontrada`);
+    }
+  }
+
+  async updateStatus(id: string, status: TarefaStatus): Promise<TarefaEntity> {
+    const tarefa = await this.findById(id);
+    tarefa.status = status;
     return this.tarefasRepository.save(tarefa);
-  }
-
-  atualizarStatus(id: number, novoStatus: TarefaStatus): Tarefa {
-    const tarefa = this.getTarefaPorId(id);
-    tarefa.status = novoStatus;
-    return tarefa;
-  }
-
-  deleteTarefa(id: number): void {
-    const tarefa = this.getTarefaPorId(id); // lança NotFoundException se não existir
-    this.tarefas = this.tarefas.filter((t) => t.id !== tarefa.id);
-  }
-
-  filtrarTarefas(filtroDto: FilterTarefasDto): Tarefa[] {
-    const { status, termo } = filtroDto;
-    let tarefasFiltradas = this.tarefas;
-
-    if (status) {
-      tarefasFiltradas = tarefasFiltradas.filter((t) => t.status === status);
-    }
-
-    if (termo) {
-      tarefasFiltradas = tarefasFiltradas.filter(
-        (t) =>
-          t.titulo.toLowerCase().includes(termo.toLowerCase()) ||
-          t.descricao.toLowerCase().includes(termo.toLowerCase()),
-      );
-    }
-
-    return tarefasFiltradas;
   }
 }
