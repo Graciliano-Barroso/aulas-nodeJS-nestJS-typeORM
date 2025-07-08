@@ -3508,8 +3508,214 @@ npm run start:dev
 | Armazenava as tarefas em um array | Usa banco de dados PostgreSQL         |
 | Não persistia os dados            | Os dados ficam salvos entre execuções |
 
+<br/>
+<hr />
+<br/>
+<p align="center">============================== // ==============================</p>
 
+<p align="center">🚀🚀🚀🚀🚀 Início do 17º dia de aula 🚀🚀🚀🚀🚀</p>
 
+<p align="center">============================== // ==============================</p>
+<br/>
+<hr />
+<br/>
+
+# 🗓️ Dia 17 – Autenticação com JWT (Parte 1)
+
+## 🎯 Objetivo do Dia
+
+Aprender a criar usuários e armazenar senhas criptografadas, preparando o projeto para autenticação com JWT.
+
+<br/>
+<hr />
+<br/>
+
+## 📚 Conteúdo
+
+### 🔐 Introdução à Autenticação
+
+Antes de autenticar, precisamos de:
+
+- Um **módulo de usuários**
+- Uma **entidade de usuário**
+- Um serviço para **registrar e salvar** o usuário no banco
+- Senha **criptografada** (nunca salvar texto puro!)
+
+<br/>
+<hr />
+<br/>
+
+## 📦 Instalar pacotes necessários
+
+Execute:
+
+```bash
+npm install @nestjs/jwt @nestjs/passport passport passport-jwt bcryptjs
+```
+
+Esses pacotes serão usados nas próximas aulas para login, geração e validação de tokens JWT.
+
+<br/>
+<hr />
+<br/>
+
+## 🧱 Estrutura
+
+Crie o módulo e o service de usuários:
+
+```bash
+nest g module usuario
+nest g service usuario
+```
+
+<br/>
+<hr />
+<br/>
+
+🧬 Criar entidade ``UsuarioEntity``
+
+🗂️ ``src/usuario/usuario.entity.ts``
+
+```ts
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+
+@Entity('usuarios')
+export class UsuarioEntity {
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
+
+  @Column({ unique: true })
+  email: string;
+
+  @Column()
+  senha: string;
+
+  @Column()
+  nome: string;
+}
+```
+
+<br/>
+<hr />
+<br/>
+
+🛠️ Configurar ``UsuarioService``
+
+🗂️ ``src/usuario/usuario.service.ts``
+
+```ts
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import * as bcrypt from 'bcryptjs';
+import { UsuarioEntity } from './usuario.entity';
+
+@Injectable()
+export class UsuarioService {
+  constructor(
+    @InjectRepository(UsuarioEntity)
+    private readonly usuarioRepository: Repository<UsuarioEntity>,
+  ) {}
+
+  async registrar(nome: string, email: string, senha: string): Promise<UsuarioEntity> {
+    const salt = await bcrypt.genSalt();
+    const senhaCriptografada = await bcrypt.hash(senha, salt);
+
+    const usuario = this.usuarioRepository.create({
+      nome,
+      email,
+      senha: senhaCriptografada,
+    });
+
+    return this.usuarioRepository.save(usuario);
+  }
+
+  async buscarPorEmail(email: string): Promise<UsuarioEntity | null> {
+    return this.usuarioRepository.findOne({ where: { email } });
+  }
+}
+```
+
+<br/>
+<hr />
+<br/>
+
+## 🧪 Exercício
+
+1. Crie o controller de usuários:
+
+```bash
+nest g controller usuario
+```
+
+2. Implemente uma rota para cadastro:
+
+🗂️ ``src/usuario/usuario.controller.ts``
+
+```ts
+// usuario.controller.ts
+import { Controller, Post, Body } from '@nestjs/common';
+import { UsuarioService } from './usuario.service';
+import { CreateUsuarioDto } from './dto/create-usuario.dto';
+
+@Controller('usuarios') // <-- prefixo da rota
+export class UsuarioController {
+  constructor(private readonly usuarioService: UsuarioService) {}
+
+  @Post('registrar') // <-- POST /usuarios/registrar
+  async registrar(@Body() dto: CreateUsuarioDto) {
+    return this.usuarioService.registrar(dto.nome, dto.email, dto.senha);
+  }
+}
+```
+
+<br/>
+<hr />
+<br/>
+
+## ✅ Criando o CreateUsuarioDto
+
+1. Crie a pasta ``dto`` dentro da pasta ``usuario`` (caso ainda não tenha).
+
+2. Dentro dela, crie o arquivo ``create-usuario.dto.ts`` com o seguinte conteúdo:
+
+```ts
+// src/usuario/dto/create-usuario.dto.ts
+import { IsEmail, IsNotEmpty, MinLength } from 'class-validator';
+
+export class CreateUsuarioDto {
+  @IsNotEmpty()
+  nome: string;
+
+  @IsEmail()
+  email: string;
+
+  @MinLength(6)
+  senha: string;
+}
+```
+
+> 🔒 Aqui usamos o ``class-validator`` para garantir que o nome não está vazio, o e-mail tem formato válido e a senha tem pelo menos 6 caracteres.
+
+<br/>
+<hr />
+<br/>
+
+✅ Testando no Postman
+
+- Endpoint: POST ``http://localhost:3000/usuarios/registrar``
+
+- Body (JSON):
+
+```json
+{
+  "nome": "João",
+  "email": "joao@email.com",
+  "senha": "minhasenha123"
+}
+```
+
+- Esperado: retorna objeto com ID, nome e email. Senha vem criptografada no banco.
 
 
 
