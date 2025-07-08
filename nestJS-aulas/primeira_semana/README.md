@@ -2874,11 +2874,145 @@ createTarefa(@Body() createTarefaDto: CreateTarefaDto): Tarefa {
 ✔ Como fazer uma autenticação simples com token hardcoded  
 ✔ Como proteger rotas usando `@UseGuards()`
 
+<br/>
+<hr />
+<br/>
+<p align="center">============================== // ==============================</p>
 
+<p align="center">🚀🚀🚀🚀🚀 Início do 13º dia de aula 🚀🚀🚀🚀🚀</p>
 
+<p align="center">============================== // ==============================</p>
+<br/>
+<hr />
+<br/>
 
+# 📘 Dia 13 – Configuração com .env e Instalação do TypeORM
 
+📚 Conteúdo Teórico
 
+✅ Por que usar arquivos ``.env``?
+
+O arquivo ``.env`` permite centralizar credenciais e configurações sensíveis do projeto, como:
+
+- Dados do banco de dados
+
+- Chaves de API
+
+- URLs de ambientes
+
+Isso torna sua aplicação mais segura e fácil de configurar em diferentes ambientes (desenvolvimento, produção, etc).
+
+<br/>
+<hr />
+<br/>
+
+## ✅ O que é o pacote ``@nestjs/config``?
+
+É o pacote oficial do NestJS para ler e gerenciar variáveis de ambiente definidas no .env.
+
+<br/>
+<hr />
+<br/>
+
+## ✅ O que é o TypeORM?
+
+O TypeORM é um ORM (Object-Relational Mapper) compatível com NestJS que facilita a conexão com bancos de dados relacionais como PostgreSQL, MySQL etc.
+
+<br/>
+<hr />
+<br/>
+
+## 🔧 Atividades Práticas
+
+1️⃣ Instalar os pacotes necessários
+
+```bash
+npm install --save @nestjs/config
+npm install --save @nestjs/typeorm typeorm pg
+```
+
+> ``pg`` é o driver para PostgreSQL. Substitua por ``mysql2`` se for usar MySQL.
+
+2️⃣ Criar o arquivo ``.env`` na raiz do projeto
+
+📄 ``.env``
+
+```env
+DB_HOST=localhost
+DB_PORT=5432
+DB_USERNAME=usuario
+DB_PASSWORD=senha
+DB_NAME=nest_tarefas
+```
+
+3️⃣ Configurar ``@nestjs/config`` e ``TypeOrmModule`` em ``app.module.ts``
+
+📄 ``src/app.module.ts``
+
+```ts
+import { Module } from '@nestjs/common';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { TarefasModule } from './tarefas/tarefas.module';
+
+@Module({
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true, // Torna disponível em toda a aplicação
+    }),
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => ({
+        type: 'postgres',
+        host: configService.get('DB_HOST'),
+        port: configService.get<number>('DB_PORT'),
+        username: configService.get('DB_USERNAME'),
+        password: configService.get('DB_PASSWORD'),
+        database: configService.get('DB_NAME'),
+        autoLoadEntities: true,      // carrega entidades automaticamente
+        synchronize: true,           // ⚠️ usar apenas em desenvolvimento!
+      }),
+    }),
+    TarefasModule,
+  ],
+})
+export class AppModule {}
+```
+
+<br/>
+<hr />
+<br/>
+
+## 🧪 Exercício
+
+✅ Objetivo: Simular a conexão com o banco, mesmo sem ter entidades criadas ainda.
+
+Como testar:
+Certifique-se que seu PostgreSQL está rodando com os dados do ``.env``
+
+Execute o comando:
+
+```bash
+npm run start:dev
+```
+
+Esperado no terminal:
+
+```css
+[Nest] ... Successfully connected to the database
+```
+
+<br/>
+<hr />
+<br/>
+
+✅ O que você aprendeu hoje:
+
+✔ Como configurar variáveis de ambiente com .env
+✔ Como usar o @nestjs/config para acessar essas variáveis
+✔ Como instalar e configurar o TypeORM para PostgreSQL
+✔ Como garantir que sua aplicação conecta ao banco com sucesso
 
 
 
