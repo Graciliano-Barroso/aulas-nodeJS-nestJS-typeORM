@@ -3949,7 +3949,7 @@ POST /auth/login
 
 2. Use o token nas demais requisições protegidas:
 
-<h1>👀</h1> Obs: Quando digo nas demais requisições, quero dizer que no Postman em cada rota, ou seja, no GET, POST, PATH e DELETE. Deve incluir o que está orientando abaixo. 
+<h1>👀 Obs: Quando digo nas demais requisições, quero dizer que no Postman em cada rota, ou seja, no GET, POST, PATH e DELETE. Deve incluir o que está orientando abaixo.</h1>
 
 - Vá até Headers
 
