@@ -2374,6 +2374,7 @@ filtrarTarefasPorStatus(status: string): Tarefa[]
 Pipes customizados são classes que você cria para realizar **validação ou transformação personalizada** dos dados antes que eles sejam processados por controllers.
 
 Eles são muito úteis para:
+
 - Validar enums (como status)
 - Transformar strings em tipos específicos
 - Aplicar regras de negócio em parâmetros de rota, query ou body
@@ -2385,6 +2386,7 @@ Eles são muito úteis para:
 ## 🎯 Objetivo do Dia
 
 Criar um **pipe de validação de status de tarefa** que:
+
 - Aceita apenas valores válidos definidos no enum `TarefaStatus`
 - Rejeita valores inválidos com uma exceção amigável (`BadRequestException`)
 
@@ -2453,7 +2455,7 @@ atualizarStatus(
 
 **Rota:**
 
-```
+```bash
 PATCH /tarefas/123456789/status
 ```
 
@@ -2475,7 +2477,7 @@ PATCH /tarefas/123456789/status
 
 🔴 Esperado: retorno 400 com mensagem:
 
-```
+```json
 {
   "statusCode": 400,
   "message": "Status inválido: CONCLUIDA",
@@ -2519,6 +2521,7 @@ PATCH /tarefas/123456789/status
 Exception Filters são mecanismos do Nest.js para **tratar erros de forma centralizada e elegante**.
 
 Você pode:
+
 - Usar exceções pré-definidas como `NotFoundException`, `BadRequestException`, etc.
 - Criar filtros globais customizados para lidar com erros de forma padronizada.
 
@@ -2546,6 +2549,7 @@ Você pode:
 📄 `tarefas.service.ts`
 
 Substitua:
+
 ```ts
 if (!tarefa) {
   throw new Error(\`Tarefa com id \${id} não encontrada.\`);
@@ -2553,6 +2557,7 @@ if (!tarefa) {
 ```
 
 Por:
+
 ```ts
 import { NotFoundException } from '@nestjs/common';
 
@@ -2568,6 +2573,7 @@ if (!tarefa) {
 ### 2️⃣ Repetir para `deleteTarefa` (caso exista)
 
 Exemplo:
+
 ```ts
 deleteTarefa(id: number): void {
   const tarefa = this.getTarefaPorId(id);
@@ -2766,6 +2772,7 @@ export class AppModule implements NestModule {
 Guards são mecanismos de segurança que **controlam se uma requisição pode continuar** até o controller ou não.
 
 Eles são muito usados para:
+
 - Verificar autenticação (JWT, tokens, etc)
 - Checar permissões (roles)
 - Restringir acesso por lógica personalizada
@@ -3219,6 +3226,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 })
 export class AppModule {}
 ```
+
 <br/>
 <hr />
 <br/>
@@ -3717,10 +3725,243 @@ export class CreateUsuarioDto {
 
 - Esperado: retorna objeto com ID, nome e email. Senha vem criptografada no banco.
 
+<br/>
+<hr />
+<br/>
+<p align="center">============================== // ==============================</p>
 
+<p align="center">🚀🚀🚀🚀🚀 Início do 18º dia de aula 🚀🚀🚀🚀🚀</p>
 
+<p align="center">============================== // ==============================</p>
+<br/>
+<hr />
+<br/>
 
+# 🗓️ Dia 18 – Autenticação com JWT (parte 2)
 
+## 📚 Conteúdo
+
+Neste dia, você irá:
+
+- Criar o módulo de autenticação (`AuthModule`)
+- Implementar um serviço que valide o login e gere um token JWT
+- Criar a estratégia `JwtStrategy` com o Passport
+- Proteger rotas usando `@UseGuards(AuthGuard())`
+
+<br/>
+<hr />
+<br/>
+
+## 📦 Instalações necessárias
+
+Caso ainda não tenha instalado os pacotes:
+
+```bash
+npm install @nestjs/jwt @nestjs/passport passport passport-jwt bcryptjs
+```
+
+<br/>
+<hr />
+<br/>
+
+## 🔧 Atividades
+
+1. Criar ``AuthModule`` e ``AuthService``
+
+```bash
+nest g module auth
+nest g service auth
+```
+
+2. Criar DTO de login
+
+Crie o arquivo ``login-auth.dto.ts``:
+
+```ts
+import { IsEmail, IsString, MinLength } from "class-validator";
+
+export class LoginAuthDto {
+  @IsEmail()
+  email: string;
+
+  @IsString()
+  @MinLength(6)
+  senha: string;
+}
+```
+
+3. Configurar JwtModule em auth.module.ts
+
+```ts
+import { Module } from '@nestjs/common';
+import { AuthService } from './auth.service';
+import { PassportModule } from '@nestjs/passport';
+import { JwtModule } from '@nestjs/jwt';
+import { UsuarioModule } from 'src/usuario/usuario.module';
+import { AuthController } from './auth.controller';
+import { JwtStrategy } from './jwt.strategy';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+
+@Module({
+  imports: [
+    UsuarioModule,
+    ConfigModule,
+    PassportModule,
+    JwtModule.registerAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        secret: configService.get<string>('JWT_SECRET'),
+        signOptions: {
+          expiresIn: configService.get<string>('JWT_EXPIRES_IN'),
+        },
+      }),
+      inject: [ConfigService],
+    }),
+  ],
+  providers: [AuthService, JwtStrategy],
+  controllers: [AuthController],
+})
+export class AuthModule {}
+```
+
+4. Criar ``AuthService``
+
+```ts
+import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
+import { UsuarioService } from 'src/usuario/usuario.service';
+import * as bcrypt from 'bcryptjs';
+import { LoginAuthDto } from './dto/login-auth.dto';
+
+@Injectable()
+export class AuthService {
+    constructor(
+    private usuarioService: UsuarioService,
+    private jwtService: JwtService,
+  ) {}
+
+  async login(loginDto: LoginAuthDto): Promise<{ access_token: string }> {
+    const { email, senha } = loginDto;
+    const usuario = await this.usuarioService.findByEmail(email);
+
+    if (!usuario) {
+      throw new UnauthorizedException('Usuário não encontrado');
+    }
+
+    const senhaValida = await bcrypt.compare(senha, usuario.senha);
+    if (!senhaValida) {
+      throw new UnauthorizedException('Senha incorreta');
+    }
+
+    const payload = { sub: usuario.id, email: usuario.email };
+    const token = this.jwtService.sign(payload);
+
+    return { access_token: token };
+  }
+}
+```
+
+5. Criar ``AuthController``
+
+```bash
+nest g controller auth
+```
+
+```ts
+import { Body, Controller, Post } from '@nestjs/common';
+import { AuthService } from './auth.service';
+import { LoginAuthDto } from './dto/login-auth.dto';
+
+@Controller('auth')
+export class AuthController {
+    constructor(private readonly authService: AuthService) {}
+
+    @Post('login')
+    login(@Body() loginDto: LoginAuthDto) {
+        return this.authService.login(loginDto);
+    }
+}
+```
+
+6. Criar ``JwtStrategy``
+
+```ts
+import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import { PassportStrategy } from '@nestjs/passport';
+import { ExtractJwt, Strategy } from 'passport-jwt';
+
+@Injectable()
+export class JwtStrategy extends PassportStrategy(Strategy) {
+  constructor(configService: ConfigService) {
+    super({
+      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      ignoreExpiration: false,
+      secretOrKey: configService.get<string>('JWT_SECRET'), // ou process.env.JWT_SECRET
+    });
+  }
+
+  async validate(payload: any) {
+    return { id: payload.sub, email: payload.email };
+  }
+}
+```
+
+7. Criar ``JwtAuthGuard``
+
+```ts
+import { Injectable } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
+
+@Injectable()
+export class JwtAuthGuard extends AuthGuard('jwt') {}
+```
+
+8. Proteger rotas da tarefa:
+
+No seu ``TarefasController``:
+
+```ts
+import { UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+
+@UseGuards(JwtAuthGuard) // incluir 
+@Controller('tarefas')
+export class TarefasController {
+  // ... rotas protegidas
+}
+
+```
+
+🔍 Testando no Postman
+
+1. Faça login:
+
+```http
+POST /auth/login
+{
+  "email": "joao@email.com",
+  "senha": "minhasenha123"
+}
+```
+
+→ Copie o ``access_token`` retornado.
+
+2. Use o token nas demais requisições protegidas:
+
+<h1>👀</h1> Obs: Quando digo nas demais requisições, quero dizer que no Postman em cada rota, ou seja, no GET, POST, PATH e DELETE. Deve incluir o que está orientando abaixo. 
+
+- Vá até Headers
+
+- Adicione:
+
+```makefile
+Authorization: Bearer SEU_TOKEN
+```
+
+Imagem de onde incluir o token
+
+![imagem de onde incluir o token!](/imgs/token.png)
 
 
 
