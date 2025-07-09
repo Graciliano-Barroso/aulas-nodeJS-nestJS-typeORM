@@ -25,10 +25,10 @@ export class UsuarioService {
       senha: senhaCriptografada,
     });
 
-    return this.usuarioRepository.save(novoUsuario)
+    return this.usuarioRepository.save(novoUsuario);
   }
 
-  async buscarPorEmail(email: string): Promise<UsuarioEntity | null> {
-    return this.usuarioRepository.findOne({ where: { email } })
+  async findByEmail(email: string): Promise<UsuarioEntity | null> {
+    return this.usuarioRepository.findOne({ where: { email } });
   }
 }
