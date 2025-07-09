@@ -3961,7 +3961,7 @@ Authorization: Bearer SEU_TOKEN
 
 Imagem de onde incluir o token
 
-![imagem de onde incluir o token!](nestJS-aulas/primeira_semana/imgs/token.png)
+![imagem de onde incluir o token!](/projeto-tarefa/imgs/token.png)
 
 
 
