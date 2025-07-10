@@ -11,5 +11,5 @@ export class FilterTarefasDto {
 
     @IsOptional()
     @IsString()
-    termo?: string;
+    busca?: string;
 }
