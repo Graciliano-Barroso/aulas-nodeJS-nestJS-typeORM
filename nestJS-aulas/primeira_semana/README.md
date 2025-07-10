@@ -3949,7 +3949,7 @@ POST /auth/login
 
 2. Use o token nas demais requisições protegidas:
 
-<h1>👀 Obs: Quando digo nas demais requisições, quero dizer que no Postman em cada rota, ou seja, no GET, POST, PATH e DELETE. Deve incluir o que está orientando abaixo.</h1>
+<h2>👀 Obs: Quando digo nas demais requisições, quero dizer que no Postman em cada rota, ou seja, no GET, POST, PATH e DELETE. Deve incluir o que está orientando abaixo.</h2>
 
 - Vá até Headers
 
@@ -3959,9 +3959,12 @@ POST /auth/login
 Authorization: Bearer SEU_TOKEN
 ```
 
-Imagem de onde incluir o token
+Imagem de onde incluir a Authorization: Berer token
 
 ![imagem de onde incluir o token!](/nestJS-aulas/primeira_semana/imgs/token.png)
+
+✅ Conclusão
+Agora seu sistema possui autenticação JWT completa e rotas protegidas!
 
 
 

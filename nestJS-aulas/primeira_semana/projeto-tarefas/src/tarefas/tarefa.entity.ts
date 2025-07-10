@@ -3,11 +3,13 @@ import {
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
+  ManyToOne,
 } from 'typeorm';
 import { TarefaStatus } from './enums/tarefa-status.enum';
+import { UsuarioEntity } from 'src/usuario/usuario.entity';
 
-@Entity()
-export class TarefaEntity {
+@Entity('tarefas')
+export class Tarefas {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -25,4 +27,7 @@ export class TarefaEntity {
 
   @Column({ default: false })
   arquivada: boolean;
+
+  @ManyToOne(() => UsuarioEntity, usuario => usuario.tarefas, { eager: false })
+  usuario: UsuarioEntity;
 }
