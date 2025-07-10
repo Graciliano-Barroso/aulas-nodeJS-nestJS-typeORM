@@ -4052,7 +4052,7 @@ protegidas!
 <hr />
 <br/>
 
-#🗓️ Dia 19 – Relacionamentos com TypeORM
+# 🗓️ Dia 19 – Relacionamentos com TypeORM
 
 > 🎯 Objetivo:
 >
@@ -4071,19 +4071,21 @@ protegidas!
 No contexto de banco de dados relacional e ORM (como o TypeORM), uma relação 1:N
 significa:
 
--  Um usuário pode ter várias tarefas (OneToMany).
+- Um usuário pode ter várias tarefas (OneToMany).
 
--  Cada tarefa pertence a um único usuário (ManyToOne). <br/>
+- Cada tarefa pertence a um único usuário (ManyToOne). 
+
+<br/>
 <hr />
 <br/>
 
 ## ✅ Decorators TypeORM
 
--  `@OneToMany()` → Define o lado um para muitos (usuário → tarefas).
+- `@OneToMany()` → Define o lado um para muitos (usuário → tarefas).
 
--  `@ManyToOne()` → Define o lado muitos para um (tarefa → usuário).
+- `@ManyToOne()` → Define o lado muitos para um (tarefa → usuário).
 
--  `{ eager: false }` → Define se o dado relacionado deve ser carregado
+- `{ eager: false }` → Define se o dado relacionado deve ser carregado
    automaticamente.
 
 <br/>
@@ -4166,7 +4168,7 @@ export class TarefaEntity {
 
 1. Criar relacionamento entre tarefas e usuário
 
--  Atualize as entidades conforme acima.
+- Atualize as entidades conforme acima.
 
 2. Atualizar método de criação de tarefa (`tarefas.service.ts`)
 
@@ -4338,11 +4340,451 @@ Ao final dessa aula, você terá:
 <br/>
 <p align="center">============================== // ==============================</p>
 
-<p align="center">🚀🚀🚀🚀🚀 Início do 6º dia de aula 🚀🚀🚀🚀🚀</p>
+<p align="center">🚀🚀🚀🚀🚀 Início do 20º dia de aula 🚀🚀🚀🚀🚀</p>
 
 <p align="center">============================== // ==============================</p>
 <br/>
 <hr />
 <br/>
 
-1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣ 6️⃣ 7️⃣ 8️⃣ 9️⃣ 🔟
+# 🗓️ Dia 20 – Filtros, DTOs avançados e refatorações
+
+🧠 Objetivo da aula
+
+- Criar DTOs para login e registro (caso ainda não tenha).
+
+- Criar DTO para atualizar status da tarefa com validação.
+
+- Adicionar filtros por status e busca textual na listagem de tarefas, com base no usuário logado.
+
+- Refatorar rotas e services para usar os DTOs corretamente.
+
+<br/>
+<hr />
+<br/>
+
+1️⃣ Criar o FilterTarefaDto
+
+🆕 Crie o arquivo:
+
+📁 ``src/tarefas/dto/filter-tarefa.dto.ts``
+
+```ts
+import { IsOptional, IsEnum, IsString } from 'class-validator';
+import { TarefaStatus } from '../tarefa-status.enum';
+
+export class FilterTarefaDto {
+  @IsOptional()
+  @IsEnum(TarefaStatus)
+  status?: TarefaStatus;
+
+  @IsOptional()
+  @IsString()
+  busca?: string;
+}
+```
+
+<br/>
+<hr />
+<br/>
+
+2️⃣ Atualize o ``TarefasController`` para receber os filtros
+
+📁 Arquivo: ``tarefas.controller.ts``
+
+🔄 Substitua o método ``listar()``:
+
+🔴 Código Antigo:
+
+```ts
+@Get()
+async listar(@UsuarioLogado() usuario: UsuarioEntity) {
+  return this.tarefasService.findByUsuario(usuario);
+}
+```
+
+✅ Novo Código:
+
+```ts
+@Get()
+async listar(
+  @UsuarioLogado() usuario: UsuarioEntity,
+  @Query() filtroDto: FilterTarefaDto,
+) {
+  return this.tarefasService.listarComFiltro(usuario, filtroDto);
+}
+```
+
+📝 Aqui usamos ``@Query()`` para pegar os parâmetros opcionais da URL, como:
+``/tarefas?status=ABERTA&busca=limpar``
+
+<br/>
+<hr />
+<br/>
+
+3️⃣ Criar o método ``listarComFiltr``o no ``tarefas.service.ts``
+
+📁 Arquivo: ``tarefas.service.ts``
+
+🆕 Adicione o seguinte método:
+
+```ts
+async listarComFiltro(usuario: UsuarioEntity, filtroDto: FilterTarefaDto): Promise<Tarefas[]> {
+  const { status, busca } = filtroDto;
+
+  const query = this.tarefasRepository.createQueryBuilder('tarefa');
+  query.where('tarefa.usuarioId = :usuarioId', { usuarioId: usuario.id });
+
+  if (status) {
+    query.andWhere('tarefa.status = :status', { status });
+  }
+
+  if (busca) {
+    query.andWhere(
+      '(LOWER(tarefa.titulo) LIKE LOWER(:busca) OR LOWER(tarefa.descricao) LIKE LOWER(:busca))',
+      { busca: `%${busca}%` },
+    );
+  }
+
+  return query.getMany();
+}
+```
+
+> 🔍 Isso cria um filtro avançado por:
+>
+> - "``usuarioId``"
+>
+> - "``status``"
+>
+> - texto parcial no ``título`` ou ``descrição``
+
+<br/>
+<hr />
+<br/>
+
+4️⃣ Teste no Postman
+
+Faça login e copie seu token.
+
+1. Vá para a rota:
+
+```bash
+GET /tarefas?status=ABERTA&busca=estudar
+```
+
+2. No Postman, adicione no Header:
+
+```bash
+Authorization: Bearer SEU_TOKEN
+```
+
+<br/>
+<hr />
+<br/>
+
+✅ Revisão de mudanças
+
+| Tipo         | Arquivo                                       | Ação                          |
+| ------------ | --------------------------------------------- | ----------------------------- |
+| 🆕 Criar     | `filter-tarefa.dto.ts`                        | Novo DTO                      |
+| 🔄 Atualizar | `tarefas.controller.ts`                       | Substituir método `listar()`  |
+| 🆕 Criar     | `listarComFiltro()` em `tarefas.service.ts`   | Novo método com query builder |
+| ✅ Testar     | Rota `GET /tarefas?status=ABERTA&busca=texto` | com token                     |
+
+<br/>
+<hr />
+<br/>
+
+🔧 Extras (se quiser refinar)
+
+Você pode também criar um DTO para atualizar o status com validação usando ``@IsEnum``.
+
+Ou mover a validação do parâmetro de status do ``@Patch()`` para um DTO.
+
+<br/>
+<hr />
+<br/>
+
+<br/>
+<hr />
+<br/>
+<p align="center">============================== // ==============================</p>
+
+<p align="center">🚀🚀🚀🚀🚀 Início do 21º dia de aula 🚀🚀🚀🚀🚀</p>
+
+<p align="center">============================== // ==============================</p>
+<br/>
+<hr />
+<br/>
+
+🗓️ Dia 21 – Finalizando o projeto
+
+🧩 O que é Swagger?
+
+Swagger (via pacote ``@nestjs/swagger``) permite gerar documentação automática da sua API. Você poderá visualizar, testar e entender melhor as rotas diretamente pelo navegador.
+
+<br/>
+<hr />
+<br/>
+
+📦 1. Instale os pacotes necessários
+
+Abra o terminal e execute:
+
+```bash
+npm install --save @nestjs/swagger swagger-ui-express
+```
+
+<br/>
+<hr />
+<br/>
+
+🧭 2. Configure o Swagger no seu ``main.ts``
+
+🔁 Substitua o conteúdo do ``main.ts`` pelo seguinte:
+
+```ts
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+
+  const config = new DocumentBuilder()
+    .setTitle('API de Tarefas')
+    .setDescription('Documentação da API com NestJS + Swagger')
+    .setVersion('1.0')
+    .addBearerAuth() // Isso é necessário para autenticação com JWT
+    .build();
+
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api', app, document); // Rota: http://localhost:3000/api
+
+  await app.listen(3000);
+}
+bootstrap();
+```
+
+<br/>
+<hr />
+<br/>
+
+🏷️ 3. Use os decorators de Swagger nos Controllers
+
+Agora vamos adicionar alguns decoradores nas rotas. Vamos começar com o controller de ``Tarefas``.
+
+✏️ Em ``tarefas.controller.ts``, adicione no topo do arquivo:
+
+```ts
+import { ApiTags, ApiBearerAuth, ApiBody, ApiResponse } from '@nestjs/swagger';
+```
+
+🆕 Logo acima da classe ``TarefasController``, adicione:
+
+```ts
+@ApiTags('Tarefas')
+@ApiBearerAuth()
+```
+
+💬 Como vai ficar nas rotas em ``TarefasController``
+
+```ts
+// GET /tarefas
+   @Get()
+   @ApiQuery({ name: "status", required: false, enum: TarefaStatus })
+   @ApiQuery({
+      name: "busca",
+      required: false,
+      description: "Busca por título ou descrição",
+   })
+   @ApiResponse({
+      status: 200,
+      description: "Lista de tarefas do usuário logado",
+   })
+   async listar(
+      @UsuarioLogado() usuario: UsuarioEntity,
+      @Query() filtroDto: FilterTarefasDto,
+   ) {
+      return this.tarefasService.listarComFiltro(usuario, filtroDto);
+   }
+
+   // GET /tarefas/:id
+   @Get(":id")
+   @ApiParam({ name: "id", description: "ID da tarefa" })
+   @ApiResponse({ status: 200, description: "Retorna a tarefa encontrada" })
+   @ApiResponse({
+      status: 403,
+      description: "Tarefa não pertence ao usuário logado",
+   })
+   @ApiResponse({ status: 404, description: "Tarefa não encontrada" })
+   findById(
+      @Param("id") id: string,
+      @UsuarioLogado() usuario: UsuarioEntity,
+   ): Promise<Tarefas> {
+      return this.tarefasService.findById(id, usuario);
+   }
+
+   // POST /tarefas
+   @Post()
+   @ApiBody({ description: "Criação de nova tarefa" })
+   @ApiResponse({ status: 201, description: "Tarefa criada com sucesso" })
+   @ApiResponse({ status: 401, description: "Não autorizado" })
+   async create(
+      @Body() dto: CreateTarefaDto,
+      @UsuarioLogado() usuario: UsuarioEntity,
+   ) {
+      return this.tarefasService.create(dto, usuario);
+   }
+
+   @Patch(":id/status")
+   @ApiParam({ name: "id", description: "ID da tarefa" })
+   @ApiBody({
+      schema: {
+         properties: {
+            status: { type: "string", enum: Object.values(TarefaStatus) },
+         },
+      },
+   })
+   @ApiResponse({ status: 200, description: "Status da tarefa atualizado" })
+   @ApiResponse({
+      status: 403,
+      description: "Tarefa não pertence ao usuário logado",
+   })
+   @ApiResponse({ status: 404, description: "Tarefa não encontrada" })
+   updateStatus(
+      @Param("id") id: string,
+      @Body("status", TarefaStatusValidationPipe) status: TarefaStatus,
+      @UsuarioLogado() usuario: UsuarioEntity,
+   ): Promise<Tarefas> {
+      return this.tarefasService.updateStatus(id, status, usuario);
+   }
+
+   // DELETE /id
+   @Delete(":id")
+   @ApiParam({ name: "id", description: "ID da tarefa" })
+   @ApiResponse({ status: 200, description: "Tarefa removida com sucesso" })
+   @ApiResponse({
+      status: 403,
+      description: "Tarefa não pertence ao usuário logado",
+   })
+   @ApiResponse({ status: 404, description: "Tarefa não encontrada" })
+   delete(
+      @Param("id") id: string,
+      @UsuarioLogado() usuario: UsuarioEntity,
+   ): Promise<void> {
+      return this.tarefasService.delete(id, usuario);
+   }
+```
+
+<br/>
+<hr />
+<br/>
+
+📂 4. Faça o mesmo com o ``auth.controller.ts``
+
+No topo:
+
+```ts
+import { ApiTags, ApiBody, ApiResponse } from '@nestjs/swagger';
+```
+
+Antes da classe:
+
+```ts
+@ApiTags('Autenticação')
+```
+
+Rota de login:
+
+```ts
+@Post('login')
+@ApiBody({ description: 'Credenciais do usuário para login' })
+@ApiResponse({ status: 201, description: 'Token JWT gerado com sucesso' })
+@ApiResponse({ status: 401, description: 'Usuário ou senha inválidos' })
+login(@Body() loginDto: LoginAuthDto) {
+  return this.authService.login(loginDto);
+}
+```
+
+<br/>
+<hr />
+<br/>
+
+```bash
+npm run start:dev
+```
+
+Abra no navegador:
+
+```bash
+[npm run start:dev](http://localhost:3000/api)
+```
+
+Você verá a documentação automática da API, com a opção de fazer login e testar todas as rotas.
+
+📌 Resumo: o que fazer
+
+| Ação                       | Arquivo                                                 |
+| -------------------------- | ------------------------------------------------------- |
+| Instalar Swagger           | `npm install --save @nestjs/swagger swagger-ui-express` |
+| Configurar em `main.ts`    | `main.ts`                                               |
+| Importar e usar decorators | `auth.controller.ts`, `tarefas.controller.ts`           |
+| Iniciar o servidor         | `npm run start:dev`                                     |
+| Acessar documentação       | `http://localhost:3000/api`                             |
+
+📦 Estrutura do projeto ao final da 3ª semana:
+
+```cpp
+src/
+├── auth/
+│   └── dto/
+│        └── login-auth.dto.ts
+│   ├── auth.controller.ts
+│   ├── auth.module.ts
+│   ├── auth.service.ts
+│   ├── jwt.auth.guard.ts
+│   ├── jwt.strategy.ts
+├── logger/
+│     └── logger-middleware.ts
+├── tarefas/
+│     └── dto/
+│           ├── create-tarefa.dto.ts
+│           └── filter-tarefa.dto.ts
+│     └── enums/
+│           └── filter-tarefa.dto.ts
+│     └── pipes/
+│           └── filter-tarefa.dto.ts
+│           
+│   ├── tarefa.entity.ts
+│   ├── tarefa.model.ts
+│   ├── tarefas.controller.ts
+│   ├── tarefas.module.ts
+│   ├── tarefas.service.ts
+├── usuario/
+│     └── decorator/
+│           └── usuario.decorator.ts
+│     └── dto/
+│           └── create-usuario.dto.ts
+│   ├── usuario.controller.ts
+│   ├── usuario.entity.ts
+│   ├── usuario.service.ts
+├── common/
+│   └── pipes/
+├── main.ts
+├── app.module.ts
+```
+
+✅ Ao final da 3ª semana, você terá:
+
+- API com banco de dados real (PostgreSQL ou outro)
+
+- CRUD completo persistente com autenticação
+
+- Validação com DTOs e Pipes
+
+- Segurança com JWT e Guards
+
+- Relacionamentos com usuários e entidades protegidas
+
+- Documentação com Swagger
