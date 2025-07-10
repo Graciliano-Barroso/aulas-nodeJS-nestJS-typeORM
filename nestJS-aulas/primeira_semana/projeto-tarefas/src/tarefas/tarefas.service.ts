@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { TarefaStatus } from './enums/tarefa-status.enum';
 import { CreateTarefaDto } from './dto/create-tarefa.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -13,11 +17,22 @@ export class TarefasService {
     private readonly tarefasRepository: Repository<Tarefas>,
   ) {}
 
-  async findById(id: string): Promise<Tarefas> {
-    const tarefa = await this.tarefasRepository.findOne({ where: { id } });
+  async findById(id: string, usuario: UsuarioEntity): Promise<Tarefas> {
+    const tarefa = await this.tarefasRepository.findOne({
+      where: { id },
+      relations: ['usuario'],
+    });
+
     if (!tarefa) {
       throw new NotFoundException(`Tarefa com ID "${id}" não encontrada`);
     }
+
+    if (tarefa.usuario.id !== usuario.id) {
+      throw new UnauthorizedException(
+        'Você não tem permissão para acessar, editar ou deletar a tarefa de outro usuário',
+      );
+    }
+
     return tarefa;
   }
 
@@ -38,16 +53,22 @@ export class TarefasService {
     return this.tarefasRepository.save(novaTarefa);
   }
 
-  async delete(id: string): Promise<void> {
+  async updateStatus(
+    id: string,
+    status: TarefaStatus,
+    usuario: UsuarioEntity,
+  ): Promise<Tarefas> {
+    const tarefa = await this.findById(id, usuario); // valida propriedade
+    tarefa.status = status;
+    return this.tarefasRepository.save(tarefa);
+  }
+
+  async delete(id: string, usuario: UsuarioEntity): Promise<void> {
+    const tarefa = await this.findById(id, usuario); // garante que pertence ao usuário
+
     const result = await this.tarefasRepository.delete(id);
     if (result.affected === 0) {
       throw new NotFoundException(`Tarefa com ID "${id}" não encontrada`);
     }
-  }
-
-  async updateStatus(id: string, status: TarefaStatus): Promise<Tarefas> {
-    const tarefa = await this.findById(id);
-    tarefa.status = status;
-    return this.tarefasRepository.save(tarefa);
   }
 }

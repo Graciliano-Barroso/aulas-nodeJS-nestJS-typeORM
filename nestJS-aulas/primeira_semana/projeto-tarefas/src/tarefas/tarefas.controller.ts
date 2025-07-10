@@ -23,35 +23,45 @@ import { UsuarioEntity } from 'src/usuario/usuario.entity';
 export class TarefasController {
   constructor(private readonly tarefasService: TarefasService) {}
 
-  @Get()
-  async listar(@UsuarioLogado() usuario: UsuarioEntity) {
-    return this.tarefasService.findByUsuario(usuario);
-  }
-  
-  // GET /tarefas/:id
-  @Get(':id')
-  findById(@Param('id') id: string): Promise<Tarefas> {
-    return this.tarefasService.findById(id);
-  }
+  // GET /tarefas
+   @Get()
+   async listar(@UsuarioLogado() usuario: UsuarioEntity) {
+      return this.tarefasService.findByUsuario(usuario);
+   }
 
-  @Post()
-  async create(
-    @Body() dto: CreateTarefaDto,
-    @UsuarioLogado() usuario: UsuarioEntity,
-  ) {
-    return this.tarefasService.create(dto, usuario);
-  }
+   // GET /tarefas/:id
+   @Get(":id")
+   findById(
+      @Param("id") id: string,
+      @UsuarioLogado() usuario: UsuarioEntity,
+   ): Promise<Tarefas> {
+      return this.tarefasService.findById(id, usuario);
+   }
 
-  @Patch(':id/status')
-  updateStatus(
-    @Param('id') id: string,
-    @Body('status', TarefaStatusValidationPipe) status: TarefaStatus,
-  ): Promise<Tarefas> {
-    return this.tarefasService.updateStatus(id, status);
-  }
+   // POST /tarefas
+   @Post()
+   async create(
+      @Body() dto: CreateTarefaDto,
+      @UsuarioLogado() usuario: UsuarioEntity,
+   ) {
+      return this.tarefasService.create(dto, usuario);
+   }
 
-  @Delete(':id')
-  delete(@Param('id') id: string): Promise<void> {
-    return this.tarefasService.delete(id);
-  }
+   @Patch(":id/status")
+   updateStatus(
+      @Param("id") id: string,
+      @Body("status", TarefaStatusValidationPipe) status: TarefaStatus,
+      @UsuarioLogado() usuario: UsuarioEntity,
+   ): Promise<Tarefas> {
+      return this.tarefasService.updateStatus(id, status, usuario);
+   }
+
+   // DELETE /id
+   @Delete(":id")
+   delete(
+      @Param("id") id: string,
+      @UsuarioLogado() usuario: UsuarioEntity,
+   ): Promise<void> {
+      return this.tarefasService.delete(id, usuario);
+   }
 }

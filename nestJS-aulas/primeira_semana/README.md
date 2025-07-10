@@ -1,70 +1,71 @@
-- [🗂️ Plano de Estudo – Nest.js (Semana 1)](#️-plano-de-estudo--nestjs-semana-1)<!-- markdownlint-disable MD041 -->
-- [🗂️ Plano de Estudo – Nest.js (Semana 2)](#️-plano-de-estudo--nestjs-semana-2)
-- [🗂️ Plano de Estudo – Nest.js (Semana 3)](#️-plano-de-estudo--nestjs-semana-3)
-- [📦 Estrutura do projeto ao final da 3ª semana](#-estrutura-do-projeto-ao-final-da-3ª-semana)
-- [](#)<!-- markdownlint-disable MD042 -->
-- [📘 Dia 1 – Introdução ao Nest.js](#-dia-1--introdução-ao-nestjs)
-  - [✅ O que é o Nest.js?](#-o-que-é-o-nestjs)
-  - [✅ Por que usar Nest.js?](#-por-que-usar-nestjs)
-  - [✅ Arquitetura e Injeção de Dependência](#-arquitetura-e-injeção-de-dependência)
-  - [🔧 Atividades Práticas](#-atividades-práticas)
-  - [🧪 Exercício Final](#-exercício-final)
-- [📘 **Dia 2 – Controladores no Nest.js**](#-dia-2--controladores-no-nestjs)
-  - [✅ O que são controladores?](#-o-que-são-controladores)
-  - [✅ Decoradores principais](#-decoradores-principais)
-  - [🔧 Atividades Práticas](#-atividades-práticas-1)
-  - [🚀 Testando no navegador ou Postman](#-testando-no-navegador-ou-postman)
-  - [🧪 Exercício Final](#-exercício-final-1)
-  - [✅ O que você aprendeu hoje:](#-o-que-você-aprendeu-hoje)
-- [📘 Dia 3 – Serviços no Nest.js](#-dia-3--serviços-no-nestjs)
-  - [✅ O que são serviços no Nest.js?](#-o-que-são-serviços-no-nestjs)
-  - [✅ `@Injectable()` e Injeção de Dependência](#-injectable-e-injeção-de-dependência)
-  - [🔧 Atividades Práticas](#-atividades-práticas-2)
-  - [🧪 Exercício Final](#-exercício-final-2)
-  - [✅ O que você aprendeu hoje:](#-o-que-você-aprendeu-hoje-1)
-- [📘 Dia 4 – DTOs e Tipagem no Nest.js](#-dia-4--dtos-e-tipagem-no-nestjs)
-  - [✅ O que é um DTO (Data Transfer Object)?](#-o-que-é-um-dto-data-transfer-object)
-  - [✅ Interfaces ou Classes para tipos](#-interfaces-ou-classes-para-tipos)
-  - [✅ Validação com TypeScript](#-validação-com-typescript)
-  - [🔧 Atividades Práticas](#-atividades-práticas-3)
-- [📘 Dia 5 – Injeção de Dependência e Boas Práticas](#-dia-5--injeção-de-dependência-e-boas-práticas)
-  - [✅ Injeção de dependência com ``constructor()``](#-injeção-de-dependência-com-constructor)
-  - [✅ Boas práticas: separar DTOs, entidades, enums e módulos](#-boas-práticas-separar-dtos-entidades-enums-e-módulos)
-  - [✅ Status padrão ``ABERTA`` no método ``createTarefa()``](#-status-padrão-aberta-no-método-createtarefa)
-  - [🔧 Atividades Práticas](#-atividades-práticas-4)
-  - [🧪 Exercício Final](#-exercício-final-3)
-  - [✅ Como testar no Postman](#-como-testar-no-postman)
-  - [✅ Exemplo de resposta esperada no Postman:](#-exemplo-de-resposta-esperada-no-postman)
-- [📘 Dia 6 – Módulos no Nest.js](#-dia-6--módulos-no-nestjs)
-  - [✅ O que são módulos no Nest.js?](#-o-que-são-módulos-no-nestjs)
-  - [✅ Por que dividir em módulos?](#-por-que-dividir-em-módulos)
-  - [✅ Exemplo de estrutura modular:](#-exemplo-de-estrutura-modular)
-  - [🔧 Atividades Práticas](#-atividades-práticas-5)
-  - [🧪 Exercício Final](#-exercício-final-4)
-  - [✅ O que você aprendeu hoje:](#-o-que-você-aprendeu-hoje-2)
-- [📘 Dia 7 – Revisão e Prática: Criando uma API de Tarefas](#-dia-7--revisão-e-prática-criando-uma-api-de-tarefas)
-  - [🔁 Fluxo de funcionamento no Nest.js](#-fluxo-de-funcionamento-no-nestjs)
-  - [🛠️ Objetivo da Aula](#️-objetivo-da-aula)
-  - [🧱 **Requisitos da API**](#-requisitos-da-api)
-  - [✅ Endpoints:](#-endpoints)
-  - [🔧 Passo a passo da implementação](#-passo-a-passo-da-implementação)
-  - [📦 Estrutura final do projeto (sem banco)](#-estrutura-final-do-projeto-sem-banco)
-  - [🫣 Antes do exercício final vamos implementar a rota ``PATCH``](#-antes-do-exercício-final-vamos-implementar-a-rota-patch)
-  - [✅ Rota ``PATCH /tarefas/:id/status``](#-rota-patch-tarefasidstatus)
-  - [🧪 Exercício Final](#-exercício-final-5)
-  - [✅ O que você aprendeu hoje:](#-o-que-você-aprendeu-hoje-3)
-- [📘 Dia 8 – Pipes e Validação de Dados](#-dia-8--pipes-e-validação-de-dados)
-  - [✅ O que são Pipes no Nest.js?](#-o-que-são-pipes-no-nestjs)
-  - [✅ Validação com ``class-validator`` + ``class-transformer``](#-validação-com-class-validator--class-transformer)
-  - [🔧 Atividades Práticas](#-atividades-práticas-6)
-  - [⚠️ Se for usar a função acima no método service seria bom remover os dois metodos abaixo relacionados ao status no serviço `TarefasService`](#️-se-for-usar-a-função-acima-no-método-service-seria-bom-remover-os-dois-metodos-abaixo-relacionados-ao-status-no-serviço-tarefasservice)
-  - [⚠️ Também remova o método  ``@Get('status/:status')`` e deixe tudo com o metodo que modificamos `@Get()`](#️-também-remova-o-método--getstatusstatus-e-deixe-tudo-com-o-metodo-que-modificamos-get)
-  - [🧪 Exercício Final](#-exercício-final-6)
-  - [✅ O que você aprendeu hoje:](#-o-que-você-aprendeu-hoje-4)
+-  [🗂️ Plano de Estudo – Nest.js (Semana 1)](#️-plano-de-estudo--nestjs-semana-1)<!-- markdownlint-disable MD041 -->
+-  [🗂️ Plano de Estudo – Nest.js (Semana 2)](#️-plano-de-estudo--nestjs-semana-2)
+-  [🗂️ Plano de Estudo – Nest.js (Semana 3)](#️-plano-de-estudo--nestjs-semana-3)
+-  [📦 Estrutura do projeto ao final da 3ª semana](#-estrutura-do-projeto-ao-final-da-3ª-semana)
+-  [](#)<!-- markdownlint-disable MD042 -->
+-  [📘 Dia 1 – Introdução ao Nest.js](#-dia-1--introdução-ao-nestjs)
+   -  [✅ O que é o Nest.js?](#-o-que-é-o-nestjs)
+   -  [✅ Por que usar Nest.js?](#-por-que-usar-nestjs)
+   -  [✅ Arquitetura e Injeção de Dependência](#-arquitetura-e-injeção-de-dependência)
+   -  [🔧 Atividades Práticas](#-atividades-práticas)
+   -  [🧪 Exercício Final](#-exercício-final)
+-  [📘 **Dia 2 – Controladores no Nest.js**](#-dia-2--controladores-no-nestjs)
+   -  [✅ O que são controladores?](#-o-que-são-controladores)
+   -  [✅ Decoradores principais](#-decoradores-principais)
+   -  [🔧 Atividades Práticas](#-atividades-práticas-1)
+   -  [🚀 Testando no navegador ou Postman](#-testando-no-navegador-ou-postman)
+   -  [🧪 Exercício Final](#-exercício-final-1)
+   -  [✅ O que você aprendeu hoje:](#-o-que-você-aprendeu-hoje)
+-  [📘 Dia 3 – Serviços no Nest.js](#-dia-3--serviços-no-nestjs)
+   -  [✅ O que são serviços no Nest.js?](#-o-que-são-serviços-no-nestjs)
+   -  [✅ `@Injectable()` e Injeção de Dependência](#-injectable-e-injeção-de-dependência)
+   -  [🔧 Atividades Práticas](#-atividades-práticas-2)
+   -  [🧪 Exercício Final](#-exercício-final-2)
+   -  [✅ O que você aprendeu hoje:](#-o-que-você-aprendeu-hoje-1)
+-  [📘 Dia 4 – DTOs e Tipagem no Nest.js](#-dia-4--dtos-e-tipagem-no-nestjs)
+   -  [✅ O que é um DTO (Data Transfer Object)?](#-o-que-é-um-dto-data-transfer-object)
+   -  [✅ Interfaces ou Classes para tipos](#-interfaces-ou-classes-para-tipos)
+   -  [✅ Validação com TypeScript](#-validação-com-typescript)
+   -  [🔧 Atividades Práticas](#-atividades-práticas-3)
+-  [📘 Dia 5 – Injeção de Dependência e Boas Práticas](#-dia-5--injeção-de-dependência-e-boas-práticas)
+   -  [✅ Injeção de dependência com `constructor()`](#-injeção-de-dependência-com-constructor)
+   -  [✅ Boas práticas: separar DTOs, entidades, enums e módulos](#-boas-práticas-separar-dtos-entidades-enums-e-módulos)
+   -  [✅ Status padrão `ABERTA` no método `createTarefa()`](#-status-padrão-aberta-no-método-createtarefa)
+   -  [🔧 Atividades Práticas](#-atividades-práticas-4)
+   -  [🧪 Exercício Final](#-exercício-final-3)
+   -  [✅ Como testar no Postman](#-como-testar-no-postman)
+   -  [✅ Exemplo de resposta esperada no Postman:](#-exemplo-de-resposta-esperada-no-postman)
+-  [📘 Dia 6 – Módulos no Nest.js](#-dia-6--módulos-no-nestjs)
+   -  [✅ O que são módulos no Nest.js?](#-o-que-são-módulos-no-nestjs)
+   -  [✅ Por que dividir em módulos?](#-por-que-dividir-em-módulos)
+   -  [✅ Exemplo de estrutura modular:](#-exemplo-de-estrutura-modular)
+   -  [🔧 Atividades Práticas](#-atividades-práticas-5)
+   -  [🧪 Exercício Final](#-exercício-final-4)
+   -  [✅ O que você aprendeu hoje:](#-o-que-você-aprendeu-hoje-2)
+-  [📘 Dia 7 – Revisão e Prática: Criando uma API de Tarefas](#-dia-7--revisão-e-prática-criando-uma-api-de-tarefas)
+   -  [🔁 Fluxo de funcionamento no Nest.js](#-fluxo-de-funcionamento-no-nestjs)
+   -  [🛠️ Objetivo da Aula](#️-objetivo-da-aula)
+   -  [🧱 **Requisitos da API**](#-requisitos-da-api)
+   -  [✅ Endpoints:](#-endpoints)
+   -  [🔧 Passo a passo da implementação](#-passo-a-passo-da-implementação)
+   -  [📦 Estrutura final do projeto (sem banco)](#-estrutura-final-do-projeto-sem-banco)
+   -  [🫣 Antes do exercício final vamos implementar a rota `PATCH`](#-antes-do-exercício-final-vamos-implementar-a-rota-patch)
+   -  [✅ Rota `PATCH /tarefas/:id/status`](#-rota-patch-tarefasidstatus)
+   -  [🧪 Exercício Final](#-exercício-final-5)
+   -  [✅ O que você aprendeu hoje:](#-o-que-você-aprendeu-hoje-3)
+-  [📘 Dia 8 – Pipes e Validação de Dados](#-dia-8--pipes-e-validação-de-dados)
+   -  [✅ O que são Pipes no Nest.js?](#-o-que-são-pipes-no-nestjs)
+   -  [✅ Validação com `class-validator` + `class-transformer`](#-validação-com-class-validator--class-transformer)
+   -  [🔧 Atividades Práticas](#-atividades-práticas-6)
+   -  [⚠️ Se for usar a função acima no método service seria bom remover os dois metodos abaixo relacionados ao status no serviço `TarefasService`](#️-se-for-usar-a-função-acima-no-método-service-seria-bom-remover-os-dois-metodos-abaixo-relacionados-ao-status-no-serviço-tarefasservice)
+   -  [⚠️ Também remova o método `@Get('status/:status')` e deixe tudo com o metodo que modificamos `@Get()`](#️-também-remova-o-método--getstatusstatus-e-deixe-tudo-com-o-metodo-que-modificamos-get)
+   -  [🧪 Exercício Final](#-exercício-final-6)
+   -  [✅ O que você aprendeu hoje:](#-o-que-você-aprendeu-hoje-4)
 
 # 🗂️ Plano de Estudo – Nest.js (Semana 1)
 
-> 🎯 Objetivo: Entender a arquitetura do Nest.js, saber criar módulos, controladores e serviços, e iniciar uma API RESTful organizada.
+> 🎯 Objetivo: Entender a arquitetura do Nest.js, saber criar módulos,
+> controladores e serviços, e iniciar uma API RESTful organizada.
 
 <!-- markdownlint-disable MD033 -->
 <br/>
@@ -73,13 +74,13 @@
 
 🛠️ Pré-requisitos antes de começar
 
-- Node.js instalado
+-  Node.js instalado
 
-- Conhecimento básico de TypeScript
+-  Conhecimento básico de TypeScript
 
-- Comandos básicos de terminal
+-  Comandos básicos de terminal
 
-- Editor (VS Code)
+-  Editor (VS Code)
 
 <br/>
 <hr/>
@@ -100,21 +101,21 @@ nest new projeto-tarefas
 
 📚 Conteúdo – Dia 1
 
-- O que é Nest.js e por que usá-lo?
+-  O que é Nest.js e por que usá-lo?
 
-- Arquitetura baseada em módulos e injeção de dependência
+-  Arquitetura baseada em módulos e injeção de dependência
 
-- Como funciona o padrão MVC no Nest
+-  Como funciona o padrão MVC no Nest
 
-- Primeira execução de um projeto
+-  Primeira execução de um projeto
 
 🔧 Atividades - Dia 1
 
-- Instalar o Nest CLI e criar projeto com `nest new`
+-  Instalar o Nest CLI e criar projeto com `nest new`
 
-- Explorar os arquivos gerados (`main.ts`, `app.module.ts`, etc.)
+-  Explorar os arquivos gerados (`main.ts`, `app.module.ts`, etc.)
 
-- Rodar o servidor: `npm run start:dev`
+-  Rodar o servidor: `npm run start:dev`
 
 🧪 Exercício - Dia 1
 
@@ -128,21 +129,21 @@ Adicionar um `console.log()` no `main.ts` para verificar o ambiente.
 
 📚 Conteúdo - Dia 2
 
-- O que são controladores
+-  O que são controladores
 
-- Decoradores como `@Controller()` e `@Get()`
+-  Decoradores como `@Controller()` e `@Get()`
 
-- Rotas e parâmetros de rota
+-  Rotas e parâmetros de rota
 
 🔧 Atividades - Dia 2
 
-- Criar um controlador `tarefas.controller.ts`:
+-  Criar um controlador `tarefas.controller.ts`:
 
 ```bash
 nest g controller tarefas
 ```
 
-- Criar métodos `GET /tarefas`, `GET /tarefas/:id`
+-  Criar métodos `GET /tarefas`, `GET /tarefas/:id`
 
 🧪 Exercício - Dia 2
 
@@ -156,11 +157,11 @@ Adicionar mais uma rota: `GET /tarefas/status/:status`
 
 📚 Conteúdo - Dia 3
 
-- O que são serviços
+-  O que são serviços
 
-- `@Injectable()`: como funciona a injeção de dependência
+-  `@Injectable()`: como funciona a injeção de dependência
 
-- Separando a lógica de negócio
+-  Separando a lógica de negócio
 
 🔧 Atividades - Dia 3
 
@@ -170,7 +171,7 @@ Criar serviço `tarefas.service.ts`:
 nest g service tarefas
 ```
 
-- Mover lógica de listagem de tarefas para o serviço
+-  Mover lógica de listagem de tarefas para o serviço
 
 🧪 Exercício - Dia 3
 
@@ -184,22 +185,21 @@ Criar um método `getTarefaPorId(id: string)` no serviço e usá-lo no controlle
 
 📚 Conteúdo - Dia 4
 
-- Criando interfaces ou classes para tipos
+-  Criando interfaces ou classes para tipos
 
-- O que é DTO (Data Transfer Object)
+-  O que é DTO (Data Transfer Object)
 
-- Validação básica de dados com TypeScript
+-  Validação básica de dados com TypeScript
 
 🔧 Atividades - Dia 4
 
-- Criar DTO `create-tarefa.dto.ts` com `titulo` e `descricao`
+-  Criar DTO `create-tarefa.dto.ts` com `titulo` e `descricao`
 
-- Criar tipo `Tarefa` com status enum
+-  Criar tipo `Tarefa` com status enum
 
 🧪 Exercício - Dia 4
 
-🧪 Exercício:
-Adicionar lógica para `POST /tarefas` com DTO
+🧪 Exercício: Adicionar lógica para `POST /tarefas` com DTO
 
 <br/>
 <hr/>
@@ -209,19 +209,19 @@ Adicionar lógica para `POST /tarefas` com DTO
 
 📚 Conteúdo - Dia 5
 
-- Injeção de serviços com o `constructor()`
+-  Injeção de serviços com o `constructor()`
 
-- Boa prática: separar DTOs, entidades, módulos
+-  Boa prática: separar DTOs, entidades, módulos
 
-- Criar status enum para tarefas: `ABERTA`, `EM_ANDAMENTO`, `FINALIZADA`
+-  Criar status enum para tarefas: `ABERTA`, `EM_ANDAMENTO`, `FINALIZADA`
 
 🔧 Atividades - Dia 5
 
-- Atualizar o método `createTarefa()` para usar status padrão `ABERTA`
+-  Atualizar o método `createTarefa()` para usar status padrão `ABERTA`
 
 🧪 Exercício - Dia 5
 
-- Criar um método `filtrarTarefasPorStatus(status: string)`
+-  Criar um método `filtrarTarefasPorStatus(status: string)`
 
 <br/>
 <hr/>
@@ -231,21 +231,22 @@ Adicionar lógica para `POST /tarefas` com DTO
 
 📚 Conteúdo - Dia 6
 
-- Entendendo o que são módulos
+-  Entendendo o que são módulos
 
-- Dividindo responsabilidades por domínio
+-  Dividindo responsabilidades por domínio
 
-- Reutilização de módulos em aplicações grandes
+-  Reutilização de módulos em aplicações grandes
 
 🔧 Atividades - Dia 6
 
-- Criar novo módulo para tarefas (caso não tenha sido criado junto com controller):
+-  Criar novo módulo para tarefas (caso não tenha sido criado junto com
+   controller):
 
 ```bash
 nest g module tarefas
 ```
 
-- Garantir que o módulo está importando controller e serviço corretamente
+-  Garantir que o módulo está importando controller e serviço corretamente
 
 <br/>
 <hr/>
@@ -255,23 +256,23 @@ nest g module tarefas
 
 📚 Conteúdo
 
-- Revisar: controller → chama → service → retorna resposta
+-  Revisar: controller → chama → service → retorna resposta
 
-- Criar mini projeto de API de tarefas (em memória, sem banco de dados)
+-  Criar mini projeto de API de tarefas (em memória, sem banco de dados)
 
 🧪 Exercício final da semana
 
 Criar uma API de tarefas com os seguintes endpoints:
 
-- `GET /tarefas`: listar todas
+-  `GET /tarefas`: listar todas
 
-- `GET /tarefas/:id`: listar por ID
+-  `GET /tarefas/:id`: listar por ID
 
-- `POST /tarefas`: criar tarefa
+-  `POST /tarefas`: criar tarefa
 
-- `DELETE /tarefas/:id`: remover tarefa
+-  `DELETE /tarefas/:id`: remover tarefa
 
-- `PATCH /tarefas/:id/status`: atualizar status
+-  `PATCH /tarefas/:id/status`: atualizar status
 
 <br/>
 <hr/>
@@ -304,9 +305,11 @@ src/
 <br/>
 
 <!-- markdownlint-disable MD025 -->
+
 # 🗂️ Plano de Estudo – Nest.js (Semana 2)
 
-> 🎯 Objetivo: Aprimorar sua API com validações, autenticação básica, tratamento de erros e preparar para integração com banco de dados (TypeORM).
+> 🎯 Objetivo: Aprimorar sua API com validações, autenticação básica, tratamento
+> de erros e preparar para integração com banco de dados (TypeORM).
 
 <br/>
 <hr/>
@@ -316,37 +319,38 @@ src/
 
 📚 Conteúdo
 
-- O que são Pipes no Nest.js
+-  O que são Pipes no Nest.js
 
-- Usando `@Body()` com DTOs
+-  Usando `@Body()` com DTOs
 
-- Usando `class-validator` e `class-transformer`
+-  Usando `class-validator` e `class-transformer`
 
 🔧 Atividades
 
-- Instalar os pacotes:
+-  Instalar os pacotes:
 
 ```bash
 npm install class-validator class-transformer
 ```
 
-- Criar validador no `create-tarefa.dto.ts`:
+-  Criar validador no `create-tarefa.dto.ts`:
 
 ```typescript
 import { IsString, IsEnum } from "class-validator";
 
 export class CreateTarefaDto {
-  @IsNotEmpty()
-  titulo: string;
+   @IsNotEmpty()
+   titulo: string;
 
-  @IsNotEmpty()
-  descricao: string;
+   @IsNotEmpty()
+   descricao: string;
 }
 ```
 
 🧪 Exercício
 
-- Criar um `FilterDto` para buscar tarefas por `status` e `termo` com validação usando `@IsOptional()`.
+-  Criar um `FilterDto` para buscar tarefas por `status` e `termo` com validação
+   usando `@IsOptional()`.
 
 <br/>
 <hr/>
@@ -356,19 +360,19 @@ export class CreateTarefaDto {
 
 📚 Conteúdo
 
-- Criar um pipe de validação de status
+-  Criar um pipe de validação de status
 
-- Usar `@Param()` com pipes
+-  Usar `@Param()` com pipes
 
 🔧 Atividades
 
-- Criar `TarefaStatusValidationPipe`
+-  Criar `TarefaStatusValidationPipe`
 
-- Validar se `status` recebido é válido (enum)
+-  Validar se `status` recebido é válido (enum)
 
 🧪 Exercício
 
-- Adicionar pipe no endpoint `PATCH /tarefas/:id/status`
+-  Adicionar pipe no endpoint `PATCH /tarefas/:id/status`
 
 <br/>
 <hr/>
@@ -378,15 +382,15 @@ export class CreateTarefaDto {
 
 📚 Conteúdo
 
-- O que são filtros de exceção
+-  O que são filtros de exceção
 
-- Usando HttpException e NotFoundException
+-  Usando HttpException e NotFoundException
 
-- Criar filtro global customizado (opcional)
+-  Criar filtro global customizado (opcional)
 
 🔧 Atividades
 
-- Criar exceção personalizada se uma tarefa não for encontrada.
+-  Criar exceção personalizada se uma tarefa não for encontrada.
 
 ```typescript
 throw new NotFoundException(`Tarefa com ID "${id}" não encontrada`);
@@ -404,25 +408,25 @@ Adicionar exceções personalizadas para os métodos `GET`, `DELETE` e `UPDATE`.
 
 📚 Conteúdo
 
-- O que é middleware no Nest.js
+-  O que é middleware no Nest.js
 
-- Diferença entre middleware, guards e interceptadores
+-  Diferença entre middleware, guards e interceptadores
 
-- Aplicar middleware globalmente ou por rota
+-  Aplicar middleware globalmente ou por rota
 
 🔧 Atividades
 
-- Criar middleware de log:
+-  Criar middleware de log:
 
 ```bash
 nest g middleware logger
 ```
 
-- Aplicar nas rotas de tarefas
+-  Aplicar nas rotas de tarefas
 
 🧪 Exercício
 
-- Adicionar timestamp e rota acessada no log.
+-  Adicionar timestamp e rota acessada no log.
 
 <br/>
 <hr/>
@@ -432,19 +436,19 @@ nest g middleware logger
 
 📚 Conteúdo
 
-- O que são guards
+-  O que são guards
 
-- Criar um guard simples (ex: autenticação via token hardcoded)
+-  Criar um guard simples (ex: autenticação via token hardcoded)
 
-- Usar `@UseGuards()` no controller
+-  Usar `@UseGuards()` no controller
 
 🔧 Atividades
 
-- Criar `AuthGuard` que verifica se `authorization` tem token `meutoken123`.
+-  Criar `AuthGuard` que verifica se `authorization` tem token `meutoken123`.
 
 🧪 Exercício
 
-- Proteger rota de criação de tarefas com guard.
+-  Proteger rota de criação de tarefas com guard.
 
 <br/>
 <hr/>
@@ -454,11 +458,11 @@ nest g middleware logger
 
 📚 Conteúdo
 
-- Uso do pacote `@nestjs/config`
+-  Uso do pacote `@nestjs/config`
 
-- Criar `.env` para credenciais de banco
+-  Criar `.env` para credenciais de banco
 
-- Instalar pacotes do TypeORM
+-  Instalar pacotes do TypeORM
 
 ```bash
 npm install --save @nestjs/typeorm typeorm pg
@@ -466,7 +470,7 @@ npm install --save @nestjs/typeorm typeorm pg
 
 🔧 Atividades
 
-- Criar `.env`:
+-  Criar `.env`:
 
 ```env
 DB_HOST=localhost
@@ -476,11 +480,11 @@ DB_PASSWORD=senha
 DB_NAME=nest_tarefas
 ```
 
-- Configurar `TypeOrmModule.forRootAsync()` em `app.module.ts`
+-  Configurar `TypeOrmModule.forRootAsync()` em `app.module.ts`
 
 🧪 Exercício
 
-- Simular a conexão (sem entidades ainda), garantir que app inicia com sucesso.
+-  Simular a conexão (sem entidades ainda), garantir que app inicia com sucesso.
 
 <br/>
 <hr/>
@@ -490,35 +494,36 @@ DB_NAME=nest_tarefas
 
 📚 Conteúdo
 
-- O que são entidades
+-  O que são entidades
 
-- Introdução a decorators do TypeORM
+-  Introdução a decorators do TypeORM
 
-- Diferença entre entidades e DTOs
+-  Diferença entre entidades e DTOs
 
-- Visão geral de `repository`, `migration`, `relation`
+-  Visão geral de `repository`, `migration`, `relation`
 
 🔧 Atividades
 
-- Criar a primeira entidade `TarefaEntity` com os campos `id`, `titulo`, `descricao`, `status`, `dataCriacao`.
+-  Criar a primeira entidade `TarefaEntity` com os campos `id`, `titulo`,
+   `descricao`, `status`, `dataCriacao`.
 
 ```ts
 @Entity()
 export class Tarefa {
-  @PrimaryGeneratedColumn("uuid")
-  id: string;
+   @PrimaryGeneratedColumn("uuid")
+   id: string;
 
-  @Column()
-  titulo: string;
+   @Column()
+   titulo: string;
 
-  @Column()
-  descricao: string;
+   @Column()
+   descricao: string;
 
-  @Column()
-  status: TarefaStatus;
+   @Column()
+   status: TarefaStatus;
 
-  @CreateDateColumn()
-  dataCriacao: Date;
+   @CreateDateColumn()
+   dataCriacao: Date;
 }
 ```
 
@@ -528,10 +533,9 @@ export class Tarefa {
 
 🧠 Ao final da semana, você terá
 
-✅ API validando dados
-✅ Erros tratados corretamente
-✅ Middleware e autenticação básica funcionando
-✅ Projeto pronto para usar TypeORM com banco de dados real
+✅ API validando dados ✅ Erros tratados corretamente ✅ Middleware e
+autenticação básica funcionando ✅ Projeto pronto para usar TypeORM com banco de
+dados real
 
 <br/>
 <hr />
@@ -547,7 +551,9 @@ export class Tarefa {
 
 # 🗂️ Plano de Estudo – Nest.js (Semana 3)
 
-> 🎯 Objetivo: Persistência com banco de dados usando TypeORM, criação de entidades, relacionamento, autenticação com JWT e finalização de um projeto completo.
+> 🎯 Objetivo: Persistência com banco de dados usando TypeORM, criação de
+> entidades, relacionamento, autenticação com JWT e finalização de um projeto
+> completo.
 
 <br/>
 <hr/>
@@ -557,40 +563,40 @@ export class Tarefa {
 
 📚 Conteúdo
 
-- Relembrar `.env` com variáveis de conexão
+-  Relembrar `.env` com variáveis de conexão
 
-- Importar `TypeOrmModule` no `AppModule`
+-  Importar `TypeOrmModule` no `AppModule`
 
-- Conectar ao PostgreSQL (ou outro)
+-  Conectar ao PostgreSQL (ou outro)
 
 🔧 Atividades
 
-- Configurar `TypeOrmModule.forRoot()` com dados do `.env`
+-  Configurar `TypeOrmModule.forRoot()` com dados do `.env`
 
-- Testar conexão
+-  Testar conexão
 
-- Criar entidade `TarefaEntity`
+-  Criar entidade `TarefaEntity`
 
 ```ts
 @Entity("tarefas")
 export class TarefaEntity {
-  @PrimaryGeneratedColumn("uuid")
-  id: string;
+   @PrimaryGeneratedColumn("uuid")
+   id: string;
 
-  @Column()
-  titulo: string;
+   @Column()
+   titulo: string;
 
-  @Column()
-  descricao: string;
+   @Column()
+   descricao: string;
 
-  @Column()
-  status: TarefaStatus;
+   @Column()
+   status: TarefaStatus;
 }
 ```
 
 🧪 Exercício
 
-- Criar repositório de tarefas e salvar tarefa no banco.
+-  Criar repositório de tarefas e salvar tarefa no banco.
 
 <br/>
 <hr/>
@@ -600,17 +606,17 @@ export class TarefaEntity {
 
 📚 Conteúdo
 
-- Criar `TarefaRepository`
+-  Criar `TarefaRepository`
 
-- Uso do `InjectRepository`
+-  Uso do `InjectRepository`
 
-- Métodos: `save`, `find`, `findOne`, `delete`
+-  Métodos: `save`, `find`, `findOne`, `delete`
 
-🔧 Atividades:
-Refatorar `tarefas.service.ts` para usar o banco de dados em vez de array
+🔧 Atividades: Refatorar `tarefas.service.ts` para usar o banco de dados em vez
+de array
 
-🧪 Exercício:
-Implementar os métodos: `findAll`, `findById`, `create`, `delete`, `updateStatus`
+🧪 Exercício: Implementar os métodos: `findAll`, `findById`, `create`, `delete`,
+`updateStatus`
 
 <br/>
 <hr/>
@@ -620,11 +626,11 @@ Implementar os métodos: `findAll`, `findById`, `create`, `delete`, `updateStatu
 
 📚 Conteúdo
 
-- Criar módulo de usuários
+-  Criar módulo de usuários
 
-- Criar entidade `UsuarioEntity`
+-  Criar entidade `UsuarioEntity`
 
-- Instalar pacotes:
+-  Instalar pacotes:
 
 ```bash
 npm install @nestjs/jwt @nestjs/passport passport passport-jwt bcryptjs
@@ -632,9 +638,9 @@ npm install @nestjs/jwt @nestjs/passport passport passport-jwt bcryptjs
 
 🔧 Atividades
 
-- Criar `UsuarioModule`, `UsuarioService`, `UsuarioEntity`
+-  Criar `UsuarioModule`, `UsuarioService`, `UsuarioEntity`
 
-- Registrar e salvar novo usuário com senha criptografada (bcrypt)
+-  Registrar e salvar novo usuário com senha criptografada (bcrypt)
 
 <br/>
 <hr/>
@@ -644,21 +650,21 @@ npm install @nestjs/jwt @nestjs/passport passport passport-jwt bcryptjs
 
 📚 Conteúdo
 
-- Criar `AuthModule` e serviço de autenticação
+-  Criar `AuthModule` e serviço de autenticação
 
-- Validar login, gerar token JWT
+-  Validar login, gerar token JWT
 
-- Criar Guard com Passport para proteger rotas
+-  Criar Guard com Passport para proteger rotas
 
 🔧 Atividades
 
-- Criar rota `POST /auth/login`
+-  Criar rota `POST /auth/login`
 
 Implementar `JwtStrategy` para validar token
 
 🧪 Exercício
 
-- Proteger rotas de tarefas com `@UseGuards(AuthGuard())`
+-  Proteger rotas de tarefas com `@UseGuards(AuthGuard())`
 
 <br/>
 <hr/>
@@ -668,24 +674,24 @@ Implementar `JwtStrategy` para validar token
 
 📚 Conteúdo
 
-- Criar relacionamento `User → Tarefa` (1:N)
+-  Criar relacionamento `User → Tarefa` (1:N)
 
-- Usar `@ManyToOne()` e `@OneToMany()`
+-  Usar `@ManyToOne()` e `@OneToMany()`
 
 🔧 Atividades
 
-- Alterar entidade `TarefaEntity` para ter um campo `usuario`
+-  Alterar entidade `TarefaEntity` para ter um campo `usuario`
 
 ```ts
 @ManyToOne(() => UsuarioEntity, usuario => usuario.tarefas, { eager: false })
 usuario: UsuarioEntity;
 ```
 
-- Ajustar criação de tarefas para registrar o usuário dono da tarefa
+-  Ajustar criação de tarefas para registrar o usuário dono da tarefa
 
 🧪 Exercício
 
-- Buscar tarefas de um usuário logado (usando o token JWT)
+-  Buscar tarefas de um usuário logado (usando o token JWT)
 
 <br/>
 <hr/>
@@ -695,21 +701,21 @@ usuario: UsuarioEntity;
 
 📚 Conteúdo
 
-- Criar DTO para login e registro
+-  Criar DTO para login e registro
 
-- DTOs para atualizar tarefas com validações
+-  DTOs para atualizar tarefas com validações
 
-- Filtros com parâmetros opcionais
+-  Filtros com parâmetros opcionais
 
 🔧 Atividades
 
-- Refatorar rotas para usar DTOs consistentes
+-  Refatorar rotas para usar DTOs consistentes
 
-- Criar filtros por status, título e usuário
+-  Criar filtros por status, título e usuário
 
 🧪 Exercício
 
-- Adicionar `GET /tarefas?status=ABERTA&busca=texto` usando query params
+-  Adicionar `GET /tarefas?status=ABERTA&busca=texto` usando query params
 
 <br/>
 <hr/>
@@ -719,21 +725,21 @@ usuario: UsuarioEntity;
 
 📚 Conteúdo
 
-- Testar todas as rotas
+-  Testar todas as rotas
 
-- Documentar API com Swagger
+-  Documentar API com Swagger
 
-- Preparar deploy local (opcional)
+-  Preparar deploy local (opcional)
 
 🔧 Atividades
 
-- Instalar Swagger:
+-  Instalar Swagger:
 
 ```bash
 npm install --save @nestjs/swagger swagger-ui-express
 ```
 
-- Documentar rotas com decorators `@ApiTags`, `@ApiBody`, `@ApiResponse`, etc.
+-  Documentar rotas com decorators `@ApiTags`, `@ApiBody`, `@ApiResponse`, etc.
 
 # 📦 Estrutura do projeto ao final da 3ª semana
 
@@ -763,17 +769,17 @@ src/
 
 ✅ Ao final da 3ª semana, você terá
 
-- API com banco de dados real (PostgreSQL ou outro)
+-  API com banco de dados real (PostgreSQL ou outro)
 
-- CRUD completo persistente com autenticação
+-  CRUD completo persistente com autenticação
 
-- Validação com DTOs e Pipes
+-  Validação com DTOs e Pipes
 
-- Segurança com JWT e Guards
+-  Segurança com JWT e Guards
 
-- Relacionamentos com usuários e entidades protegidas
+-  Relacionamentos com usuários e entidades protegidas
 
-- Documentação com Swagger
+-  Documentação com Swagger
 
 #
 
@@ -795,29 +801,33 @@ src/
 
 ## ✅ O que é o Nest.js?
 
-- Nest.js é um framework Node.js para a construção de aplicações escaláveis, eficientes e modularizadas, baseado em TypeScript.
+-  Nest.js é um framework Node.js para a construção de aplicações escaláveis,
+   eficientes e modularizadas, baseado em TypeScript.
 
-- Ele utiliza princípios de Programação Orientada a Objetos, Programação Funcional e Arquitetura Modular.
+-  Ele utiliza princípios de Programação Orientada a Objetos, Programação
+   Funcional e Arquitetura Modular.
 
 ## ✅ Por que usar Nest.js?
 
-- Código limpo e estruturado (sem caos de arquivos soltos)
+-  Código limpo e estruturado (sem caos de arquivos soltos)
 
-- Baseado em módulos: cada domínio da aplicação tem seu próprio módulo
+-  Baseado em módulos: cada domínio da aplicação tem seu próprio módulo
 
-- Compatível com bibliotecas do Express e Fastify
+-  Compatível com bibliotecas do Express e Fastify
 
-- Suporte nativo a TypeORM, JWT, Swagger, WebSockets e muito mais
+-  Suporte nativo a TypeORM, JWT, Swagger, WebSockets e muito mais
 
-- Fácil escalabilidade para projetos grandes
+-  Fácil escalabilidade para projetos grandes
 
 ## ✅ Arquitetura e Injeção de Dependência
 
-- Usa arquitetura modular: divide funcionalidades em módulos (ex: TarefasModule, UsuarioModule)
+-  Usa arquitetura modular: divide funcionalidades em módulos (ex:
+   TarefasModule, UsuarioModule)
 
-- Usa Injeção de Dependência (DI) para desacoplar classes: os serviços são injetados nos controladores via construtor
+-  Usa Injeção de Dependência (DI) para desacoplar classes: os serviços são
+   injetados nos controladores via construtor
 
-- Baseado no padrão MVC: Controller → Service → Repository (quando usa banco)
+-  Baseado no padrão MVC: Controller → Service → Repository (quando usa banco)
 
 <br/>
 <hr/>
@@ -837,7 +847,8 @@ npm install -g @nestjs/cli
 nest new projeto-tarefas
 ```
 
-Você será perguntado qual gerenciador de pacotes deseja usar. Pode escolher `npm` ou `yarn`.
+Você será perguntado qual gerenciador de pacotes deseja usar. Pode escolher
+`npm` ou `yarn`.
 
 3️⃣ Estrutura de arquivos gerada
 
@@ -884,14 +895,15 @@ Hello World!
 
 ## 🧪 Exercício Final
 
-Abra o arquivo `src/main.ts` e adicione um `console.log()` para verificar se o ambiente está em desenvolvimento:
+Abra o arquivo `src/main.ts` e adicione um `console.log()` para verificar se o
+ambiente está em desenvolvimento:
 
 ```ts
 async function bootstrap() {
-  console.log("Ambiente atual:", process.env.NODE_ENV || "desenvolvimento");
+   console.log("Ambiente atual:", process.env.NODE_ENV || "desenvolvimento");
 
-  const app = await NestFactory.create(AppModule);
-  await app.listen(3000);
+   const app = await NestFactory.create(AppModule);
+   await app.listen(3000);
 }
 bootstrap();
 ```
@@ -908,12 +920,10 @@ Verifique no terminal a saída do console.
 <hr/>
 <br/>
 
-✅ O que você aprendeu hoje:
-✔ O que é o Nest.js e por que ele é utilizado
-✔ Como criar um projeto usando Nest CLI
-✔ Como a arquitetura modular funciona
-✔ Como rodar e explorar a estrutura inicial do projeto
-✔ Como modificar o ponto de entrada e testar algo no console
+✅ O que você aprendeu hoje: ✔ O que é o Nest.js e por que ele é utilizado ✔
+Como criar um projeto usando Nest CLI ✔ Como a arquitetura modular funciona ✔
+Como rodar e explorar a estrutura inicial do projeto ✔ Como modificar o ponto de
+entrada e testar algo no console
 
 <br/>
 <hr />
@@ -933,7 +943,10 @@ Verifique no terminal a saída do console.
 
 ## ✅ O que são controladores?
 
-No Nest.js, os **Controllers** (controladores) são responsáveis por lidar com as **requisições** HTTP. Eles recebem os dados da requisição, **chamam os serviços** responsáveis pela lógica de negócio e devolvem uma resposta ao cliente.
+No Nest.js, os **Controllers** (controladores) são responsáveis por lidar com as
+**requisições** HTTP. Eles recebem os dados da requisição, **chamam os
+serviços** responsáveis pela lógica de negócio e devolvem uma resposta ao
+cliente.
 
 <br/>
 <hr/>
@@ -956,6 +969,7 @@ Nest usa decoradores para definir rotas e comportamento:
 <br/>
 
 <!-- markdownlint-disable MD024 -->
+
 ## 🔧 Atividades Práticas
 
 1️⃣ Criar um controller chamado `tarefas`
@@ -981,30 +995,30 @@ import { Controller, Get, Param } from "@nestjs/common";
 
 @Controller("tarefas") // prefixo: todas as rotas começam com /tarefas
 export class TarefasController {
-  private tarefas = [
-    { id: 1, titulo: "Estudar Nest.js", status: "ABERTA" },
-    { id: 2, titulo: "Fazer exercícios", status: "EM_ANDAMENTO" },
-  ];
+   private tarefas = [
+      { id: 1, titulo: "Estudar Nest.js", status: "ABERTA" },
+      { id: 2, titulo: "Fazer exercícios", status: "EM_ANDAMENTO" },
+   ];
 
-  // GET /tarefas
-  @Get()
-  getTodasTarefas() {
-    return this.tarefas;
-  }
+   // GET /tarefas
+   @Get()
+   getTodasTarefas() {
+      return this.tarefas;
+   }
 
-  // GET /tarefas/:id
-  @Get(":id")
-  getTarefaPorId(@Param("id") id: string) {
-    return this.tarefas.find((tarefa) => tarefa.id === parseInt(id));
-  }
+   // GET /tarefas/:id
+   @Get(":id")
+   getTarefaPorId(@Param("id") id: string) {
+      return this.tarefas.find(tarefa => tarefa.id === parseInt(id));
+   }
 
-  // GET /tarefas/status/:status
-  @Get("status/:status")
-  getTarefasPorStatus(@Param("status") status: string) {
-    return this.tarefas.filter(
-      (tarefa) => tarefa.status === status.toUpperCase()
-    );
-  }
+   // GET /tarefas/status/:status
+   @Get("status/:status")
+   getTarefasPorStatus(@Param("status") status: string) {
+      return this.tarefas.filter(
+         tarefa => tarefa.status === status.toUpperCase(),
+      );
+   }
 }
 ```
 
@@ -1014,11 +1028,12 @@ export class TarefasController {
 
 ## 🚀 Testando no navegador ou Postman
 
-- `GET http://localhost:3000/tarefas` → retorna todas as tarefas
+-  `GET http://localhost:3000/tarefas` → retorna todas as tarefas
 
-- `GET http://localhost:3000/tarefas/1` → retorna tarefa com ID 1
+-  `GET http://localhost:3000/tarefas/1` → retorna tarefa com ID 1
 
-- `GET http://localhost:3000/tarefas/status/aberta` → retorna todas com status ABERTA
+-  `GET http://localhost:3000/tarefas/status/aberta` → retorna todas com status
+   ABERTA
 
 <br/>
 <hr/>
@@ -1034,22 +1049,22 @@ Adicione uma nova tarefa ao array e teste as rotas. Exemplo:
 
 Depois teste:
 
-- `GET /tarefas/3`
+-  `GET /tarefas/3`
 
-- `GET /tarefas/status/finalizada`
+-  `GET /tarefas/status/finalizada`
 
 <br/>
 <hr/>
 <br/>
 
 <!-- markdownlint-disable MD026 -->
+
 ## ✅ O que você aprendeu hoje:
 
-✔ Criar um controller com o CLI (`nest g controller`)
-✔ Usar os decoradores `@Controller()`, `@Get()`, `@Param()`
-✔ Criar rotas com parâmetros dinâmicos
-✔ Retornar dados estáticos para testes iniciais
-✔ Preparar o terreno para conectar com serviços (Dia 3)`
+✔ Criar um controller com o CLI (`nest g controller`) ✔ Usar os decoradores
+`@Controller()`, `@Get()`, `@Param()` ✔ Criar rotas com parâmetros dinâmicos ✔
+Retornar dados estáticos para testes iniciais ✔ Preparar o terreno para conectar
+com serviços (Dia 3)`
 
 <br/>
 <hr />
@@ -1069,11 +1084,14 @@ Depois teste:
 
 ## ✅ O que são serviços no Nest.js?
 
-- Services (ou serviços) são responsáveis por conter a lógica de negócio da aplicação.
+-  Services (ou serviços) são responsáveis por conter a lógica de negócio da
+   aplicação.
 
-- Enquanto os controllers lidam com as requisições e respostas HTTP, os serviços executam o que realmente precisa ser feito.
+-  Enquanto os controllers lidam com as requisições e respostas HTTP, os
+   serviços executam o que realmente precisa ser feito.
 
-> ✨ Eles promovem a separação de responsabilidades (princípio SOLID: Single Responsibility).
+> ✨ Eles promovem a separação de responsabilidades (princípio SOLID: Single
+> Responsibility).
 
 <br/>
 <hr/>
@@ -1081,9 +1099,11 @@ Depois teste:
 
 ## ✅ `@Injectable()` e Injeção de Dependência
 
-- O decorator `@Injectable()` diz ao Nest.js que aquela classe pode ser injetada em outras classes via o construtor.
+-  O decorator `@Injectable()` diz ao Nest.js que aquela classe pode ser
+   injetada em outras classes via o construtor.
 
-- Isso permite que o Nest.js gere automaticamente instâncias dos serviços e controle o ciclo de vida deles.
+-  Isso permite que o Nest.js gere automaticamente instâncias dos serviços e
+   controle o ciclo de vida deles.
 
 <br/>
 <hr/>
@@ -1114,23 +1134,23 @@ import { Injectable } from "@nestjs/common";
 
 @Injectable()
 export class TarefasService {
-  private tarefas = [
-    { id: 1, titulo: "Estudar Nest.js", status: "ABERTA" },
-    { id: 2, titulo: "Fazer exercícios", status: "EM_ANDAMENTO" },
-    { id: 3, titulo: "Revisar conteúdo do Dia 2", status: "FINALIZADA" },
-  ];
+   private tarefas = [
+      { id: 1, titulo: "Estudar Nest.js", status: "ABERTA" },
+      { id: 2, titulo: "Fazer exercícios", status: "EM_ANDAMENTO" },
+      { id: 3, titulo: "Revisar conteúdo do Dia 2", status: "FINALIZADA" },
+   ];
 
-  getTodasTarefas() {
-    return this.tarefas;
-  }
+   getTodasTarefas() {
+      return this.tarefas;
+   }
 
-  getTarefaPorId(id: number) {
-    return this.tarefas.find((tarefa) => tarefa.id === id);
-  }
+   getTarefaPorId(id: number) {
+      return this.tarefas.find(tarefa => tarefa.id === id);
+   }
 
-  getTarefasPorStatus(status: string) {
-    return this.tarefas.filter((t) => t.status === status.toUpperCase());
-  }
+   getTarefasPorStatus(status: string) {
+      return this.tarefas.filter(t => t.status === status.toUpperCase());
+   }
 }
 ```
 
@@ -1148,22 +1168,22 @@ import { TarefasService } from "./tarefas.service";
 
 @Controller("tarefas")
 export class TarefasController {
-  constructor(private readonly tarefasService: TarefasService) {}
+   constructor(private readonly tarefasService: TarefasService) {}
 
-  @Get()
-  getTodasTarefas() {
-    return this.tarefasService.getTodasTarefas();
-  }
+   @Get()
+   getTodasTarefas() {
+      return this.tarefasService.getTodasTarefas();
+   }
 
-  @Get(":id")
-  getTarefaPorId(@Param("id") id: string) {
-    return this.tarefasService.getTarefaPorId(parseInt(id));
-  }
+   @Get(":id")
+   getTarefaPorId(@Param("id") id: string) {
+      return this.tarefasService.getTarefaPorId(parseInt(id));
+   }
 
-  @Get("status/:status")
-  getTarefasPorStatus(@Param("status") status: string) {
-    return this.tarefasService.getTarefasPorStatus(status);
-  }
+   @Get("status/:status")
+   getTarefasPorStatus(@Param("status") status: string) {
+      return this.tarefasService.getTarefasPorStatus(status);
+   }
 }
 ```
 
@@ -1171,26 +1191,28 @@ export class TarefasController {
 <hr/>
 <br/>
 
-⚠️ Atenção
-Caso você veja erro como `Nest can't resolve dependencies of the TarefasController`, certifique-se de que o `TarefasService` está declarado no módulo `TarefasModule` (ou no `AppModule`, se ainda não criou um módulo próprio):
+⚠️ Atenção Caso você veja erro como
+`Nest can't resolve dependencies of the TarefasController`, certifique-se de que
+o `TarefasService` está declarado no módulo `TarefasModule` (ou no `AppModule`,
+se ainda não criou um módulo próprio):
 
 ```ts
 @Module({
-  controllers: [TarefasController],
-  providers: [TarefasService],
+   controllers: [TarefasController],
+   providers: [TarefasService],
 })
 export class TarefasModule {}
 ```
 
-⚠️ Atenção
-Não foi criado um modo próprio para declarar o módulo `TarefasModule` por isso você precisa declarar `TarefasService` no `AppModule`.
+⚠️ Atenção Não foi criado um modo próprio para declarar o módulo `TarefasModule`
+por isso você precisa declarar `TarefasService` no `AppModule`.
 
 Vai ficar assim:
 
 ```ts
 @Module({
-  controllers: [AppController, TarefasController],
-  providers: [AppService, TarefasService],
+   controllers: [AppController, TarefasController],
+   providers: [AppService, TarefasService],
 })
 export class AppModule {}
 ```
@@ -1203,7 +1225,8 @@ Crie o método `getTarefaPorId(id: string)` no serviço (já feito acima) e:
 
 2. Teste a rota `GET /tarefas/:id` com valores existentes e inexistentes.
 
-3. Tente retornar uma mensagem personalizada se não encontrar nenhuma tarefa (opcional para o próximo dia, quando trataremos erros).
+3. Tente retornar uma mensagem personalizada se não encontrar nenhuma tarefa
+   (opcional para o próximo dia, quando trataremos erros).
 
 <br/>
 <hr/>
@@ -1211,11 +1234,10 @@ Crie o método `getTarefaPorId(id: string)` no serviço (já feito acima) e:
 
 ## ✅ O que você aprendeu hoje:
 
-✔ O que é um serviço no Nest.js
-✔ Como criar um serviço com `@Injectable()`
-✔ Como aplicar injeção de dependência no controller
-✔ Como separar a lógica de negócio do controller
-✔ Como preparar seu projeto para escalar de forma organizada
+✔ O que é um serviço no Nest.js ✔ Como criar um serviço com `@Injectable()` ✔
+Como aplicar injeção de dependência no controller ✔ Como separar a lógica de
+negócio do controller ✔ Como preparar seu projeto para escalar de forma
+organizada
 
 <br/>
 <hr />
@@ -1235,11 +1257,13 @@ Crie o método `getTarefaPorId(id: string)` no serviço (já feito acima) e:
 
 ## ✅ O que é um DTO (Data Transfer Object)?
 
-- DTO é uma classe que define a forma dos dados que são enviados ou recebidos pela sua API.
+-  DTO é uma classe que define a forma dos dados que são enviados ou recebidos
+   pela sua API.
 
-- Serve como contrato entre quem envia e quem recebe dados.
+-  Serve como contrato entre quem envia e quem recebe dados.
 
-- Com Nest.js (e TypeScript), os DTOs são usados junto com validações e decorators.
+-  Com Nest.js (e TypeScript), os DTOs são usados junto com validações e
+   decorators.
 
 <br/>
 <hr/>
@@ -1247,9 +1271,10 @@ Crie o método `getTarefaPorId(id: string)` no serviço (já feito acima) e:
 
 ## ✅ Interfaces ou Classes para tipos
 
-- Você pode definir tipos com `interface` ou `class`.
+-  Você pode definir tipos com `interface` ou `class`.
 
-- Nest.js recomenda o uso de classes, pois elas funcionam com bibliotecas de validação como `class-validator`.
+-  Nest.js recomenda o uso de classes, pois elas funcionam com bibliotecas de
+   validação como `class-validator`.
 
 <br/>
 <hr/>
@@ -1257,9 +1282,11 @@ Crie o método `getTarefaPorId(id: string)` no serviço (já feito acima) e:
 
 ## ✅ Validação com TypeScript
 
-- Com TypeScript, é possível garantir a estrutura dos objetos e melhorar a inteligência do editor.
+-  Com TypeScript, é possível garantir a estrutura dos objetos e melhorar a
+   inteligência do editor.
 
-- Podemos usar tipos enumerados (enum) para restringir valores possíveis, como status de uma tarefa.
+-  Podemos usar tipos enumerados (enum) para restringir valores possíveis, como
+   status de uma tarefa.
 
 <br/>
 <hr/>
@@ -1275,8 +1302,8 @@ Crie o arquivo:
 
 ```ts
 export class CreateTarefaDto {
-  titulo: string;
-  descricao: string;
+   titulo: string;
+   descricao: string;
 }
 ```
 
@@ -1294,9 +1321,9 @@ Crie o arquivo:
 
 ```ts
 export enum TarefaStatus {
-  ABERTA = "ABERTA",
-  EM_ANDAMENTO = "EM_ANDAMENTO",
-  FINALIZADA = "FINALIZADA",
+   ABERTA = "ABERTA",
+   EM_ANDAMENTO = "EM_ANDAMENTO",
+   FINALIZADA = "FINALIZADA",
 }
 ```
 
@@ -1316,10 +1343,10 @@ Você pode criar uma interface ou classe (vamos usar interface por enquanto):
 import { TarefaStatus } from "./tarefa-status.enum";
 
 export interface Tarefa {
-  id: number;
-  titulo: string;
-  descricao: string;
-  status: TarefaStatus;
+   id: number;
+   titulo: string;
+   descricao: string;
+   status: TarefaStatus;
 }
 ```
 
@@ -1339,33 +1366,33 @@ import { CreateTarefaDto } from "./dto/create-tarefa.dto";
 
 @Injectable()
 export class TarefasService {
-  private tarefas: Tarefa[] = [];
+   private tarefas: Tarefa[] = [];
 
-  getTodasTarefas(): Tarefa[] {
-    return this.tarefas;
-  }
+   getTodasTarefas(): Tarefa[] {
+      return this.tarefas;
+   }
 
-  getTarefaPorId(id: number): Tarefa {
-    return this.tarefas.find((t) => t.id === id);
-  }
+   getTarefaPorId(id: number): Tarefa {
+      return this.tarefas.find(t => t.id === id);
+   }
 
-  getTarefasPorStatus(status: string): Tarefa[] {
-    return this.tarefas.filter((t) => t.status === status.toUpperCase());
-  }
+   getTarefasPorStatus(status: string): Tarefa[] {
+      return this.tarefas.filter(t => t.status === status.toUpperCase());
+   }
 
-  createTarefa(dto: CreateTarefaDto): Tarefa {
-    const { titulo, descricao } = dto;
+   createTarefa(dto: CreateTarefaDto): Tarefa {
+      const { titulo, descricao } = dto;
 
-    const tarefa: Tarefa = {
-      id: Date.now(), // simulando ID único
-      titulo,
-      descricao,
-      status: TarefaStatus.ABERTA,
-    };
+      const tarefa: Tarefa = {
+         id: Date.now(), // simulando ID único
+         titulo,
+         descricao,
+         status: TarefaStatus.ABERTA,
+      };
 
-    this.tarefas.push(tarefa);
-    return tarefa;
-  }
+      this.tarefas.push(tarefa);
+      return tarefa;
+   }
 }
 ```
 
@@ -1385,27 +1412,27 @@ import { Tarefa } from "./tarefa.model";
 
 @Controller("tarefas")
 export class TarefasController {
-  constructor(private readonly tarefasService: TarefasService) {}
+   constructor(private readonly tarefasService: TarefasService) {}
 
-  @Get()
-  getTodasTarefas(): Tarefa[] {
-    return this.tarefasService.getTodasTarefas();
-  }
+   @Get()
+   getTodasTarefas(): Tarefa[] {
+      return this.tarefasService.getTodasTarefas();
+   }
 
-  @Get(":id")
-  getTarefaPorId(@Param("id") id: string): Tarefa {
-    return this.tarefasService.getTarefaPorId(parseInt(id));
-  }
+   @Get(":id")
+   getTarefaPorId(@Param("id") id: string): Tarefa {
+      return this.tarefasService.getTarefaPorId(parseInt(id));
+   }
 
-  @Get("status/:status")
-  getTarefasPorStatus(@Param("status") status: string): Tarefa[] {
-    return this.tarefasService.getTarefasPorStatus(status);
-  }
+   @Get("status/:status")
+   getTarefasPorStatus(@Param("status") status: string): Tarefa[] {
+      return this.tarefasService.getTarefasPorStatus(status);
+   }
 
-  @Post()
-  createTarefa(@Body() createTarefaDto: CreateTarefaDto): Tarefa {
-    return this.tarefasService.createTarefa(createTarefaDto);
-  }
+   @Post()
+   createTarefa(@Body() createTarefaDto: CreateTarefaDto): Tarefa {
+      return this.tarefasService.createTarefa(createTarefaDto);
+   }
 }
 ```
 
@@ -1423,19 +1450,20 @@ POST http://localhost:3000/tarefas
 
 ```json
 {
-  "titulo": "Estudar DTOs",
-  "descricao": "Aprender como usar DTOs no Nest.js"
+   "titulo": "Estudar DTOs",
+   "descricao": "Aprender como usar DTOs no Nest.js"
 }
 ```
 
 <!-- markdownlint-disable MD029 -->
+
 2. Depois acesse:
 
-- `GET /tarefas` para ver a tarefa criada
+-  `GET /tarefas` para ver a tarefa criada
 
-- `GET /tarefas/ID` para ver a tarefa por ID
+-  `GET /tarefas/ID` para ver a tarefa por ID
 
-- `GET /tarefas/status/ABERTA` para filtrar por status
+-  `GET /tarefas/status/ABERTA` para filtrar por status
 
 <br/>
 <hr/>
@@ -1443,11 +1471,10 @@ POST http://localhost:3000/tarefas
 
 ✅ O que você aprendeu hoje:
 
-✔ O que é um DTO e por que usá-lo
-✔ Como definir tipos com classes, interfaces e enums
-✔ Como aplicar DTOs no fluxo de criação de tarefas
-✔ Como usar `@Body()` para receber dados no Nest.js
-✔ Como preparar seu código para aplicar validações reais no próximo dia
+✔ O que é um DTO e por que usá-lo ✔ Como definir tipos com classes, interfaces e
+enums ✔ Como aplicar DTOs no fluxo de criação de tarefas ✔ Como usar `@Body()`
+para receber dados no Nest.js ✔ Como preparar seu código para aplicar validações
+reais no próximo dia
 
 <br/>
 <hr />
@@ -1465,11 +1492,13 @@ POST http://localhost:3000/tarefas
 
 📚 Conteúdo Teórico
 
-## ✅ Injeção de dependência com ``constructor()``
+## ✅ Injeção de dependência com `constructor()`
 
-- No Nest.js, a injeção de dependência acontece automaticamente via o construtor das classes.
+-  No Nest.js, a injeção de dependência acontece automaticamente via o
+   construtor das classes.
 
-- Ao declarar um parâmetro no construtor com o tipo de uma classe decorada com ``@Injectable()``, o Nest resolve e fornece a instância para você.
+-  Ao declarar um parâmetro no construtor com o tipo de uma classe decorada com
+   `@Injectable()`, o Nest resolve e fornece a instância para você.
 
 Exemplo:
 
@@ -1477,7 +1506,7 @@ Exemplo:
 constructor(private readonly tarefasService: TarefasService) {}
 ```
 
-> Isso injeta o serviço ``TarefasService`` no controller.
+> Isso injeta o serviço `TarefasService` no controller.
 
 <br/>
 <hr />
@@ -1504,9 +1533,10 @@ src/
 <hr />
 <br/>
 
-## ✅ Status padrão ``ABERTA`` no método ``createTarefa()``
+## ✅ Status padrão `ABERTA` no método `createTarefa()`
 
-Sempre que uma nova tarefa for criada, ela deve começar com o status ``ABERTA``, sem depender do usuário enviar esse valor.
+Sempre que uma nova tarefa for criada, ela deve começar com o status `ABERTA`,
+sem depender do usuário enviar esse valor.
 
 <br/>
 <hr />
@@ -1516,14 +1546,15 @@ Sempre que uma nova tarefa for criada, ela deve começar com o status ``ABERTA``
 
 1️⃣ Revisar e mover o enum para pasta organizada
 
-Crie a pasta ``src/tarefas/enums/`` e mova o arquivo ``tarefa-status.enum.ts`` para lá:
+Crie a pasta `src/tarefas/enums/` e mova o arquivo `tarefa-status.enum.ts` para
+lá:
 
 ```ts
 // src/tarefas/enums/tarefa-status.enum.ts
 export enum TarefaStatus {
-  ABERTA = 'ABERTA',
-  EM_ANDAMENTO = 'EM_ANDAMENTO',
-  FINALIZADA = 'FINALIZADA',
+   ABERTA = "ABERTA",
+   EM_ANDAMENTO = "EM_ANDAMENTO",
+   FINALIZADA = "FINALIZADA",
 }
 ```
 
@@ -1533,9 +1564,10 @@ Atualize os imports onde for necessário.
 <hr />
 <br/>
 
-2️⃣ Atualizar o método ``createTarefa()`` no serviço
+2️⃣ Atualizar o método `createTarefa()` no serviço
 
-Garanta que o status da tarefa criada seja sempre ``ABERTA``, mesmo que não venha do DTO:
+Garanta que o status da tarefa criada seja sempre `ABERTA`, mesmo que não venha
+do DTO:
 
 ```ts
 // src/tarefas/tarefas.service.ts
@@ -1562,9 +1594,9 @@ createTarefa(dto: CreateTarefaDto): Tarefa {
 
 ## 🧪 Exercício Final
 
-Criar um método ``filtrarTarefasPorStatus(status: string)``
+Criar um método `filtrarTarefasPorStatus(status: string)`
 
-No ``tarefas.service.ts``:
+No `tarefas.service.ts`:
 
 ```ts
 filtrarTarefasPorStatus(status: string): Tarefa[] {
@@ -1574,7 +1606,7 @@ filtrarTarefasPorStatus(status: string): Tarefa[] {
 }
 ```
 
-No ``tarefas.controller.ts``, atualize o método correspondente:
+No `tarefas.controller.ts`, atualize o método correspondente:
 
 ```ts
 @Get('status/:status')
@@ -1603,11 +1635,12 @@ GET http://localhost:3000/tarefas/status/ABERTA
 
 Ou teste com:
 
-- ``/tarefas/status/em_andamento``
+-  `/tarefas/status/em_andamento`
 
-- ``/tarefas/status/finalizada``
+-  `/tarefas/status/finalizada`
 
-> Dica: como o método faz ``.toUpperCase()``, você pode enviar o status em minúsculas, maiúsculas ou misto – tudo será tratado corretamente.
+> Dica: como o método faz `.toUpperCase()`, você pode enviar o status em
+> minúsculas, maiúsculas ou misto – tudo será tratado corretamente.
 
 ## ✅ Exemplo de resposta esperada no Postman:
 
@@ -1640,13 +1673,16 @@ Ou teste com:
 
 ## ✅ O que são módulos no Nest.js?
 
-- Módulos são a base da organização de qualquer aplicação Nest.js.
+-  Módulos são a base da organização de qualquer aplicação Nest.js.
 
-- Cada módulo agrupa controllers, services, providers, e outros recursos que compartilham um mesmo propósito.
+-  Cada módulo agrupa controllers, services, providers, e outros recursos que
+   compartilham um mesmo propósito.
 
-- A estrutura modular permite dividir a aplicação em domínios independentes, facilitando a manutenção e escalabilidade.
+-  A estrutura modular permite dividir a aplicação em domínios independentes,
+   facilitando a manutenção e escalabilidade.
 
-> O Nest sempre começa com um ``AppModule`` (módulo raiz), e você pode criar quantos módulos precisar.
+> O Nest sempre começa com um `AppModule` (módulo raiz), e você pode criar
+> quantos módulos precisar.
 
 <br/>
 <hr />
@@ -1654,11 +1690,12 @@ Ou teste com:
 
 ## ✅ Por que dividir em módulos?
 
-- Isolamento de responsabilidade: cada módulo trata de uma parte específica da aplicação.
+-  Isolamento de responsabilidade: cada módulo trata de uma parte específica da
+   aplicação.
 
-- Reutilização: módulos podem ser reutilizados em outras partes ou projetos.
+-  Reutilização: módulos podem ser reutilizados em outras partes ou projetos.
 
-- Escalabilidade: facilita adicionar novos domínios e funcionalidades.
+-  Escalabilidade: facilita adicionar novos domínios e funcionalidades.
 
 <br/>
 <hr />
@@ -1686,13 +1723,14 @@ src/
 
 1️⃣ Criar módulo de tarefas (caso não tenha feito ainda)
 
-No terminal com o caminho em ``C:\meus_projetos\aulas-nodeJS-nestJS-typeORM\nestJS-aulas\primeira_semana\projeto-tarefas\src>``:
+No terminal com o caminho em
+`C:\meus_projetos\aulas-nodeJS-nestJS-typeORM\nestJS-aulas\primeira_semana\projeto-tarefas\src>`:
 
 ```bash
 nest g module tarefas
 ```
 
-> Isso criará o arquivo ``src/tarefas/tarefas.module.ts``
+> Isso criará o arquivo `src/tarefas/tarefas.module.ts`
 
 <br/>
 <hr />
@@ -1700,16 +1738,17 @@ nest g module tarefas
 
 2️⃣ Garantir que o módulo está completo
 
-Abra o arquivo ``tarefas.module.ts`` e verifique se está importando corretamente o controller e o service:
+Abra o arquivo `tarefas.module.ts` e verifique se está importando corretamente o
+controller e o service:
 
 ```ts
-import { Module } from '@nestjs/common';
-import { TarefasController } from './tarefas.controller';
-import { TarefasService } from './tarefas.service';
+import { Module } from "@nestjs/common";
+import { TarefasController } from "./tarefas.controller";
+import { TarefasService } from "./tarefas.service";
 
 @Module({
-  controllers: [TarefasController],
-  providers: [TarefasService],
+   controllers: [TarefasController],
+   providers: [TarefasService],
 })
 export class TarefasModule {}
 ```
@@ -1718,16 +1757,16 @@ export class TarefasModule {}
 <hr />
 <br/>
 
-3️⃣ Registrar o módulo no módulo raiz (``AppModule``)
+3️⃣ Registrar o módulo no módulo raiz (`AppModule`)
 
-Abra ``src/app.module.ts`` e adicione o módulo de tarefas no array ``imports``:
+Abra `src/app.module.ts` e adicione o módulo de tarefas no array `imports`:
 
 ```ts
-import { Module } from '@nestjs/common';
-import { TarefasModule } from './tarefas/tarefas.module';
+import { Module } from "@nestjs/common";
+import { TarefasModule } from "./tarefas/tarefas.module";
 
 @Module({
-  imports: [TarefasModule],
+   imports: [TarefasModule],
 })
 export class AppModule {}
 ```
@@ -1738,17 +1777,20 @@ export class AppModule {}
 
 ## 🧪 Exercício Final
 
-1. Pare e reinicie o servidor (``Ctrl+C`` e ``npm run start:dev``) para aplicar as alterações.
+1. Pare e reinicie o servidor (`Ctrl+C` e `npm run start:dev`) para aplicar as
+   alterações.
 
 2. Confirme se as rotas de tarefas continuam funcionando normalmente:
 
-- ``GET /tarefas``
+-  `GET /tarefas`
 
-- ``GET /tarefas/1``
+-  `GET /tarefas/1`
 
-- ``POST /tarefas``
+-  `POST /tarefas`
 
-3. Teste remover o ``TarefasService`` de dentro do ``AppModule`` (se ainda estiver lá) para garantir que a responsabilidade está centralizada no módulo de tarefas.
+3. Teste remover o `TarefasService` de dentro do `AppModule` (se ainda estiver
+   lá) para garantir que a responsabilidade está centralizada no módulo de
+   tarefas.
 
 <br/>
 <hr />
@@ -1756,10 +1798,9 @@ export class AppModule {}
 
 ## ✅ O que você aprendeu hoje:
 
-✔ O que são e para que servem módulos no Nest.js
-✔ Como organizar o projeto por domínio funcional usando módulos
-✔ Como criar e registrar módulos customizados
-✔ Como garantir o isolamento de responsabilidade de cada parte da aplicação
+✔ O que são e para que servem módulos no Nest.js ✔ Como organizar o projeto por
+domínio funcional usando módulos ✔ Como criar e registrar módulos customizados ✔
+Como garantir o isolamento de responsabilidade de cada parte da aplicação
 
 <br/>
 <hr />
@@ -1793,9 +1834,11 @@ export class AppModule {}
 
 ## 🛠️ Objetivo da Aula
 
-Criar um mini projeto Nest.js de uma API de tarefas, com armazenamento em memória e rotas completas para manipular as tarefas.
+Criar um mini projeto Nest.js de uma API de tarefas, com armazenamento em
+memória e rotas completas para manipular as tarefas.
 
-Sem banco de dados por enquanto – o foco é praticar controllers, services, DTOs, módulos, enums e boas práticas.
+Sem banco de dados por enquanto – o foco é praticar controllers, services, DTOs,
+módulos, enums e boas práticas.
 
 <br/>
 <hr />
@@ -1833,15 +1876,15 @@ nest g service tarefas
 <hr />
 <br/>
 
-2️⃣ Criar ``TarefaStatus`` enum
+2️⃣ Criar `TarefaStatus` enum
 
-📁 ``src/tarefas/enums/tarefa-status.enum.ts``
+📁 `src/tarefas/enums/tarefa-status.enum.ts`
 
 ```ts
 export enum TarefaStatus {
-  ABERTA = 'ABERTA',
-  EM_ANDAMENTO = 'EM_ANDAMENTO',
-  FINALIZADA = 'FINALIZADA',
+   ABERTA = "ABERTA",
+   EM_ANDAMENTO = "EM_ANDAMENTO",
+   FINALIZADA = "FINALIZADA",
 }
 ```
 
@@ -1849,18 +1892,18 @@ export enum TarefaStatus {
 <hr />
 <br/>
 
-3️⃣ Criar a interface ``Tarefa``
+3️⃣ Criar a interface `Tarefa`
 
-📁 ``src/tarefas/tarefa.model.ts``
+📁 `src/tarefas/tarefa.model.ts`
 
 ```ts
-import { TarefaStatus } from './enums/tarefa-status.enum';
+import { TarefaStatus } from "./enums/tarefa-status.enum";
 
 export interface Tarefa {
-  id: number;
-  titulo: string;
-  descricao: string;
-  status: TarefaStatus;
+   id: number;
+   titulo: string;
+   descricao: string;
+   status: TarefaStatus;
 }
 ```
 
@@ -1870,12 +1913,12 @@ export interface Tarefa {
 
 4️⃣ Criar DTO de criação de tarefa
 
-📁 ``src/tarefas/dto/create-tarefa.dto.ts``
+📁 `src/tarefas/dto/create-tarefa.dto.ts`
 
 ```ts
 export class CreateTarefaDto {
-  titulo: string;
-  descricao: string;
+   titulo: string;
+   descricao: string;
 }
 ```
 
@@ -1883,48 +1926,48 @@ export class CreateTarefaDto {
 <hr />
 <br/>
 
-5️⃣ Criar o ``TarefasService``
+5️⃣ Criar o `TarefasService`
 
-📁 ``src/tarefas/tarefas.service.ts``
+📁 `src/tarefas/tarefas.service.ts`
 
 ```ts
-import { Injectable } from '@nestjs/common';
-import { Tarefa } from './tarefa.model';
-import { CreateTarefaDto } from './dto/create-tarefa.dto';
-import { TarefaStatus } from './enums/tarefa-status.enum';
+import { Injectable } from "@nestjs/common";
+import { Tarefa } from "./tarefa.model";
+import { CreateTarefaDto } from "./dto/create-tarefa.dto";
+import { TarefaStatus } from "./enums/tarefa-status.enum";
 
 @Injectable()
 export class TarefasService {
-  private tarefas: Tarefa[] = [];
+   private tarefas: Tarefa[] = [];
 
-  getTodas(): Tarefa[] {
-    return this.tarefas;
-  }
+   getTodas(): Tarefa[] {
+      return this.tarefas;
+   }
 
-  getPorId(id: number): Tarefa {
-    return this.tarefas.find(t => t.id === id);
-  }
+   getPorId(id: number): Tarefa {
+      return this.tarefas.find(t => t.id === id);
+   }
 
-  criar(dto: CreateTarefaDto): Tarefa {
-    const tarefa: Tarefa = {
-      id: Date.now(), // gera ID único com timestamp
-      titulo: dto.titulo,
-      descricao: dto.descricao,
-      status: TarefaStatus.ABERTA,
-    };
-    this.tarefas.push(tarefa);
-    return tarefa;
-  }
+   criar(dto: CreateTarefaDto): Tarefa {
+      const tarefa: Tarefa = {
+         id: Date.now(), // gera ID único com timestamp
+         titulo: dto.titulo,
+         descricao: dto.descricao,
+         status: TarefaStatus.ABERTA,
+      };
+      this.tarefas.push(tarefa);
+      return tarefa;
+   }
 
-  remover(id: number): void {
-    this.tarefas = this.tarefas.filter(t => t.id !== id);
-  }
+   remover(id: number): void {
+      this.tarefas = this.tarefas.filter(t => t.id !== id);
+   }
 
-  atualizarStatus(id: number, status: TarefaStatus): Tarefa {
-    const tarefa = this.getPorId(id);
-    tarefa.status = status;
-    return tarefa;
-  }
+   atualizarStatus(id: number, status: TarefaStatus): Tarefa {
+      const tarefa = this.getPorId(id);
+      tarefa.status = status;
+      return tarefa;
+   }
 }
 ```
 
@@ -1932,56 +1975,56 @@ export class TarefasService {
 <hr />
 <br/>
 
-6️⃣ Criar o ``TarefasController``
+6️⃣ Criar o `TarefasController`
 
-📁 ``src/tarefas/tarefas.controller.ts``
+📁 `src/tarefas/tarefas.controller.ts`
 
 ```ts
 import {
-  Controller,
-  Get,
-  Param,
-  Post,
-  Delete,
-  Patch,
-  Body,
-} from '@nestjs/common';
-import { TarefasService } from './tarefas.service';
-import { CreateTarefaDto } from './dto/create-tarefa.dto';
-import { Tarefa } from './tarefa.model';
-import { TarefaStatus } from './enums/tarefa-status.enum';
+   Controller,
+   Get,
+   Param,
+   Post,
+   Delete,
+   Patch,
+   Body,
+} from "@nestjs/common";
+import { TarefasService } from "./tarefas.service";
+import { CreateTarefaDto } from "./dto/create-tarefa.dto";
+import { Tarefa } from "./tarefa.model";
+import { TarefaStatus } from "./enums/tarefa-status.enum";
 
-@Controller('tarefas')
+@Controller("tarefas")
 export class TarefasController {
-  constructor(private readonly tarefasService: TarefasService) {}
+   constructor(private readonly tarefasService: TarefasService) {}
 
-  @Get()
-  getTodas(): Tarefa[] {
-    return this.tarefasService.getTodas();
-  }
+   @Get()
+   getTodas(): Tarefa[] {
+      return this.tarefasService.getTodas();
+   }
 
-  @Get(':id')
-  getPorId(@Param('id') id: string): Tarefa {
-    return this.tarefasService.getPorId(Number(id));
-  }
+   @Get(":id")
+   getPorId(@Param("id") id: string): Tarefa {
+      return this.tarefasService.getPorId(Number(id));
+   }
 
-  @Post()
-  criar(@Body() dto: CreateTarefaDto): Tarefa {
-    return this.tarefasService.criar(dto);
-  }
+   @Post()
+   criar(@Body() dto: CreateTarefaDto): Tarefa {
+      return this.tarefasService.criar(dto);
+   }
 
-  @Delete(':id')
-  remover(@Param('id') id: string): void {
-    this.tarefasService.remover(Number(id));
-  }
+   @Delete(":id")
+   remover(@Param("id") id: string): void {
+      this.tarefasService.remover(Number(id));
+   }
 
-  @Patch(':id/status')
-  atualizarStatus(
-    @Param('id') id: string,
-    @Body('status') status: TarefaStatus,
-  ): Tarefa {
-    return this.tarefasService.atualizarStatus(Number(id), status);
-  }
+   @Patch(":id/status")
+   atualizarStatus(
+      @Param("id") id: string,
+      @Body("status") status: TarefaStatus,
+   ): Tarefa {
+      return this.tarefasService.atualizarStatus(Number(id), status);
+   }
 }
 ```
 
@@ -2006,19 +2049,19 @@ src/
 └── main.ts
 ```
 
-## 🫣 Antes do exercício final vamos implementar a rota ``PATCH``
+## 🫣 Antes do exercício final vamos implementar a rota `PATCH`
 
-## ✅ Rota ``PATCH /tarefas/:id/status``
+## ✅ Rota `PATCH /tarefas/:id/status`
 
-Essa rota atualiza o ``status`` de uma tarefa específica.
+Essa rota atualiza o `status` de uma tarefa específica.
 
 <br/>
 <hr />
 <br/>
 
-1️⃣ Atualizar o ``TarefasService``
+1️⃣ Atualizar o `TarefasService`
 
-Adicione o método ``atualizarStatus()``:
+Adicione o método `atualizarStatus()`:
 
 ```ts
 // tarefas.service.ts
@@ -2035,9 +2078,9 @@ atualizarStatus(id: number, novoStatus: TarefaStatus): Tarefa {
 <hr />
 <br/>
 
-2️⃣ Atualizar o ``TarefasController``
+2️⃣ Atualizar o `TarefasController`
 
-Adicione a rota ``PATCH``:
+Adicione a rota `PATCH`:
 
 ```ts
 // tarefas.controller.ts
@@ -2069,7 +2112,7 @@ Corpo JSON:
 
 ```json
 {
-  "status": "FINALIZADA"
+   "status": "FINALIZADA"
 }
 ```
 
@@ -2077,10 +2120,10 @@ Corpo JSON:
 
 ```json
 {
-  "id": 123456789,
-  "titulo": "Estudar para a prova",
-  "descricao": "Focar nos exercícios de Nest.js",
-  "status": "FINALIZADA"
+   "id": 123456789,
+   "titulo": "Estudar para a prova",
+   "descricao": "Focar nos exercícios de Nest.js",
+   "status": "FINALIZADA"
 }
 ```
 
@@ -2092,26 +2135,26 @@ Corpo JSON:
 
 1. Testar os endpoints no Postman:
 
-- ``POST /tarefas`` com:
+-  `POST /tarefas` com:
 
 ```json
 {
-  "titulo": "Estudar para a prova",
-  "descricao": "Focar nos exercícios de Nest.js"
+   "titulo": "Estudar para a prova",
+   "descricao": "Focar nos exercícios de Nest.js"
 }
 ```
 
-- ``GET /tarefas``
+-  `GET /tarefas`
 
-- ``GET /tarefas/:id``
+-  `GET /tarefas/:id`
 
-- ``PATCH /tarefas/:id/status`` com:
+-  `PATCH /tarefas/:id/status` com:
 
 ```json
 { "status": "EM_ANDAMENTO" }
 ```
 
-- ``DELETE /tarefas/:id``
+-  `DELETE /tarefas/:id`
 
 2. Tentar criar múltiplas tarefas e alternar status.
 
@@ -2121,10 +2164,10 @@ Corpo JSON:
 
 ## ✅ O que você aprendeu hoje:
 
-✔ Como juntar tudo que aprendeu na semana em um mini projeto
-✔ Como aplicar DTOs, enums, services e controllers de forma prática
-✔ Como criar uma API REST funcional sem banco de dados
-✔ Como estruturar corretamente as pastas e arquivos do projeto
+✔ Como juntar tudo que aprendeu na semana em um mini projeto ✔ Como aplicar
+DTOs, enums, services e controllers de forma prática ✔ Como criar uma API REST
+funcional sem banco de dados ✔ Como estruturar corretamente as pastas e arquivos
+do projeto
 
 <br/>
 <hr />
@@ -2144,25 +2187,28 @@ Corpo JSON:
 
 ## ✅ O que são Pipes no Nest.js?
 
-- Pipes são classes responsáveis por:
+-  Pipes são classes responsáveis por:
 
-  - Transformar dados de entrada (ex: converter tipos)
+   -  Transformar dados de entrada (ex: converter tipos)
 
-  - Validar dados antes que cheguem ao controller
+   -  Validar dados antes que cheguem ao controller
 
-- Funcionam junto com os decoradores ``@Body()``, ``@Param()``, ``@Query()``, etc.
+-  Funcionam junto com os decoradores `@Body()`, `@Param()`, `@Query()`, etc.
 
-> No caso de DTOs, os pipes funcionam junto com bibliotecas como ``class-validator`` e ``class-transformer``.
+> No caso de DTOs, os pipes funcionam junto com bibliotecas como
+> `class-validator` e `class-transformer`.
 
 <br/>
 <hr />
 <br/>
 
-## ✅ Validação com ``class-validator`` + ``class-transformer``
+## ✅ Validação com `class-validator` + `class-transformer`
 
-- class-validator: fornece decorators como ``@IsString()``, ``@IsNotEmpty()``, ``@IsEnum()``, etc.
+-  class-validator: fornece decorators como `@IsString()`, `@IsNotEmpty()`,
+   `@IsEnum()`, etc.
 
-- class-transformer: converte os dados de entrada em instâncias da classe DTO (necessário para que a validação funcione)
+-  class-transformer: converte os dados de entrada em instâncias da classe DTO
+   (necessário para que a validação funcione)
 
 <br/>
 <hr />
@@ -2182,16 +2228,16 @@ npm install class-validator class-transformer
 
 2️⃣ Habilitar o pipe global de validação
 
-No ``main.ts``, adicione o ``ValidationPipe`` global:
+No `main.ts`, adicione o `ValidationPipe` global:
 
 ```ts
 // src/main.ts
-import { ValidationPipe } from '@nestjs/common';
+import { ValidationPipe } from "@nestjs/common";
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  app.useGlobalPipes(new ValidationPipe());
-  await app.listen(3000);
+   const app = await NestFactory.create(AppModule);
+   app.useGlobalPipes(new ValidationPipe());
+   await app.listen(3000);
 }
 bootstrap();
 ```
@@ -2202,44 +2248,45 @@ bootstrap();
 
 3️⃣ Atualizar o DTO de criação de tarefa
 
-📁 ``src/tarefas/dto/create-tarefa.dto.ts``
+📁 `src/tarefas/dto/create-tarefa.dto.ts`
 
 ```ts
-import { IsNotEmpty } from 'class-validator';
+import { IsNotEmpty } from "class-validator";
 
 export class CreateTarefaDto {
-  @IsNotEmpty({ message: 'O título não pode estar vazio.' })
-  titulo: string;
+   @IsNotEmpty({ message: "O título não pode estar vazio." })
+   titulo: string;
 
-  @IsNotEmpty({ message: 'A descrição não pode estar vazia.' })
-  descricao: string;
+   @IsNotEmpty({ message: "A descrição não pode estar vazia." })
+   descricao: string;
 }
 ```
 
-> Agora, se o cliente enviar ``POST /tarefas`` com campos vazios, ele receberá uma mensagem de erro automaticamente.
+> Agora, se o cliente enviar `POST /tarefas` com campos vazios, ele receberá uma
+> mensagem de erro automaticamente.
 
 <br/>
 <hr />
 <br/>
 
-4️⃣ Criar o ``FilterTarefasDto`` com validação
+4️⃣ Criar o `FilterTarefasDto` com validação
 
-📁 ``src/tarefas/dto/filter-tarefas.dto.ts``
+📁 `src/tarefas/dto/filter-tarefas.dto.ts`
 
 ```ts
-import { IsOptional, IsEnum, IsString } from 'class-validator';
-import { TarefaStatus } from '../enums/tarefa-status.enum';
+import { IsOptional, IsEnum, IsString } from "class-validator";
+import { TarefaStatus } from "../enums/tarefa-status.enum";
 
 export class FilterTarefasDto {
-  @IsOptional()
-  @IsEnum(TarefaStatus, {
-    message: 'Status inválido. Use ABERTA, EM_ANDAMENTO ou FINALIZADA',
-  })
-  status?: TarefaStatus;
+   @IsOptional()
+   @IsEnum(TarefaStatus, {
+      message: "Status inválido. Use ABERTA, EM_ANDAMENTO ou FINALIZADA",
+   })
+   status?: TarefaStatus;
 
-  @IsOptional()
-  @IsString()
-  termo?: string;
+   @IsOptional()
+   @IsString()
+   termo?: string;
 }
 ```
 
@@ -2255,7 +2302,7 @@ GET /tarefas?status=ABERTA&termo=estudar
 
 5️⃣ Atualizar o controller (para preparar uso do filtro)
 
-📁 ``src/tarefas/tarefas.controller.ts``
+📁 `src/tarefas/tarefas.controller.ts`
 
 ```ts
 import { Query } from '@nestjs/common';
@@ -2318,22 +2365,22 @@ filtrarTarefasPorStatus(status: string): Tarefa[]
 
 ## 🧪 Exercício Final
 
-1. Testar ``POST /tarefas`` com campos vazios:
+1. Testar `POST /tarefas` com campos vazios:
 
 ```json
 {
-  "titulo": "",
-  "descricao": ""
+   "titulo": "",
+   "descricao": ""
 }
 ```
 
 ✔️ Esperado: erro 400 com mensagens personalizadas.
 
-2. Testar ``GET /tarefas?status=INVALIDO``
+2. Testar `GET /tarefas?status=INVALIDO`
 
 ✔️ Esperado: erro 400 com mensagem de status inválido.
 
-3. Testar ``GET /tarefas?status=EM_ANDAMENTO&termo=prova``
+3. Testar `GET /tarefas?status=EM_ANDAMENTO&termo=prova`
 
 ✔️ Esperado: retorno filtrado por status e termo no título/descrição.
 
@@ -2343,11 +2390,10 @@ filtrarTarefasPorStatus(status: string): Tarefa[]
 
 ## ✅ O que você aprendeu hoje:
 
-✔ O que são e para que servem pipes no Nest.js
-✔ Como validar dados com ``class-validator`` e ``class-transformer``
-✔ Como criar DTOs com validação automática
-✔ Como usar ``@Query()`` com validação para filtros avançados
-✔ Como aplicar boas mensagens de erro para entrada de dados inválidos
+✔ O que são e para que servem pipes no Nest.js ✔ Como validar dados com
+`class-validator` e `class-transformer` ✔ Como criar DTOs com validação
+automática ✔ Como usar `@Query()` com validação para filtros avançados ✔ Como
+aplicar boas mensagens de erro para entrada de dados inválidos
 
 <br/>
 <hr />
@@ -2371,13 +2417,15 @@ filtrarTarefasPorStatus(status: string): Tarefa[]
 
 ### ✅ O que são Pipes Customizados?
 
-Pipes customizados são classes que você cria para realizar **validação ou transformação personalizada** dos dados antes que eles sejam processados por controllers.
+Pipes customizados são classes que você cria para realizar **validação ou
+transformação personalizada** dos dados antes que eles sejam processados por
+controllers.
 
 Eles são muito úteis para:
 
-- Validar enums (como status)
-- Transformar strings em tipos específicos
-- Aplicar regras de negócio em parâmetros de rota, query ou body
+-  Validar enums (como status)
+-  Transformar strings em tipos específicos
+-  Aplicar regras de negócio em parâmetros de rota, query ou body
 
 <br/>
 <hr />
@@ -2387,8 +2435,8 @@ Eles são muito úteis para:
 
 Criar um **pipe de validação de status de tarefa** que:
 
-- Aceita apenas valores válidos definidos no enum `TarefaStatus`
-- Rejeita valores inválidos com uma exceção amigável (`BadRequestException`)
+-  Aceita apenas valores válidos definidos no enum `TarefaStatus`
+-  Rejeita valores inválidos com uma exceção amigável (`BadRequestException`)
 
 <br/>
 <hr />
@@ -2401,29 +2449,29 @@ Criar um **pipe de validação de status de tarefa** que:
 📄 `src/tarefas/pipes/tarefa-status-validation.pipe.ts`
 
 ```ts
-import { PipeTransform, BadRequestException } from '@nestjs/common';
-import { TarefaStatus } from '../enums/tarefa-status.enum';
+import { PipeTransform, BadRequestException } from "@nestjs/common";
+import { TarefaStatus } from "../enums/tarefa-status.enum";
 
 export class TarefaStatusValidationPipe implements PipeTransform {
-  readonly statusPermitidos = [
-    TarefaStatus.ABERTA,
-    TarefaStatus.EM_ANDAMENTO,
-    TarefaStatus.FINALIZADA,
-  ];
+   readonly statusPermitidos = [
+      TarefaStatus.ABERTA,
+      TarefaStatus.EM_ANDAMENTO,
+      TarefaStatus.FINALIZADA,
+   ];
 
-  transform(value: any) {
-    value = value.toUpperCase();
+   transform(value: any) {
+      value = value.toUpperCase();
 
-    if (!this.statusValido(value)) {
-      throw new BadRequestException(`Status inválido: ${value}`);
-    }
+      if (!this.statusValido(value)) {
+         throw new BadRequestException(`Status inválido: ${value}`);
+      }
 
-    return value;
-  }
+      return value;
+   }
 
-  private statusValido(status: any) {
-    return this.statusPermitidos.includes(status);
-  }
+   private statusValido(status: any) {
+      return this.statusPermitidos.includes(status);
+   }
 }
 ```
 
@@ -2463,7 +2511,7 @@ PATCH /tarefas/123456789/status
 
 ```json
 {
-  "status": "EM_ANDAMENTO"
+   "status": "EM_ANDAMENTO"
 }
 ```
 
@@ -2471,7 +2519,7 @@ PATCH /tarefas/123456789/status
 
 ```json
 {
-  "status": "concluida"
+   "status": "concluida"
 }
 ```
 
@@ -2479,9 +2527,9 @@ PATCH /tarefas/123456789/status
 
 ```json
 {
-  "statusCode": 400,
-  "message": "Status inválido: CONCLUIDA",
-  "error": "Bad Request"
+   "statusCode": 400,
+   "message": "Status inválido: CONCLUIDA",
+   "error": "Bad Request"
 }
 ```
 
@@ -2518,12 +2566,14 @@ PATCH /tarefas/123456789/status
 
 ### ✅ O que são Exception Filters no Nest.js?
 
-Exception Filters são mecanismos do Nest.js para **tratar erros de forma centralizada e elegante**.
+Exception Filters são mecanismos do Nest.js para **tratar erros de forma
+centralizada e elegante**.
 
 Você pode:
 
-- Usar exceções pré-definidas como `NotFoundException`, `BadRequestException`, etc.
-- Criar filtros globais customizados para lidar com erros de forma padronizada.
+-  Usar exceções pré-definidas como `NotFoundException`, `BadRequestException`,
+   etc.
+-  Criar filtros globais customizados para lidar com erros de forma padronizada.
 
 <br/>
 <hr />
@@ -2531,12 +2581,12 @@ Você pode:
 
 ### ✅ Exceções mais comuns no Nest.js
 
-| Classe de Erro         | Código HTTP | Quando usar                            |
-|------------------------|-------------|----------------------------------------|
-| `NotFoundException`    | 404         | Quando algo não é encontrado           |
-| `BadRequestException`  | 400         | Dados inválidos enviados pelo cliente  |
-| `UnauthorizedException`| 401         | Acesso não autorizado                  |
-| `ForbiddenException`   | 403         | Acesso proibido                        |
+| Classe de Erro          | Código HTTP | Quando usar                           |
+| ----------------------- | ----------- | ------------------------------------- |
+| `NotFoundException`     | 404         | Quando algo não é encontrado          |
+| `BadRequestException`   | 400         | Dados inválidos enviados pelo cliente |
+| `UnauthorizedException` | 401         | Acesso não autorizado                 |
+| `ForbiddenException`    | 403         | Acesso proibido                       |
 
 <br/>
 <hr />
@@ -2581,7 +2631,8 @@ deleteTarefa(id: number): void {
 }
 ```
 
-Se o `getTarefaPorId` já lança exceção, o método `deleteTarefa()` herdará esse comportamento.
+Se o `getTarefaPorId` já lança exceção, o método `deleteTarefa()` herdará esse
+comportamento.
 
 <br/>
 <hr />
@@ -2642,11 +2693,12 @@ atualizarStatus(id: number, novoStatus: TarefaStatus): Tarefa {
 
 ### ✅ O que é Middleware no Nest.js?
 
-Middlewares são funções executadas **antes que o request chegue ao controller**. Eles são úteis para:
+Middlewares são funções executadas **antes que o request chegue ao controller**.
+Eles são úteis para:
 
-- Registrar logs
-- Verificar autenticação
-- Manipular/transformar dados do request
+-  Registrar logs
+-  Verificar autenticação
+-  Manipular/transformar dados do request
 
 <br/>
 <hr />
@@ -2654,11 +2706,11 @@ Middlewares são funções executadas **antes que o request chegue ao controller
 
 ### 🔁 Diferenças entre Middleware, Guards e Interceptors
 
-| Conceito     | Executa em...       | Finalidade principal                   |
-|--------------|---------------------|----------------------------------------|
-| Middleware   | Antes do controller | Pré-processamento, logging             |
-| Guard        | Antes do controller | Controle de acesso (autorização)       |
-| Interceptor  | Antes e depois      | Modificar request/response, métricas   |
+| Conceito    | Executa em...       | Finalidade principal                 |
+| ----------- | ------------------- | ------------------------------------ |
+| Middleware  | Antes do controller | Pré-processamento, logging           |
+| Guard       | Antes do controller | Controle de acesso (autorização)     |
+| Interceptor | Antes e depois      | Modificar request/response, métricas |
 
 <br/>
 <hr />
@@ -2683,17 +2735,17 @@ Cria o arquivo: `src/logger.middleware.ts`
 📄 `logger.middleware.ts`
 
 ```ts
-import { Injectable, NestMiddleware } from '@nestjs/common';
-import { Request, Response, NextFunction } from 'express';
+import { Injectable, NestMiddleware } from "@nestjs/common";
+import { Request, Response, NextFunction } from "express";
 
 @Injectable()
 export class LoggerMiddleware implements NestMiddleware {
-  use(req: Request, res: Response, next: NextFunction) {
-    const { method, originalUrl } = req;
-    const timestamp = new Date().toISOString();
-    console.log(`[${timestamp}] ${method} ${originalUrl}`);
-    next(); // passa para o próximo middleware ou controller
-  }
+   use(req: Request, res: Response, next: NextFunction) {
+      const { method, originalUrl } = req;
+      const timestamp = new Date().toISOString();
+      console.log(`[${timestamp}] ${method} ${originalUrl}`);
+      next(); // passa para o próximo middleware ou controller
+   }
 }
 ```
 
@@ -2708,19 +2760,17 @@ export class LoggerMiddleware implements NestMiddleware {
 Importe o módulo:
 
 ```ts
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
-import { TarefasModule } from './tarefas/tarefas.module';
-import { LoggerMiddleware } from './logger.middleware';
+import { MiddlewareConsumer, Module, NestModule } from "@nestjs/common";
+import { TarefasModule } from "./tarefas/tarefas.module";
+import { LoggerMiddleware } from "./logger.middleware";
 
 @Module({
-  imports: [TarefasModule],
+   imports: [TarefasModule],
 })
 export class AppModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(LoggerMiddleware)
-      .forRoutes('tarefas'); // aplica somente às rotas de /tarefas
-  }
+   configure(consumer: MiddlewareConsumer) {
+      consumer.apply(LoggerMiddleware).forRoutes("tarefas"); // aplica somente às rotas de /tarefas
+   }
 }
 ```
 
@@ -2732,9 +2782,9 @@ export class AppModule implements NestModule {
 
 ✔ Adicione um log personalizado com:
 
-- Timestamp (`new Date().toISOString()`)
-- Método HTTP (`GET`, `POST`, etc.)
-- URL acessada (`originalUrl`)
+-  Timestamp (`new Date().toISOString()`)
+-  Método HTTP (`GET`, `POST`, etc.)
+-  URL acessada (`originalUrl`)
 
 <br/>
 <hr />
@@ -2769,13 +2819,14 @@ export class AppModule implements NestModule {
 
 ### ✅ O que são Guards no Nest.js?
 
-Guards são mecanismos de segurança que **controlam se uma requisição pode continuar** até o controller ou não.
+Guards são mecanismos de segurança que **controlam se uma requisição pode
+continuar** até o controller ou não.
 
 Eles são muito usados para:
 
-- Verificar autenticação (JWT, tokens, etc)
-- Checar permissões (roles)
-- Restringir acesso por lógica personalizada
+-  Verificar autenticação (JWT, tokens, etc)
+-  Checar permissões (roles)
+-  Restringir acesso por lógica personalizada
 
 <br/>
 <hr />
@@ -2784,14 +2835,14 @@ Eles são muito usados para:
 ## 🧱 Estrutura básica de um Guard
 
 ```ts
-import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
+import { CanActivate, ExecutionContext, Injectable } from "@nestjs/common";
 
 @Injectable()
 export class MeuGuard implements CanActivate {
-  canActivate(context: ExecutionContext): boolean {
-    // lógica de permissão
-    return true;
-  }
+   canActivate(context: ExecutionContext): boolean {
+      // lógica de permissão
+      return true;
+   }
 }
 ```
 
@@ -2817,25 +2868,25 @@ nest g guard auth
 
 ```ts
 import {
-  CanActivate,
-  ExecutionContext,
-  Injectable,
-  UnauthorizedException,
-} from '@nestjs/common';
-import { Request } from 'express';
+   CanActivate,
+   ExecutionContext,
+   Injectable,
+   UnauthorizedException,
+} from "@nestjs/common";
+import { Request } from "express";
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-  canActivate(context: ExecutionContext): boolean {
-    const request: Request = context.switchToHttp().getRequest();
-    const authHeader = request.headers['authorization'];
+   canActivate(context: ExecutionContext): boolean {
+      const request: Request = context.switchToHttp().getRequest();
+      const authHeader = request.headers["authorization"];
 
-    if (authHeader === 'meutoken123') {
-      return true;
-    }
+      if (authHeader === "meutoken123") {
+         return true;
+      }
 
-    throw new UnauthorizedException('Token inválido ou ausente');
-  }
+      throw new UnauthorizedException("Token inválido ou ausente");
+   }
 }
 ```
 
@@ -2867,8 +2918,8 @@ createTarefa(@Body() createTarefaDto: CreateTarefaDto): Tarefa {
 ✔ Aplique o guard apenas no método `POST /tarefas`  
 ✔ Teste com o Postman ou Insomnia:
 
-- Enviar sem header `authorization`: ❌ recebe erro 401
-- Enviar com `authorization: meutoken123`: ✅ tarefa criada com sucesso
+-  Enviar sem header `authorization`: ❌ recebe erro 401
+-  Enviar com `authorization: meutoken123`: ✅ tarefa criada com sucesso
 
 <br/>
 <hr />
@@ -2897,25 +2948,28 @@ createTarefa(@Body() createTarefaDto: CreateTarefaDto): Tarefa {
 
 📚 Conteúdo Teórico
 
-✅ Por que usar arquivos ``.env``?
+✅ Por que usar arquivos `.env`?
 
-O arquivo ``.env`` permite centralizar credenciais e configurações sensíveis do projeto, como:
+O arquivo `.env` permite centralizar credenciais e configurações sensíveis do
+projeto, como:
 
-- Dados do banco de dados
+-  Dados do banco de dados
 
-- Chaves de API
+-  Chaves de API
 
-- URLs de ambientes
+-  URLs de ambientes
 
-Isso torna sua aplicação mais segura e fácil de configurar em diferentes ambientes (desenvolvimento, produção, etc).
+Isso torna sua aplicação mais segura e fácil de configurar em diferentes
+ambientes (desenvolvimento, produção, etc).
 
 <br/>
 <hr />
 <br/>
 
-## ✅ O que é o pacote ``@nestjs/config``?
+## ✅ O que é o pacote `@nestjs/config`?
 
-É o pacote oficial do NestJS para ler e gerenciar variáveis de ambiente definidas no .env.
+É o pacote oficial do NestJS para ler e gerenciar variáveis de ambiente
+definidas no .env.
 
 <br/>
 <hr />
@@ -2923,7 +2977,8 @@ Isso torna sua aplicação mais segura e fácil de configurar em diferentes ambi
 
 ## ✅ O que é o TypeORM?
 
-O TypeORM é um ORM (Object-Relational Mapper) compatível com NestJS que facilita a conexão com bancos de dados relacionais como PostgreSQL, MySQL etc.
+O TypeORM é um ORM (Object-Relational Mapper) compatível com NestJS que facilita
+a conexão com bancos de dados relacionais como PostgreSQL, MySQL etc.
 
 <br/>
 <hr />
@@ -2938,11 +2993,11 @@ npm install --save @nestjs/config
 npm install --save @nestjs/typeorm typeorm pg
 ```
 
-> ``pg`` é o driver para PostgreSQL. Substitua por ``mysql2`` se for usar MySQL.
+> `pg` é o driver para PostgreSQL. Substitua por `mysql2` se for usar MySQL.
 
-2️⃣ Criar o arquivo ``.env`` na raiz do projeto
+2️⃣ Criar o arquivo `.env` na raiz do projeto
 
-📄 ``.env``
+📄 `.env`
 
 ```env
 DB_HOST=localhost
@@ -2952,37 +3007,37 @@ DB_PASSWORD=senha
 DB_NAME=nest_tarefas
 ```
 
-3️⃣ Configurar ``@nestjs/config`` e ``TypeOrmModule`` em ``app.module.ts``
+3️⃣ Configurar `@nestjs/config` e `TypeOrmModule` em `app.module.ts`
 
-📄 ``src/app.module.ts``
+📄 `src/app.module.ts`
 
 ```ts
-import { Module } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { TarefasModule } from './tarefas/tarefas.module';
+import { Module } from "@nestjs/common";
+import { ConfigModule, ConfigService } from "@nestjs/config";
+import { TypeOrmModule } from "@nestjs/typeorm";
+import { TarefasModule } from "./tarefas/tarefas.module";
 
 @Module({
-  imports: [
-    ConfigModule.forRoot({
-      isGlobal: true, // Torna disponível em toda a aplicação
-    }),
-    TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
-      inject: [ConfigService],
-      useFactory: (configService: ConfigService) => ({
-        type: 'postgres',
-        host: configService.get('DB_HOST'),
-        port: configService.get<number>('DB_PORT'),
-        username: configService.get('DB_USERNAME'),
-        password: configService.get('DB_PASSWORD'),
-        database: configService.get('DB_NAME'),
-        autoLoadEntities: true,      // carrega entidades automaticamente
-        synchronize: true,           // ⚠️ usar apenas em desenvolvimento!
+   imports: [
+      ConfigModule.forRoot({
+         isGlobal: true, // Torna disponível em toda a aplicação
       }),
-    }),
-    TarefasModule,
-  ],
+      TypeOrmModule.forRootAsync({
+         imports: [ConfigModule],
+         inject: [ConfigService],
+         useFactory: (configService: ConfigService) => ({
+            type: "postgres",
+            host: configService.get("DB_HOST"),
+            port: configService.get<number>("DB_PORT"),
+            username: configService.get("DB_USERNAME"),
+            password: configService.get("DB_PASSWORD"),
+            database: configService.get("DB_NAME"),
+            autoLoadEntities: true, // carrega entidades automaticamente
+            synchronize: true, // ⚠️ usar apenas em desenvolvimento!
+         }),
+      }),
+      TarefasModule,
+   ],
 })
 export class AppModule {}
 ```
@@ -2993,10 +3048,11 @@ export class AppModule {}
 
 ## 🧪 Exercício
 
-✅ Objetivo: Simular a conexão com o banco, mesmo sem ter entidades criadas ainda.
+✅ Objetivo: Simular a conexão com o banco, mesmo sem ter entidades criadas
+ainda.
 
-Como testar:
-Certifique-se que seu PostgreSQL está rodando com os dados do ``.env``
+Como testar: Certifique-se que seu PostgreSQL está rodando com os dados do
+`.env`
 
 Execute o comando:
 
@@ -3016,10 +3072,9 @@ Esperado no terminal:
 
 ✅ O que você aprendeu hoje:
 
-✔ Como configurar variáveis de ambiente com .env
-✔ Como usar o @nestjs/config para acessar essas variáveis
-✔ Como instalar e configurar o TypeORM para PostgreSQL
-✔ Como garantir que sua aplicação conecta ao banco com sucesso
+✔ Como configurar variáveis de ambiente com .env ✔ Como usar o @nestjs/config
+para acessar essas variáveis ✔ Como instalar e configurar o TypeORM para
+PostgreSQL ✔ Como garantir que sua aplicação conecta ao banco com sucesso
 
 <br/>
 <hr />
@@ -3037,7 +3092,8 @@ Esperado no terminal:
 
 ## 🎯 Objetivo do Dia
 
-Entender o conceito de **entidades** no TypeORM, suas diferenças em relação aos DTOs e como mapear classes para tabelas usando decorators do TypeORM.
+Entender o conceito de **entidades** no TypeORM, suas diferenças em relação aos
+DTOs e como mapear classes para tabelas usando decorators do TypeORM.
 
 <br/>
 <hr />
@@ -3047,10 +3103,11 @@ Entender o conceito de **entidades** no TypeORM, suas diferenças em relação a
 
 ### 🔹 O que são Entidades?
 
-Entidades são **representações de tabelas no banco de dados**. Cada instância de uma entidade representa uma linha da tabela.
+Entidades são **representações de tabelas no banco de dados**. Cada instância de
+uma entidade representa uma linha da tabela.
 
-- Exemplo: `TarefaEntity` → tabela `tarefa`
-- Cada propriedade → uma coluna da tabela
+-  Exemplo: `TarefaEntity` → tabela `tarefa`
+-  Cada propriedade → uma coluna da tabela
 
 <br/>
 <hr />
@@ -3060,12 +3117,12 @@ Entidades são **representações de tabelas no banco de dados**. Cada instânci
 
 Decorators são usados para dizer ao TypeORM como mapear as propriedades:
 
-| Decorador             | Função                                                 |
-|------------------------|---------------------------------------------------------|
-| `@Entity()`            | Marca a classe como uma entidade (uma tabela)          |
-| `@PrimaryGeneratedColumn()` | Gera uma coluna primária com valor automático     |
-| `@Column()`            | Marca a propriedade como uma coluna da tabela         |
-| `@CreateDateColumn()`  | Armazena a data de criação automaticamente             |
+| Decorador                   | Função                                        |
+| --------------------------- | --------------------------------------------- |
+| `@Entity()`                 | Marca a classe como uma entidade (uma tabela) |
+| `@PrimaryGeneratedColumn()` | Gera uma coluna primária com valor automático |
+| `@Column()`                 | Marca a propriedade como uma coluna da tabela |
+| `@CreateDateColumn()`       | Armazena a data de criação automaticamente    |
 
 <br/>
 <hr />
@@ -3073,11 +3130,11 @@ Decorators são usados para dizer ao TypeORM como mapear as propriedades:
 
 ### 🔹 Diferença entre Entidades e DTOs
 
-| Entidade                         | DTO                                       |
-|----------------------------------|-------------------------------------------|
-| Reflete estrutura da base        | Reflete dados que entram ou saem da API   |
-| Usada com TypeORM                | Usada com validação (class-validator)     |
-| Pode ter regras de banco (chaves, timestamp) | Só possui os campos necessários |
+| Entidade                                     | DTO                                     |
+| -------------------------------------------- | --------------------------------------- |
+| Reflete estrutura da base                    | Reflete dados que entram ou saem da API |
+| Usada com TypeORM                            | Usada com validação (class-validator)   |
+| Pode ter regras de banco (chaves, timestamp) | Só possui os campos necessários         |
 
 <br/>
 <hr />
@@ -3085,11 +3142,11 @@ Decorators são usados para dizer ao TypeORM como mapear as propriedades:
 
 ### 🔹 Visão geral:
 
-- **Repository**: camada de acesso ao banco de dados
-- **Migration**: controle de alterações de estrutura do banco
-- **Relation**: relacionamento entre entidades (1:1, 1:N, N:N)
+-  **Repository**: camada de acesso ao banco de dados
+-  **Migration**: controle de alterações de estrutura do banco
+-  **Relation**: relacionamento entre entidades (1:1, 1:N, N:N)
 
-> *Esses temas serão aprofundados nas próximas aulas.*
+> _Esses temas serão aprofundados nas próximas aulas._
 
 <br/>
 <hr />
@@ -3102,33 +3159,34 @@ Crie a entidade `Tarefa` com os seguintes campos:
 ```ts
 // src/tarefas/tarefa.entity.ts
 import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  CreateDateColumn,
-} from 'typeorm';
-import { TarefaStatus } from './enums/tarefa-status.enum';
+   Entity,
+   PrimaryGeneratedColumn,
+   Column,
+   CreateDateColumn,
+} from "typeorm";
+import { TarefaStatus } from "./enums/tarefa-status.enum";
 
 @Entity()
 export class Tarefa {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+   @PrimaryGeneratedColumn("uuid")
+   id: string;
 
-  @Column()
-  titulo: string;
+   @Column()
+   titulo: string;
 
-  @Column()
-  descricao: string;
+   @Column()
+   descricao: string;
 
-  @Column()
-  status: TarefaStatus;
+   @Column()
+   status: TarefaStatus;
 
-  @CreateDateColumn()
-  dataCriacao: Date;
+   @CreateDateColumn()
+   dataCriacao: Date;
 }
 ```
 
-> ⚠️ Lembre-se de importar corretamente o ``TarefaStatus`` (enum que representa o status da tarefa).
+> ⚠️ Lembre-se de importar corretamente o `TarefaStatus` (enum que representa o
+> status da tarefa).
 
 <br/>
 <hr />
@@ -3136,7 +3194,7 @@ export class Tarefa {
 
 ✅ Verificação
 
-1. Adicione a entidade em ``tarefas.module.ts``:
+1. Adicione a entidade em `tarefas.module.ts`:
 
 ```ts
 imports: [TypeOrmModule.forFeature([TarefaEntity])],
@@ -3148,7 +3206,8 @@ imports: [TypeOrmModule.forFeature([TarefaEntity])],
 npm run start:dev
 ```
 
-3. Verifique no console se a tabela foi criada (se ``synchronize: true`` estiver ativado)
+3. Verifique no console se a tabela foi criada (se `synchronize: true` estiver
+   ativado)
 
 <br/>
 <hr />
@@ -3156,9 +3215,11 @@ npm run start:dev
 
 ## 🧪 Exercício (opcional)
 
-- Tente acessar a tabela no banco via pgAdmin ou SQLite (dependendo do banco que estiver usando).
+-  Tente acessar a tabela no banco via pgAdmin ou SQLite (dependendo do banco
+   que estiver usando).
 
-- Adicione um campo extra opcional como ``@Column({ default: false }) arquivada: boolean``.
+-  Adicione um campo extra opcional como
+   `@Column({ default: false }) arquivada: boolean`.
 
 <br/>
 <hr />
@@ -3176,7 +3237,8 @@ npm run start:dev
 
 ## 🎯 Objetivo do Dia
 
-Aprender a integrar o NestJS com o banco de dados usando TypeORM, conectando via variáveis de ambiente e utilizando uma entidade real.
+Aprender a integrar o NestJS com o banco de dados usando TypeORM, conectando via
+variáveis de ambiente e utilizando uma entidade real.
 
 <br/>
 <hr />
@@ -3196,33 +3258,34 @@ DB_PASSWORD=senha_do_postgres
 DB_NAME=nest_tarefas
 ```
 
-🔹 Importando ``TypeOrmModule`` no ``AppModule``
+🔹 Importando `TypeOrmModule` no `AppModule`
 
-No ``app.module.ts`` usamos ``TypeOrmModule.forRootAsync()`` para ler o ``.env`` dinamicamente:
+No `app.module.ts` usamos `TypeOrmModule.forRootAsync()` para ler o `.env`
+dinamicamente:
 
 ```ts
-import { Module } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { Module } from "@nestjs/common";
+import { ConfigModule, ConfigService } from "@nestjs/config";
+import { TypeOrmModule } from "@nestjs/typeorm";
 
 @Module({
-  imports: [
-    ConfigModule.forRoot({ isGlobal: true }),
-    TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
-      inject: [ConfigService],
-      useFactory: (configService: ConfigService) => ({
-        type: 'postgres',
-        host: configService.get('DB_HOST'),
-        port: configService.get<number>('DB_PORT'),
-        username: configService.get('DB_USERNAME'),
-        password: configService.get('DB_PASSWORD'),
-        database: configService.get('DB_NAME'),
-        autoLoadEntities: true,
-        synchronize: true, // ⚠️ apenas em desenvolvimento!
+   imports: [
+      ConfigModule.forRoot({ isGlobal: true }),
+      TypeOrmModule.forRootAsync({
+         imports: [ConfigModule],
+         inject: [ConfigService],
+         useFactory: (configService: ConfigService) => ({
+            type: "postgres",
+            host: configService.get("DB_HOST"),
+            port: configService.get<number>("DB_PORT"),
+            username: configService.get("DB_USERNAME"),
+            password: configService.get("DB_PASSWORD"),
+            database: configService.get("DB_NAME"),
+            autoLoadEntities: true,
+            synchronize: true, // ⚠️ apenas em desenvolvimento!
+         }),
       }),
-    }),
-  ],
+   ],
 })
 export class AppModule {}
 ```
@@ -3239,45 +3302,45 @@ export class AppModule {}
 npm install --save @nestjs/typeorm typeorm pg @nestjs/config
 ```
 
-✅ 2. Crie a entidade ``TarefaEntity``
+✅ 2. Crie a entidade `TarefaEntity`
 
-Crie o arquivo ``src/tarefas/tarefa.entity.ts``:
+Crie o arquivo `src/tarefas/tarefa.entity.ts`:
 
 ```ts
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
-import { TarefaStatus } from './enums/tarefa-status.enum';
+import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { TarefaStatus } from "./enums/tarefa-status.enum";
 
-@Entity('tarefas')
+@Entity("tarefas")
 export class TarefaEntity {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+   @PrimaryGeneratedColumn("uuid")
+   id: string;
 
-  @Column()
-  titulo: string;
+   @Column()
+   titulo: string;
 
-  @Column()
-  descricao: string;
+   @Column()
+   descricao: string;
 
-  @Column()
-  status: TarefaStatus;
+   @Column()
+   status: TarefaStatus;
 }
 ```
 
 ✅ 3. Adicione a entidade no módulo
 
-No arquivo ``tarefas.module.ts``:
+No arquivo `tarefas.module.ts`:
 
 ```ts
-import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { TarefaEntity } from './tarefa.entity';
-import { TarefasService } from './tarefas.service';
-import { TarefasController } from './tarefas.controller';
+import { Module } from "@nestjs/common";
+import { TypeOrmModule } from "@nestjs/typeorm";
+import { TarefaEntity } from "./tarefa.entity";
+import { TarefasService } from "./tarefas.service";
+import { TarefasController } from "./tarefas.controller";
 
 @Module({
-  imports: [TypeOrmModule.forFeature([TarefaEntity])],
-  controllers: [TarefasController],
-  providers: [TarefasService],
+   imports: [TypeOrmModule.forFeature([TarefaEntity])],
+   controllers: [TarefasController],
+   providers: [TarefasService],
 })
 export class TarefasModule {}
 ```
@@ -3286,29 +3349,29 @@ export class TarefasModule {}
 
 🔹 Criar o repositório e salvar no banco
 
-No ``tarefas.service.ts``, injete o repositório:
+No `tarefas.service.ts`, injete o repositório:
 
 ```ts
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { TarefaEntity } from './tarefa.entity';
+import { InjectRepository } from "@nestjs/typeorm";
+import { Repository } from "typeorm";
+import { TarefaEntity } from "./tarefa.entity";
 
 @Injectable()
 export class TarefasService {
-  constructor(
-    @InjectRepository(TarefaEntity)
-    private tarefasRepository: Repository<TarefaEntity>,
-  ) {}
+   constructor(
+      @InjectRepository(TarefaEntity)
+      private tarefasRepository: Repository<TarefaEntity>,
+   ) {}
 
-  async createTarefa(dto: CreateTarefaDto): Promise<TarefaEntity> {
-    const tarefa = this.tarefasRepository.create({
-      titulo: dto.titulo,
-      descricao: dto.descricao,
-      status: TarefaStatus.ABERTA,
-    });
+   async createTarefa(dto: CreateTarefaDto): Promise<TarefaEntity> {
+      const tarefa = this.tarefasRepository.create({
+         titulo: dto.titulo,
+         descricao: dto.descricao,
+         status: TarefaStatus.ABERTA,
+      });
 
-    return this.tarefasRepository.save(tarefa);
-  }
+      return this.tarefasRepository.save(tarefa);
+   }
 }
 ```
 
@@ -3323,22 +3386,22 @@ async create(@Body() dto: CreateTarefaDto): Promise<TarefaEntity> {
 
 ✅ Verificação final
 
-- Rode o projeto com ``npm run start:dev``
+-  Rode o projeto com `npm run start:dev`
 
-- Use Postman ou Insomnia:
+-  Use Postman ou Insomnia:
 
-  - Rota: ``POST /tarefas``
+   -  Rota: `POST /tarefas`
 
-  - Body:
+   -  Body:
 
-    ```json
-    {
-      "titulo": "Estudar NestJS",
-      "descricao": "Aula de integração com banco"
-    }
-    ```
+      ```json
+      {
+         "titulo": "Estudar NestJS",
+         "descricao": "Aula de integração com banco"
+      }
+      ```
 
-- Confirme se a tarefa foi salva no banco
+-  Confirme se a tarefa foi salva no banco
 
 <br/>
 <hr />
@@ -3356,7 +3419,8 @@ async create(@Body() dto: CreateTarefaDto): Promise<TarefaEntity> {
 
 ## 🎯 Objetivo do Dia
 
-Aprender a usar o `Repository` do TypeORM no `TarefasService` para realizar as operações CRUD diretamente no banco de dados, substituindo o array em memória.
+Aprender a usar o `Repository` do TypeORM no `TarefasService` para realizar as
+operações CRUD diretamente no banco de dados, substituindo o array em memória.
 
 <br/>
 <hr />
@@ -3366,21 +3430,24 @@ Aprender a usar o `Repository` do TypeORM no `TarefasService` para realizar as o
 
 ### 🔹 Criar o repositório de tarefas
 
-No NestJS, não é necessário criar uma classe `TarefaRepository` manualmente. O próprio TypeORM já expõe um repositório automaticamente ao usar `@InjectRepository()`.
+No NestJS, não é necessário criar uma classe `TarefaRepository` manualmente. O
+próprio TypeORM já expõe um repositório automaticamente ao usar
+`@InjectRepository()`.
 
 ### 🔹 O que é `InjectRepository`?
 
-É um decorator que injeta a instância do repositório da entidade para realizar operações no banco de dados.
+É um decorator que injeta a instância do repositório da entidade para realizar
+operações no banco de dados.
 
 ### 🔹 Principais métodos usados:
 
-| Método       | Função                                             |
-|--------------|----------------------------------------------------|
-| `save()`     | Cria ou atualiza uma entidade                      |
-| `find()`     | Lista todos os registros                           |
-| `findOne()`  | Busca um registro por critério (ex: ID)            |
-| `delete()`   | Deleta um registro                                 |
-| `update()`   | Atualiza campos de um registro (ou usar `save()`)  |
+| Método      | Função                                            |
+| ----------- | ------------------------------------------------- |
+| `save()`    | Cria ou atualiza uma entidade                     |
+| `find()`    | Lista todos os registros                          |
+| `findOne()` | Busca um registro por critério (ex: ID)           |
+| `delete()`  | Deleta um registro                                |
+| `update()`  | Atualiza campos de um registro (ou usar `save()`) |
 
 <br/>
 <hr />
@@ -3393,9 +3460,9 @@ No NestJS, não é necessário criar uma classe `TarefaRepository` manualmente. 
 1. **Importe os pacotes:**
 
 ```ts
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { TarefaEntity } from './tarefa.entity';
+import { InjectRepository } from "@nestjs/typeorm";
+import { Repository } from "typeorm";
+import { TarefaEntity } from "./tarefa.entity";
 ```
 
 2. Injete o repositório no construtor:
@@ -3492,22 +3559,22 @@ npm run start:dev
 
 2. Teste os endpoints com Postman/Insomnia:
 
-- ``GET /tarefas``
+-  `GET /tarefas`
 
-- ``GET /tarefas/:id``
+-  `GET /tarefas/:id`
 
-- ``POST /tarefas`` com body:
+-  `POST /tarefas` com body:
 
 ```json
 {
-  "titulo": "Estudar NestJS",
-  "descricao": "Aula de CRUD com banco"
+   "titulo": "Estudar NestJS",
+   "descricao": "Aula de CRUD com banco"
 }
 ```
 
-- ``PATCH /tarefas/:id/status``
+-  `PATCH /tarefas/:id/status`
 
-- ``DELETE /tarefas/:id``
+-  `DELETE /tarefas/:id`
 
 🔄 Comparação
 
@@ -3532,7 +3599,8 @@ npm run start:dev
 
 ## 🎯 Objetivo do Dia
 
-Aprender a criar usuários e armazenar senhas criptografadas, preparando o projeto para autenticação com JWT.
+Aprender a criar usuários e armazenar senhas criptografadas, preparando o
+projeto para autenticação com JWT.
 
 <br/>
 <hr />
@@ -3544,10 +3612,10 @@ Aprender a criar usuários e armazenar senhas criptografadas, preparando o proje
 
 Antes de autenticar, precisamos de:
 
-- Um **módulo de usuários**
-- Uma **entidade de usuário**
-- Um serviço para **registrar e salvar** o usuário no banco
-- Senha **criptografada** (nunca salvar texto puro!)
+-  Um **módulo de usuários**
+-  Uma **entidade de usuário**
+-  Um serviço para **registrar e salvar** o usuário no banco
+-  Senha **criptografada** (nunca salvar texto puro!)
 
 <br/>
 <hr />
@@ -3561,7 +3629,8 @@ Execute:
 npm install @nestjs/jwt @nestjs/passport passport passport-jwt bcryptjs
 ```
 
-Esses pacotes serão usados nas próximas aulas para login, geração e validação de tokens JWT.
+Esses pacotes serão usados nas próximas aulas para login, geração e validação de
+tokens JWT.
 
 <br/>
 <hr />
@@ -3580,26 +3649,26 @@ nest g service usuario
 <hr />
 <br/>
 
-🧬 Criar entidade ``UsuarioEntity``
+🧬 Criar entidade `UsuarioEntity`
 
-🗂️ ``src/usuario/usuario.entity.ts``
+🗂️ `src/usuario/usuario.entity.ts`
 
 ```ts
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity('usuarios')
+@Entity("usuarios")
 export class UsuarioEntity {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+   @PrimaryGeneratedColumn("uuid")
+   id: string;
 
-  @Column({ unique: true })
-  email: string;
+   @Column({ unique: true })
+   email: string;
 
-  @Column()
-  senha: string;
+   @Column()
+   senha: string;
 
-  @Column()
-  nome: string;
+   @Column()
+   nome: string;
 }
 ```
 
@@ -3607,40 +3676,44 @@ export class UsuarioEntity {
 <hr />
 <br/>
 
-🛠️ Configurar ``UsuarioService``
+🛠️ Configurar `UsuarioService`
 
-🗂️ ``src/usuario/usuario.service.ts``
+🗂️ `src/usuario/usuario.service.ts`
 
 ```ts
-import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import * as bcrypt from 'bcryptjs';
-import { UsuarioEntity } from './usuario.entity';
+import { Injectable } from "@nestjs/common";
+import { InjectRepository } from "@nestjs/typeorm";
+import { Repository } from "typeorm";
+import * as bcrypt from "bcryptjs";
+import { UsuarioEntity } from "./usuario.entity";
 
 @Injectable()
 export class UsuarioService {
-  constructor(
-    @InjectRepository(UsuarioEntity)
-    private readonly usuarioRepository: Repository<UsuarioEntity>,
-  ) {}
+   constructor(
+      @InjectRepository(UsuarioEntity)
+      private readonly usuarioRepository: Repository<UsuarioEntity>,
+   ) {}
 
-  async registrar(nome: string, email: string, senha: string): Promise<UsuarioEntity> {
-    const salt = await bcrypt.genSalt();
-    const senhaCriptografada = await bcrypt.hash(senha, salt);
+   async registrar(
+      nome: string,
+      email: string,
+      senha: string,
+   ): Promise<UsuarioEntity> {
+      const salt = await bcrypt.genSalt();
+      const senhaCriptografada = await bcrypt.hash(senha, salt);
 
-    const usuario = this.usuarioRepository.create({
-      nome,
-      email,
-      senha: senhaCriptografada,
-    });
+      const usuario = this.usuarioRepository.create({
+         nome,
+         email,
+         senha: senhaCriptografada,
+      });
 
-    return this.usuarioRepository.save(usuario);
-  }
+      return this.usuarioRepository.save(usuario);
+   }
 
-  async buscarPorEmail(email: string): Promise<UsuarioEntity | null> {
-    return this.usuarioRepository.findOne({ where: { email } });
-  }
+   async buscarPorEmail(email: string): Promise<UsuarioEntity | null> {
+      return this.usuarioRepository.findOne({ where: { email } });
+   }
 }
 ```
 
@@ -3658,22 +3731,22 @@ nest g controller usuario
 
 2. Implemente uma rota para cadastro:
 
-🗂️ ``src/usuario/usuario.controller.ts``
+🗂️ `src/usuario/usuario.controller.ts`
 
 ```ts
 // usuario.controller.ts
-import { Controller, Post, Body } from '@nestjs/common';
-import { UsuarioService } from './usuario.service';
-import { CreateUsuarioDto } from './dto/create-usuario.dto';
+import { Controller, Post, Body } from "@nestjs/common";
+import { UsuarioService } from "./usuario.service";
+import { CreateUsuarioDto } from "./dto/create-usuario.dto";
 
-@Controller('usuarios') // <-- prefixo da rota
+@Controller("usuarios") // <-- prefixo da rota
 export class UsuarioController {
-  constructor(private readonly usuarioService: UsuarioService) {}
+   constructor(private readonly usuarioService: UsuarioService) {}
 
-  @Post('registrar') // <-- POST /usuarios/registrar
-  async registrar(@Body() dto: CreateUsuarioDto) {
-    return this.usuarioService.registrar(dto.nome, dto.email, dto.senha);
-  }
+   @Post("registrar") // <-- POST /usuarios/registrar
+   async registrar(@Body() dto: CreateUsuarioDto) {
+      return this.usuarioService.registrar(dto.nome, dto.email, dto.senha);
+   }
 }
 ```
 
@@ -3683,27 +3756,28 @@ export class UsuarioController {
 
 ## ✅ Criando o CreateUsuarioDto
 
-1. Crie a pasta ``dto`` dentro da pasta ``usuario`` (caso ainda não tenha).
+1. Crie a pasta `dto` dentro da pasta `usuario` (caso ainda não tenha).
 
-2. Dentro dela, crie o arquivo ``create-usuario.dto.ts`` com o seguinte conteúdo:
+2. Dentro dela, crie o arquivo `create-usuario.dto.ts` com o seguinte conteúdo:
 
 ```ts
 // src/usuario/dto/create-usuario.dto.ts
-import { IsEmail, IsNotEmpty, MinLength } from 'class-validator';
+import { IsEmail, IsNotEmpty, MinLength } from "class-validator";
 
 export class CreateUsuarioDto {
-  @IsNotEmpty()
-  nome: string;
+   @IsNotEmpty()
+   nome: string;
 
-  @IsEmail()
-  email: string;
+   @IsEmail()
+   email: string;
 
-  @MinLength(6)
-  senha: string;
+   @MinLength(6)
+   senha: string;
 }
 ```
 
-> 🔒 Aqui usamos o ``class-validator`` para garantir que o nome não está vazio, o e-mail tem formato válido e a senha tem pelo menos 6 caracteres.
+> 🔒 Aqui usamos o `class-validator` para garantir que o nome não está vazio, o
+> e-mail tem formato válido e a senha tem pelo menos 6 caracteres.
 
 <br/>
 <hr />
@@ -3711,19 +3785,20 @@ export class CreateUsuarioDto {
 
 ✅ Testando no Postman
 
-- Endpoint: POST ``http://localhost:3000/usuarios/registrar``
+-  Endpoint: POST `http://localhost:3000/usuarios/registrar`
 
-- Body (JSON):
+-  Body (JSON):
 
 ```json
 {
-  "nome": "João",
-  "email": "joao@email.com",
-  "senha": "minhasenha123"
+   "nome": "João",
+   "email": "joao@email.com",
+   "senha": "minhasenha123"
 }
 ```
 
-- Esperado: retorna objeto com ID, nome e email. Senha vem criptografada no banco.
+-  Esperado: retorna objeto com ID, nome e email. Senha vem criptografada no
+   banco.
 
 <br/>
 <hr />
@@ -3743,10 +3818,10 @@ export class CreateUsuarioDto {
 
 Neste dia, você irá:
 
-- Criar o módulo de autenticação (`AuthModule`)
-- Implementar um serviço que valide o login e gere um token JWT
-- Criar a estratégia `JwtStrategy` com o Passport
-- Proteger rotas usando `@UseGuards(AuthGuard())`
+-  Criar o módulo de autenticação (`AuthModule`)
+-  Implementar um serviço que valide o login e gere um token JWT
+-  Criar a estratégia `JwtStrategy` com o Passport
+-  Proteger rotas usando `@UseGuards(AuthGuard())`
 
 <br/>
 <hr />
@@ -3766,7 +3841,7 @@ npm install @nestjs/jwt @nestjs/passport passport passport-jwt bcryptjs
 
 ## 🔧 Atividades
 
-1. Criar ``AuthModule`` e ``AuthService``
+1. Criar `AuthModule` e `AuthService`
 
 ```bash
 nest g module auth
@@ -3775,162 +3850,161 @@ nest g service auth
 
 2. Criar DTO de login
 
-Crie o arquivo ``login-auth.dto.ts``:
+Crie o arquivo `login-auth.dto.ts`:
 
 ```ts
 import { IsEmail, IsString, MinLength } from "class-validator";
 
 export class LoginAuthDto {
-  @IsEmail()
-  email: string;
+   @IsEmail()
+   email: string;
 
-  @IsString()
-  @MinLength(6)
-  senha: string;
+   @IsString()
+   @MinLength(6)
+   senha: string;
 }
 ```
 
 3. Configurar JwtModule em auth.module.ts
 
 ```ts
-import { Module } from '@nestjs/common';
-import { AuthService } from './auth.service';
-import { PassportModule } from '@nestjs/passport';
-import { JwtModule } from '@nestjs/jwt';
-import { UsuarioModule } from 'src/usuario/usuario.module';
-import { AuthController } from './auth.controller';
-import { JwtStrategy } from './jwt.strategy';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { Module } from "@nestjs/common";
+import { AuthService } from "./auth.service";
+import { PassportModule } from "@nestjs/passport";
+import { JwtModule } from "@nestjs/jwt";
+import { UsuarioModule } from "src/usuario/usuario.module";
+import { AuthController } from "./auth.controller";
+import { JwtStrategy } from "./jwt.strategy";
+import { ConfigModule, ConfigService } from "@nestjs/config";
 
 @Module({
-  imports: [
-    UsuarioModule,
-    ConfigModule,
-    PassportModule,
-    JwtModule.registerAsync({
-      imports: [ConfigModule],
-      useFactory: async (configService: ConfigService) => ({
-        secret: configService.get<string>('JWT_SECRET'),
-        signOptions: {
-          expiresIn: configService.get<string>('JWT_EXPIRES_IN'),
-        },
+   imports: [
+      UsuarioModule,
+      ConfigModule,
+      PassportModule,
+      JwtModule.registerAsync({
+         imports: [ConfigModule],
+         useFactory: async (configService: ConfigService) => ({
+            secret: configService.get<string>("JWT_SECRET"),
+            signOptions: {
+               expiresIn: configService.get<string>("JWT_EXPIRES_IN"),
+            },
+         }),
+         inject: [ConfigService],
       }),
-      inject: [ConfigService],
-    }),
-  ],
-  providers: [AuthService, JwtStrategy],
-  controllers: [AuthController],
+   ],
+   providers: [AuthService, JwtStrategy],
+   controllers: [AuthController],
 })
 export class AuthModule {}
 ```
 
-4. Criar ``AuthService``
+4. Criar `AuthService`
 
 ```ts
-import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
-import { UsuarioService } from 'src/usuario/usuario.service';
-import * as bcrypt from 'bcryptjs';
-import { LoginAuthDto } from './dto/login-auth.dto';
+import { Injectable, UnauthorizedException } from "@nestjs/common";
+import { JwtService } from "@nestjs/jwt";
+import { UsuarioService } from "src/usuario/usuario.service";
+import * as bcrypt from "bcryptjs";
+import { LoginAuthDto } from "./dto/login-auth.dto";
 
 @Injectable()
 export class AuthService {
-    constructor(
-    private usuarioService: UsuarioService,
-    private jwtService: JwtService,
-  ) {}
+   constructor(
+      private usuarioService: UsuarioService,
+      private jwtService: JwtService,
+   ) {}
 
-  async login(loginDto: LoginAuthDto): Promise<{ access_token: string }> {
-    const { email, senha } = loginDto;
-    const usuario = await this.usuarioService.findByEmail(email);
+   async login(loginDto: LoginAuthDto): Promise<{ access_token: string }> {
+      const { email, senha } = loginDto;
+      const usuario = await this.usuarioService.findByEmail(email);
 
-    if (!usuario) {
-      throw new UnauthorizedException('Usuário não encontrado');
-    }
+      if (!usuario) {
+         throw new UnauthorizedException("Usuário não encontrado");
+      }
 
-    const senhaValida = await bcrypt.compare(senha, usuario.senha);
-    if (!senhaValida) {
-      throw new UnauthorizedException('Senha incorreta');
-    }
+      const senhaValida = await bcrypt.compare(senha, usuario.senha);
+      if (!senhaValida) {
+         throw new UnauthorizedException("Senha incorreta");
+      }
 
-    const payload = { sub: usuario.id, email: usuario.email };
-    const token = this.jwtService.sign(payload);
+      const payload = { sub: usuario.id, email: usuario.email };
+      const token = this.jwtService.sign(payload);
 
-    return { access_token: token };
-  }
+      return { access_token: token };
+   }
 }
 ```
 
-5. Criar ``AuthController``
+5. Criar `AuthController`
 
 ```bash
 nest g controller auth
 ```
 
 ```ts
-import { Body, Controller, Post } from '@nestjs/common';
-import { AuthService } from './auth.service';
-import { LoginAuthDto } from './dto/login-auth.dto';
+import { Body, Controller, Post } from "@nestjs/common";
+import { AuthService } from "./auth.service";
+import { LoginAuthDto } from "./dto/login-auth.dto";
 
-@Controller('auth')
+@Controller("auth")
 export class AuthController {
-    constructor(private readonly authService: AuthService) {}
+   constructor(private readonly authService: AuthService) {}
 
-    @Post('login')
-    login(@Body() loginDto: LoginAuthDto) {
-        return this.authService.login(loginDto);
-    }
+   @Post("login")
+   login(@Body() loginDto: LoginAuthDto) {
+      return this.authService.login(loginDto);
+   }
 }
 ```
 
-6. Criar ``JwtStrategy``
+6. Criar `JwtStrategy`
 
 ```ts
-import { Injectable } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-import { PassportStrategy } from '@nestjs/passport';
-import { ExtractJwt, Strategy } from 'passport-jwt';
+import { Injectable } from "@nestjs/common";
+import { ConfigService } from "@nestjs/config";
+import { PassportStrategy } from "@nestjs/passport";
+import { ExtractJwt, Strategy } from "passport-jwt";
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
-  constructor(configService: ConfigService) {
-    super({
-      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      ignoreExpiration: false,
-      secretOrKey: configService.get<string>('JWT_SECRET'), // ou process.env.JWT_SECRET
-    });
-  }
+   constructor(configService: ConfigService) {
+      super({
+         jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+         ignoreExpiration: false,
+         secretOrKey: configService.get<string>("JWT_SECRET"), // ou process.env.JWT_SECRET
+      });
+   }
 
-  async validate(payload: any) {
-    return { id: payload.sub, email: payload.email };
-  }
+   async validate(payload: any) {
+      return { id: payload.sub, email: payload.email };
+   }
 }
 ```
 
-7. Criar ``JwtAuthGuard``
+7. Criar `JwtAuthGuard`
 
 ```ts
-import { Injectable } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
+import { Injectable } from "@nestjs/common";
+import { AuthGuard } from "@nestjs/passport";
 
 @Injectable()
-export class JwtAuthGuard extends AuthGuard('jwt') {}
+export class JwtAuthGuard extends AuthGuard("jwt") {}
 ```
 
 8. Proteger rotas da tarefa:
 
-No seu ``TarefasController``:
+No seu `TarefasController`:
 
 ```ts
-import { UseGuards } from '@nestjs/common';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { UseGuards } from "@nestjs/common";
+import { JwtAuthGuard } from "src/auth/jwt-auth.guard";
 
-@UseGuards(JwtAuthGuard) // incluir 
-@Controller('tarefas')
+@UseGuards(JwtAuthGuard) // incluir
+@Controller("tarefas")
 export class TarefasController {
-  // ... rotas protegidas
+   // ... rotas protegidas
 }
-
 ```
 
 🔍 Testando no Postman
@@ -3945,15 +4019,15 @@ POST /auth/login
 }
 ```
 
-→ Copie o ``access_token`` retornado.
+→ Copie o `access_token` retornado.
 
 2. Use o token nas demais requisições protegidas:
 
 <h2>👀 Obs: Quando digo nas demais requisições, quero dizer que no Postman em cada rota, ou seja, no GET, POST, PATH e DELETE. Deve incluir o que está orientando abaixo.</h2>
 
-- Vá até Headers
+-  Vá até Headers
 
-- Adicione:
+-  Adicione:
 
 ```makefile
 Authorization: Bearer SEU_TOKEN
@@ -3963,10 +4037,301 @@ Imagem de onde incluir a Authorization: Berer token
 
 ![imagem de onde incluir o token!](/nestJS-aulas/primeira_semana/imgs/token.png)
 
+✅ Conclusão Agora seu sistema possui autenticação JWT completa e rotas
+protegidas!
+
+<br/>
+<hr />
+<br/>
+<p align="center">============================== // ==============================</p>
+
+<p align="center">🚀🚀🚀🚀🚀 Início do 19º dia de aula 🚀🚀🚀🚀🚀</p>
+
+<p align="center">============================== // ==============================</p>
+<br/>
+<hr />
+<br/>
+
+#🗓️ Dia 19 – Relacionamentos com TypeORM
+
+> 🎯 Objetivo:
+>
+> Criar relacionamento entre as entidades `Usuario` e `Tarefa`, onde um usuário
+> pode ter várias tarefas (1:N), e garantir que cada tarefa pertence a um único
+> usuário autenticado.
+
+<br/>
+<hr />
+<br/>
+
+📚 Conteúdo Teórico
+
+## ✅ O que é um relacionamento 1:N?
+
+No contexto de banco de dados relacional e ORM (como o TypeORM), uma relação 1:N
+significa:
+
+-  Um usuário pode ter várias tarefas (OneToMany).
+
+-  Cada tarefa pertence a um único usuário (ManyToOne). <br/>
+<hr />
+<br/>
+
+## ✅ Decorators TypeORM
+
+-  `@OneToMany()` → Define o lado um para muitos (usuário → tarefas).
+
+-  `@ManyToOne()` → Define o lado muitos para um (tarefa → usuário).
+
+-  `{ eager: false }` → Define se o dado relacionado deve ser carregado
+   automaticamente.
+
+<br/>
+<hr />
+<br/>
+
+## 🧱 Estrutura das Entidades
+
+🧑 Entidade `UsuarioEntity`
+
+```ts
+import { Tarefas } from "src/tarefas/tarefa.entity";
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from "typeorm";
+
+@Entity("usuarios")
+export class UsuarioEntity {
+   @PrimaryGeneratedColumn("uuid")
+   id: string;
+
+   @Column({ unique: true })
+   email: string;
+
+   @Column()
+   senha: string;
+
+   @Column()
+   nome: string;
+
+   @OneToMany(() => Tarefas, tarefa => tarefa.usuario)
+   tarefas: Tarefas[];
+}
+```
+
+<br/>
+<hr />
+<br/>
+
+✅ Entidade `TarefaEntity`
+
+```ts
+import {
+   Entity,
+   PrimaryGeneratedColumn,
+   Column,
+   CreateDateColumn,
+   ManyToOne,
+} from "typeorm";
+import { TarefaStatus } from "./tarefa-status.enum";
+import { UsuarioEntity } from "src/usuario/usuario.entity";
+
+@Entity("tarefas")
+export class TarefaEntity {
+   @PrimaryGeneratedColumn("uuid")
+   id: string;
+
+   @Column()
+   titulo: string;
+
+   @Column()
+   descricao: string;
+
+   @Column()
+   status: TarefaStatus;
+
+   @CreateDateColumn()
+   dataCriacao: Date;
+
+   @ManyToOne(() => UsuarioEntity, usuario => usuario.tarefas, {
+      eager: false,
+   })
+   usuario: UsuarioEntity;
+}
+```
+
+<br/>
+<hr />
+<br/>
+
+## 🔧 Atividades Práticas
+
+1. Criar relacionamento entre tarefas e usuário
+
+-  Atualize as entidades conforme acima.
+
+2. Atualizar método de criação de tarefa (`tarefas.service.ts`)
+
+```ts
+async create(dto: CreateTarefaDto, usuario: UsuarioEntity): Promise<TarefaEntity> {
+  const nova = this.tarefasRepository.create({
+    ...dto,
+    status: TarefaStatus.ABERTA,
+    usuario, // atribuindo o usuário dono da tarefa
+  });
+  return this.tarefasRepository.save(nova);
+}
+```
+
+<br/>
+<hr />
+<br/>
+
+3. Extrair usuário do token JWT em todas as rotas (`tarefas.controller.ts`)
+
+```ts
+import { JwtAuthGuard } from "src/auth/jwt.auth.guard";
+import { UsuarioLogado } from "src/usuario/decorators/usuario.decorator";
+import { UsuarioEntity } from "src/usuario/usuario.entity";
+
+@UseGuards(JwtAuthGuard)
+@Controller("tarefas") // prefixo: todas as rotas começam com /tarefas
+export class TarefasController {
+   constructor(private readonly tarefasService: TarefasService) {}
+
+   // GET /tarefas
+   @Get()
+   async listar(@UsuarioLogado() usuario: UsuarioEntity) {
+      return this.tarefasService.findByUsuario(usuario);
+   }
+
+   // GET /tarefas/:id
+   @Get(":id")
+   findById(
+      @Param("id") id: string,
+      @UsuarioLogado() usuario: UsuarioEntity,
+   ): Promise<Tarefas> {
+      return this.tarefasService.findById(id, usuario);
+   }
+
+   // POST /tarefas
+   @Post()
+   async create(
+      @Body() dto: CreateTarefaDto,
+      @UsuarioLogado() usuario: UsuarioEntity,
+   ) {
+      return this.tarefasService.create(dto, usuario);
+   }
+
+   // DELETE /id
+   @Delete(":id")
+   delete(
+      @Param("id") id: string,
+      @UsuarioLogado() usuario: UsuarioEntity,
+   ): Promise<void> {
+      return this.tarefasService.delete(id, usuario);
+   }
+
+   @Patch(":id/status")
+   updateStatus(
+      @Param("id") id: string,
+      @Body("status", TarefaStatusValidationPipe) status: TarefaStatus,
+      @UsuarioLogado() usuario: UsuarioEntity,
+   ): Promise<Tarefas> {
+      return this.tarefasService.updateStatus(id, status, usuario);
+   }
+}
+```
+
+📌 Dica: o decorator personalizado `@UsuarioLogado()` é preciso criar:
+
+📁 crie `/usuario/decorators/usuario.decorator.ts`
+
+```ts
+import { createParamDecorator, ExecutionContext } from "@nestjs/common";
+
+export const UsuarioLogado = createParamDecorator(
+   (data: unknown, ctx: ExecutionContext) => {
+      const request = ctx.switchToHttp().getRequest();
+      return request.user;
+   },
+);
+```
+
+<br/>
+<hr />
+<br/>
+
+4. Faça as modificções no `tarefas.service.ts`
+
+```ts
+async findById(id: string, usuario: UsuarioEntity): Promise<Tarefas> {
+    const tarefa = await this.tarefasRepository.findOne({
+      where: { id },
+      relations: ['usuario'],
+    });
+
+    if (!tarefa) {
+      throw new NotFoundException(`Tarefa com ID "${id}" não encontrada`);
+    }
+
+    if (tarefa.usuario.id !== usuario.id) {
+      throw new UnauthorizedException(
+        'Você não tem permissão para acessar esta tarefa',
+      );
+    }
+
+    return tarefa;
+  }
+
+  // Buscar todas as tarefas de um usuário
+  async findByUsuario(usuario: UsuarioEntity): Promise<Tarefas[]> {
+    return this.tarefasRepository.find({
+      where: { usuario: { id: usuario.id } },
+    });
+  }
+
+  async create(dto: CreateTarefaDto, usuario: UsuarioEntity): Promise<Tarefas> {
+    console.log('Criando tarefa para usuário:', usuario);
+    const novaTarefa = this.tarefasRepository.create({
+      ...dto,
+      status: TarefaStatus.ABERTA,
+      usuario: usuario, // atribuindo o usuário dono da tarefa
+    });
+    return this.tarefasRepository.save(novaTarefa);
+  }
+
+  async updateStatus(
+    id: string,
+    status: TarefaStatus,
+    usuario: UsuarioEntity,
+  ): Promise<Tarefas> {
+    const tarefa = await this.findById(id, usuario); // valida propriedade
+    tarefa.status = status;
+    return this.tarefasRepository.save(tarefa);
+  }
+
+  async delete(id: string, usuario: UsuarioEntity): Promise<void> {
+    const tarefa = await this.findById(id, usuario); // garante que pertence ao usuário
+
+    const result = await this.tarefasRepository.delete(id);
+    if (result.affected === 0) {
+      throw new NotFoundException(`Tarefa com ID "${id}" não encontrada`);
+    }
+  }
+```
+
+<br/>
+<hr />
+<br/>
+
 ✅ Conclusão
-Agora seu sistema possui autenticação JWT completa e rotas protegidas!
 
+Ao final dessa aula, você terá:
 
+- Criado relacionamento entre UsuarioEntity e TarefaEntity
+
+- Vinculado cada nova tarefa ao usuário autenticado via token
+
+- Garantido que as tarefas listadas sejam apenas as do usuário logado
 
 <br/>
 <hr />
@@ -3979,6 +4344,5 @@ Agora seu sistema possui autenticação JWT completa e rotas protegidas!
 <br/>
 <hr />
 <br/>
-
 
 1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣ 6️⃣ 7️⃣ 8️⃣ 9️⃣ 🔟
