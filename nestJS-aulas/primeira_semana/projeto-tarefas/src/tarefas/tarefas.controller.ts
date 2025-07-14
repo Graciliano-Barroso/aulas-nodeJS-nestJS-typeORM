@@ -101,6 +101,7 @@ export class TarefasController {
       @Body("status", TarefaStatusValidationPipe) status: TarefaStatus,
       @UsuarioLogado() usuario: UsuarioEntity,
    ): Promise<Tarefas> {
+      console.log('Atualizando status:', { id, status, usuario });
       return this.tarefasService.updateStatus(id, status, usuario);
    }
 

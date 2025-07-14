@@ -12,6 +12,8 @@ async function bootstrap() {
 
    const app = await NestFactory.create(AppModule);
 
+   app.enableCors(); // Permite que o frontend se comunique com a API
+
    // Ativa validação global (para DTOs com class-validator)
    app.useGlobalPipes(new ValidationPipe());
 
@@ -24,10 +26,10 @@ async function bootstrap() {
       .build();
 
    const document = SwaggerModule.createDocument(app, config);
-   SwaggerModule.setup("api", app, document); // Rota: http://localhost:3000/api
+   SwaggerModule.setup("api", app, document); // Rota: http://localhost:3001/api
 
-   const port = process.env.PORT || 3000;
-   await app.listen(3000);
+   const port = process.env.PORT || 3001;
+   await app.listen(3001);
 
    console.log(`Servidor rodando na porta ${port}`);
 }
